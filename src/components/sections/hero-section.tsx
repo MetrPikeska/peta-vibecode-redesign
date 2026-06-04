@@ -28,6 +28,17 @@ export function HeroSection() {
               </h1>
             </Reveal>
 
+            <Reveal delay={300}>
+              <div className="mb-10">
+                <p className="font-serif text-[clamp(1.1rem,2vw,1.45rem)] leading-snug text-hero-text/85">
+                  {hero.tagline}
+                </p>
+                <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-hero-text/40 mt-2">
+                  {hero.subtagline}
+                </p>
+              </div>
+            </Reveal>
+
             <Reveal delay={400}>
               <div className="flex flex-wrap gap-2.5 mb-10">
                 {hero.specialties.map((s) => (
