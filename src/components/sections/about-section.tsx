@@ -13,7 +13,7 @@ export function AboutSection() {
         </Reveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-8 max-w-4xl">
-          {about.slice(0, 4).map((p, i) => (
+          {about.slice(0, -1).map((p, i) => (
             <Reveal key={i} delay={100 + i * 100}>
               <p className="text-muted-foreground leading-[1.8] text-[15px]">
                 {p}
@@ -25,16 +25,7 @@ export function AboutSection() {
         <Reveal delay={600}>
           <div className="mt-14 pl-6 border-l-2 border-terracotta/60 max-w-2xl">
             <p className="text-muted-foreground leading-[1.8] text-[15px] italic font-serif text-lg">
-              {about[4].split("Discogs")[0]}
-              <a
-                href="https://www.discogs.com/user/piter.mikeska/collection"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-topo hover:text-terracotta transition-colors not-italic underline underline-offset-2"
-              >
-                Discogs
-              </a>
-              {about[4].split("Discogs")[1]}
+              {about[about.length - 1]}
             </p>
           </div>
         </Reveal>

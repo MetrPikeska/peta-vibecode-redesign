@@ -51,6 +51,8 @@ export interface Service {
 
 export const hero = {
   name: "Petr Mikeska",
+  tagline: "Trénuji modely, které vidí. Výsledky dávám na mapu.",
+  subtagline: "GIS analytik · GeoAI developer · R&D @ CEDA Maps",
   specialties: [
     "Web GIS",
     "Remote Sensing",
@@ -75,11 +77,10 @@ export const hero = {
 };
 
 export const about = [
-  "Propojuji prostorovou analytiku, computer vision a webový vývoj do geodatových řešení s reálným dopadem. V R&D týmu CEDA Maps stavím ML pipeline pro automatickou detekci dopravních defektů a značek — od prostorové filtrace GPS tracků přes přípravu trénovacích dat až po PostGIS clusterování výsledků z tisíců průjezdů.",
-  "Ve světě GIS se pohybuji stejně volně na příkazové řádce Pythonu jako v ArcGIS Pro nebo QGIS. Prostorovým analýzám, rastrové i vektorové práci a kartografickým výstupům rozumím zevnitř — od datového modelu po finální vizualizaci.",
-  "Stavím webové mapové aplikace, které fungují v produkci: Leaflet frontend napojený na PostGIS přes FastAPI, WebSocket real-time streamy z IoT senzorů.",
-  "Jako co-founder VečerkaPlus jsem postavil celou produkční aplikaci pro noční rozvoz — od databázového schématu v Supabase po delivery zone whitelist z 1 093 grid bodů. Aplikace generuje reálné objednávky a tržby od prvního týdne provozu.",
-  "Mimo kód mám blízko k horám a pohybu. Pocházím z Beskyd, v zimě učím snowboarding jako certifikovaný instruktor APUL. Ve volném čase box, turistika a sbírka hudby na CD a vinylech.",
+  "Computer vision vidí pixel. GIS vidí místo. Já stavím, co vidí oba.",
+  "Počítačoví vizionáři trénují modely — výsledek je bounding box na obrázku. GIS analytici dělají prostorové analýzy — vstup předpokládají čistá data. Já stavím pipeline mezi nimi: od surového videa nebo ortofota přes detekci až po PostGIS clustery, které odpovídají na reálné otázky o infrastruktuře, území nebo pohybu.",
+  "Tenhle průnik dělám v produkci — v R&D týmu CEDA Maps na automatické detekci dopravního značení a defektů vozovky. GIS ovládám od příkazové řádky po ArcGIS Pro a vím, kdy stačí GeoPandas a kdy potřebujete PostGIS s prostorovými indexy.",
+  "Pocházím z Beskyd. V zimě učím snowboarding, jinak hory nebo box. Nejlíp mi to myslí daleko od monitoru.",
 ];
 
 export const education: Education[] = [
