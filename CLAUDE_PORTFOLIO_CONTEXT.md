@@ -423,8 +423,8 @@ OS:  Dual-boot Ubuntu + Windows 11
 ```
 CPU: Intel Core i5-6200U (4 threads, 2.3–2.8 GHz)
 OS:  Ubuntu Server 24.04
-Běží: PostgreSQL/PostGIS · FastAPI · Cloudflare Tunnel
-Expose: petrmikeska.cz přes Cloudflare Tunnel
+Běží: PostgreSQL/PostGIS · FastAPI
+Pozn.: petrmikeska.cz zde NEBĚŽÍ — web je na hostingu WEDOS
 ```
 
 ### External Storage
@@ -437,7 +437,7 @@ Samsung T7 4 TB SSD (data, projekty, drony)
 ## 7. AKTUÁLNÍ PORTFOLIO WEB — co existuje
 
 **URL:** petrmikeska.cz
-**Hosting:** Cloudflare Tunnel z home serveru (i5-6200U, Ubuntu Server 24.04)
+**Hosting:** WEDOS
 **GitHub repo:** github.com/MetrPikeska/petrmikeska (TypeScript)
 
 **Aktuální sekce webu:**
@@ -462,7 +462,7 @@ Samsung T7 4 TB SSD (data, projekty, drony)
 ### Technologie nového webu
 - **Stack:** React + Vite + TypeScript (konzistentní s VečerkaPlus)
 - **Styling:** vlastní CSS / Tailwind — žádný heavy UI framework
-- **Hosting:** Cloudflare Tunnel (home server) nebo Vercel — TBD
+- **Hosting:** WEDOS
 - **Repo:** github.com/MetrPikeska/petrmikeska
 
 ### Co musí nový web obsahovat
@@ -480,7 +480,7 @@ Samsung T7 4 TB SSD (data, projekty, drony)
 - Lepší vizuální hierarchie projektů (CEDA > VečerkaPlus > Vehicle Detection > ...)
 - Mobilní responsivita
 - SEO: klíčová slova GeoAI, Spatial Computer Vision, WebGIS developer
-- Rychlejší load (home server může být pomalejší)
+- Rychlejší load
 
 ### Tone & design
 - Technický, ale přístupný — ne akademický, ne korporátní
@@ -534,7 +534,7 @@ Tel: +420 773 426 330
 ## 11. KLÍČOVÉ KONTEXT NOTES pro Claude Code
 
 - **GTX 1060 VRAM constraint:** při lokálním vývoji ML věcí používám SAHI jako workaround pro inference na velkých snímcích
-- **Cloudflare Tunnel:** petrmikeska.cz je exponováno přes Tunnel z home serveru — ne tradiční VPS hosting; při přechodu na Vercel se toto mění
+- **Hosting:** petrmikeska.cz běží na WEDOS. Home server (i5-6200U) slouží jiným účelům (PostgreSQL/PostGIS, FastAPI), ne hostování webu
 - **OSVČ vedlejší (student):** do 2027 kdy ukončím Mgr.
 - **Kódování:** preferuji TypeScript přes JavaScript pro nové projekty
 - **Tooling:** Claude Code + Obsidian vault pro project management

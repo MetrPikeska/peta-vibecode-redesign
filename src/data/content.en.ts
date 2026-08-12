@@ -14,7 +14,7 @@ export const ui = {
     about: "About",
     education: "Education",
     experience: "Experience",
-    projects: "Projects",
+    projects: "Research",
     portfolio: "Portfolio",
     skills: "Skills",
     certifications: "Certifications",
@@ -30,7 +30,7 @@ export const ui = {
     about: "About",
     education: "Education",
     experience: "Experience",
-    projects: "Projects",
+    projects: "Research",
     portfolio: "Portfolio",
     skills: "Skills",
     certifications: "Certifications",
@@ -38,20 +38,24 @@ export const ui = {
     contact: "Contact",
   },
   contact: {
-    tagline: "If you're interested in working together, feel free to get in touch.",
+    tagline:
+      "If you're interested in working together, feel free to get in touch.",
   },
   footer: {
     icoLabel: "Company ID",
-    copyright: "© 2026 Petr Mikeska — Self-employed under Czech Trade Licensing Act",
+    copyright:
+      "© 2026 Petr Mikeska — Self-employed under Czech Trade Licensing Act",
   },
 };
 
 export const about: string[] = [
-  "I develop geodata solutions at the intersection of WebGIS, spatial databases, remote sensing, and computer vision. I work with technologies such as PostGIS, PostgreSQL, Python, Leaflet, and FastAPI, focusing on practical applications over spatial and image data.",
-  "I actively work in traditional GIS environments as well, primarily QGIS, ArcGIS Pro, and ArcGIS Online. I use them for spatial analyses, raster and vector data processing, cartographic outputs, and publishing map layers and web applications.",
-  "I specialize in spatial database design, web mapping application development, geodata processing automation, and Python-based analytical workflows. I also work with satellite and raster data processing and applying computer vision for image and video analysis.",
-  "I work on projects ranging from WebGIS applications with real-time IoT data and backends for spatial queries, to AI-based object detection from video. My long-term focus is connecting GIS, development, and data analytics into functional geodata solutions.",
-  "Outside of technology, I have a strong connection to the mountains and sports. I'm from the Beskydy region, work as a snowboard instructor in winter, and in my free time I enjoy hiking, boxing, and music. I also collect music on CD and vinyl — you can find my collection on Discogs.",
+  "My name is **Petr Mikeska** and I'm a geoinformatics specialist focused on **computer vision**, spatial databases, and web development. I connect GIS, databases, and web technologies into map-based solutions people actually use.",
+  "I work at the intersection of object detection from imagery and spatial analysis of its output — from raw video, orthophotos, or lidar point clouds to a layer you can keep working with in GIS.",
+  "On the R&D team at **CEDA Maps** I develop a **GeoAI pipeline for automatic detection and classification of traffic signs** from mobile mapping: preparing and annotating training data, training the model, and clustering and deduplicating detections across dozens of drive-throughs.",
+  "I'm a co-founder and technical lead of **[VečerkaPlus](https://vecerkaplus.cz/)** — a production platform (React, Supabase, Vercel) with delivery zones built on spatial analysis.",
+  "I completed my bachelor's in **Geoinformatics and Cartography** at the **[Department of Geoinformatics](https://www.geoinformatics.upol.cz/)**, Palacký University Olomouc. My thesis produced a **GIS toolbox for evaluating the accessibility of parks and green spaces for urban residents** — [the thesis is available here](https://geoinformatics.upol.cz/dprace/bakalarske/mikeska25). I'm currently in the **follow-up master's programme**, focusing on advanced spatial data work and web cartography; my master's thesis compares the quality of LLM-generated maps against traditional GIS workflows.",
+  "My technical foundation comes from the **[Secondary School of Information Technology](https://www.ssinfotech.cz/)** in Frýdek-Místek, field of **Application Programming and Development — Internet of Things**: programming, web technologies, networks, and databases.",
+  "Computer vision sees a pixel. GIS sees a place. I'm interested in what needs both.",
 ];
 
 export const education: Education[] = [
@@ -86,7 +90,8 @@ export const education: Education[] = [
     institution: "SSINFOTECH",
     institutionUrl: "https://www.ssinfotech.cz/",
     location: "Frýdek-Místek",
-    degree: "Maturita – Programming and Application Development – Internet of Things",
+    degree:
+      "Maturita – Programming and Application Development – Internet of Things",
     type: "Secondary vocational school · 4 years",
     highlights: [
       "Programming and application development",
@@ -152,6 +157,8 @@ export const universityProjects: Experience[] = [
     highlights: [
       "Conducted 40–60 eye-tracking sessions in Olomouc, recording participants' visual attention during on-foot and in-vehicle routes",
       "Coordinated participants – experiment logistics, route timing, transfers, and communication",
+      "Preprocessing recordings in Tobii Pro Lab: event creation and segmentation of recordings for downstream analysis",
+      "Defining ROIs (regions of interest) for evaluating visual exposure to outdoor advertising",
       "Collected and managed spatial field data (GPS/GPX tracks, synchronisation with eye-tracking recordings)",
       "Interdisciplinary collaboration spanning geoinformatics, psychology, academia, and the private sector",
       "Prospective analyses: route visualisations, fixation heatmaps, spatial attention time-series",
@@ -184,7 +191,14 @@ export const projects: Project[] = [
       "Notification automation (email + Telegram)",
       "UX design for fast late-night ordering",
     ],
-    tags: ["React", "Vite", "Supabase", "PostgreSQL", "Google Maps API", "JavaScript"],
+    tags: [
+      "React",
+      "Vite",
+      "Supabase",
+      "PostgreSQL",
+      "Google Maps API",
+      "JavaScript",
+    ],
     link: "https://vecerkaplus.cz/",
     linkLabel: "vecerkaplus.cz",
   },
@@ -248,19 +262,6 @@ export const projects: Project[] = [
     webLinkLabel: "Web",
   },
   {
-    title: "VYGEO Opálená",
-    description:
-      "Real-time Web GIS application connecting IoT sensors with map visualization and PostGIS backend.",
-    features: [
-      "Real-time data stream from IoT sensors to PostGIS with WebSocket broadcast",
-      "Leaflet map with dynamic layers and spatial queries",
-      "REST API backend for managing meteorological data and ski runs",
-    ],
-    tags: ["Leaflet", "PostGIS", "REST API", "Python", "IoT"],
-    link: "https://github.com/MetrPikeska/VYGEO",
-    linkLabel: "GitHub",
-  },
-  {
     title: "Vehicle Detection – Roundabout",
     description:
       "YOLOv8 computer vision: vehicle detection and tracking from video with line-crossing logic.",
@@ -271,19 +272,6 @@ export const projects: Project[] = [
     ],
     tags: ["Python", "YOLOv8", "OpenCV", "Shapely", "CUDA"],
     link: "https://github.com/MetrPikeska/01_Detekce_vyjezdu",
-    linkLabel: "GitHub",
-  },
-  {
-    title: "IoT Environmental Monitoring",
-    description:
-      "Complete IoT solution: sensors → backend → PostgreSQL with Grafana dashboard.",
-    features: [
-      "ESP32 sensor network (temperature, humidity, air quality) → MQTT/HTTP stream",
-      "Python/FastAPI server with real-time ingestion to PostgreSQL with indexes",
-      "Grafana dashboard for monitoring and historical analysis",
-    ],
-    tags: ["ESP32", "Python", "PostgreSQL", "REST API", "MQTT"],
-    link: "https://github.com/MetrPikeska",
     linkLabel: "GitHub",
   },
   {
@@ -298,32 +286,6 @@ export const projects: Project[] = [
     tags: ["Cartography", "GIS", "Analytical maps"],
     link: "https://petrmikeska.cz/sykar2026_kapitola_Mikeska.pdf",
     linkLabel: "PDF",
-  },
-  {
-    title: "Ski Cam Analytics",
-    description:
-      "Computer vision application: real-time person detection and video analysis from HLS stream with AI.",
-    features: [
-      "YOLO ONNX detection + Kalman filter tracking with line-crossing and occupancy counters",
-      "FastAPI + WebSocket for live metrics, SQLite persistence",
-      "Chart.js dashboard – real-time visualization of metrics and trends",
-    ],
-    tags: ["Python", "FastAPI", "YOLO ONNX", "FFmpeg", "SQLite", "WebSocket"],
-    link: "https://github.com/MetrPikeska/ski-cam-analytics",
-    linkLabel: "GitHub",
-  },
-  {
-    title: "Geo Places Quiz",
-    description:
-      "Web GIS application for practicing knowledge of Czech municipalities with extended jurisdiction (206 ORP) via interactive map.",
-    features: [
-      "Leaflet map with PostGIS backend – ČÚZK data, S-JTSK → WGS84",
-      "Filtering by region and district, statistics in localStorage",
-      "Node.js/Express API with caching and GZIP compression",
-    ],
-    tags: ["JavaScript", "Leaflet", "Node.js", "PostGIS", "Express"],
-    link: "https://github.com/MetrPikeska/geo-places-quiz",
-    linkLabel: "GitHub",
   },
 ];
 
@@ -360,7 +322,7 @@ export const skills: SkillCategory[] = [
   },
   {
     name: "Computer Vision & AI",
-    items: ["YOLOv8", "OpenCV", "TensorFlow", "PyTorch"],
+    items: ["YOLOv8", "OpenCV", "PyTorch"],
   },
   {
     name: "AI Tools",
@@ -422,14 +384,16 @@ export const certifications: Certification[] = [
 export const services: Service[] = [
   {
     title: "Spatial Databases & API",
-    question: "Do you need a PostGIS database with REST API for spatial queries?",
+    question:
+      "Do you need a PostGIS database with REST API for spatial queries?",
     description:
       "Design and implementation of spatial databases in PostgreSQL + PostGIS. Creating efficient indexes, SQL spatial queries, and REST API backends for web applications.",
     tags: ["GIS", "Vector data", "Raster data", "Automation"],
   },
   {
     title: "Web GIS Applications",
-    question: "Do you need an interactive map or dashboard with real-time data?",
+    question:
+      "Do you need an interactive map or dashboard with real-time data?",
     description:
       "Development of Web GIS applications with Leaflet frontend, PostGIS backend, and REST API. Real-time WebSocket streams, spatial filtering, and modern frontend architecture.",
     tags: ["Leaflet", "Web maps", "Data visualization", "Dashboard"],
@@ -443,7 +407,8 @@ export const services: Service[] = [
   },
   {
     title: "Computer Vision & GeoAI",
-    question: "Do you need object detection from video or satellite image analysis with AI?",
+    question:
+      "Do you need object detection from video or satellite image analysis with AI?",
     description:
       "YOLOv8 detection, image classification, segmentation. Remote sensing data processing and linking CV outputs with PostGIS for spatial analysis and visualization.",
     tags: ["YOLO", "OpenCV", "Python", "AI detection"],
