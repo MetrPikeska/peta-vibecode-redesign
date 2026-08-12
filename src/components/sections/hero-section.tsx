@@ -36,6 +36,9 @@ export function HeroSection() {
                 <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-hero-text/40 mt-2">
                   {hero.subtagline}
                 </p>
+                <p className="text-[14px] leading-[1.75] text-hero-text/55 mt-6 max-w-xl">
+                  {hero.intro}
+                </p>
               </div>
             </Reveal>
 

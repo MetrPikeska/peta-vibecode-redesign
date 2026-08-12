@@ -1,4 +1,10 @@
-@import "tailwindcss";
+@import "tailwindcss" source(none);
+
+/* Scan only real app source. Without this, Tailwind v4 auto-detects the whole
+   project root and generates utilities from stray words in Markdown/tooling
+   files (.claude/, .impeccable/, PRODUCT.md), bloating the bundle. */
+@source "../index.html";
+@source "./**/*.{ts,tsx}";
 
 @plugin "tailwindcss-animate";
 @import "tw-animate-css";

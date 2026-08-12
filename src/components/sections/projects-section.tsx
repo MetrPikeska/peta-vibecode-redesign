@@ -38,6 +38,10 @@ function ProjectCard({
   project: Project;
   featured?: boolean;
 }) {
+  const hasLinks = Boolean(
+    project.link || project.webLink || project.links?.length,
+  );
+
   return (
     <div
       className={cn(
@@ -73,7 +77,7 @@ function ProjectCard({
       <div
         className={cn("mt-auto", featured && "lg:mt-0 lg:self-end lg:min-w-40")}
       >
-        <div className="flex flex-wrap gap-1.5 mb-4">
+        <div className={cn("flex flex-wrap gap-1.5", hasLinks && "mb-4")}>
           {project.tags.map((tag) => (
             <span
               key={tag}
@@ -83,40 +87,44 @@ function ProjectCard({
             </span>
           ))}
         </div>
-        <div className="flex flex-wrap items-center gap-3">
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-topo transition-colors group-hover:text-topo"
-          >
-            <ExternalLink className="w-3.5 h-3.5" />
-            {project.linkLabel}
-          </a>
-          {project.webLink && (
-            <a
-              href={project.webLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-topo transition-colors"
-            >
-              <ExternalLink className="w-3.5 h-3.5" />
-              {project.webLinkLabel}
-            </a>
-          )}
-          {project.links?.map((l, i) => (
-            <a
-              key={i}
-              href={l.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-topo transition-colors"
-            >
-              <ExternalLink className="w-3.5 h-3.5" />
-              {l.label}
-            </a>
-          ))}
-        </div>
+        {hasLinks && (
+          <div className="flex flex-wrap items-center gap-3">
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-topo transition-colors group-hover:text-topo"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                {project.linkLabel}
+              </a>
+            )}
+            {project.webLink && (
+              <a
+                href={project.webLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-topo transition-colors"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                {project.webLinkLabel}
+              </a>
+            )}
+            {project.links?.map((l, i) => (
+              <a
+                key={i}
+                href={l.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-topo transition-colors"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                {l.label}
+              </a>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { useContent } from "@/hooks/use-content";
+import { renderRichText } from "@/lib/rich-text";
 
 export function AboutSection() {
   const { about, ui } = useContent();
@@ -16,7 +17,7 @@ export function AboutSection() {
           {about.slice(0, -1).map((p, i) => (
             <Reveal key={i} delay={100 + i * 100}>
               <p className="text-muted-foreground leading-[1.8] text-[15px]">
-                {p}
+                {renderRichText(p)}
               </p>
             </Reveal>
           ))}
@@ -25,7 +26,7 @@ export function AboutSection() {
         <Reveal delay={600}>
           <div className="mt-14 pl-6 border-l-2 border-terracotta/60 max-w-2xl">
             <p className="text-muted-foreground leading-[1.8] text-[15px] italic font-serif text-lg">
-              {about[about.length - 1]}
+              {renderRichText(about[about.length - 1])}
             </p>
           </div>
         </Reveal>
