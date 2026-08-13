@@ -26,3 +26,9 @@ dist-ssr
 .env
 
 bun.lockb
+
+# CV — cílené životopisy a pracovní výstupy zůstávají mimo repozitář i mimo web.
+# Veřejná PDF v public/assets/resume/ se naopak commitují: bez nich by odkaz
+# hero.cvUrl po nasazení vracel 404.
+cv/out/
+cv/targeted/
