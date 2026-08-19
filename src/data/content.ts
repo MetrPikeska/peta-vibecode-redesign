@@ -27,6 +27,25 @@ export interface Project {
   webLink?: string;
   webLinkLabel?: string;
   links?: { label: string; url: string }[];
+  /**
+   * Full-resolution evidence — a screenshot, map or plot, served from `public/`.
+   * Left unset, the instrument layout draws a deterministic plate from the
+   * project title instead of shrinking the entry into a decorative thumbnail.
+   */
+  image?: string;
+}
+
+/**
+ * Written output. Every entry is already linked somewhere on the site — this
+ * collection only lifts it out of prose so it can be read as a ledger.
+ */
+export interface Publication {
+  title: string;
+  kind: string;
+  year: string;
+  venue: string;
+  url?: string;
+  urlLabel?: string;
 }
 
 export interface SkillCategory {
@@ -74,12 +93,10 @@ export const hero = {
 };
 
 export const about = [
-  "Jmenuji se **Petr Mikeska** a jsem geoinformatik zaměřený na **computer vision**, prostorové databáze a webový vývoj. Propojuji GIS, databáze a webové technologie do mapových řešení, která někdo reálně používá.",
-  "Pracuji na průniku detekce objektů z obrazu a prostorové analýzy jejich výstupů — od surového videa, ortofota nebo lidarového mračna až po vrstvu, se kterou jde dál pracovat v GIS.",
-  "V R&D týmu **CEDA Maps** vyvíjím **GeoAI pipeline pro automatickou detekci a klasifikaci dopravního značení** z mobilního mapování: příprava a anotace trénovacích dat, trénink modelu, klastrování a deduplikace detekcí z desítek průjezdů.",
+  "Jmenuji se **Petr Mikeska** a jsem geoinformatik zaměřený na **computer vision**, prostorové databáze a webový vývoj. Pracuji na průniku detekce objektů z obrazu a prostorové analýzy jejich výstupů — od surového videa, ortofota nebo lidarového mračna až po vrstvu, se kterou jde dál pracovat v GIS.",
+  "V R&D týmu **CEDA Maps** vyvíjím **GeoAI pipeline pro automatickou detekci a klasifikaci dopravního značení** z mobilního mapování: anotace dat, trénink modelu, klastrování a deduplikace detekcí z desítek průjezdů.",
   "Jsem spoluzakladatel a technický lead **[VečerkaPlus](https://vecerkaplus.cz/)** — produkčně nasazené platformy (React, Supabase, Vercel) s doručovacími zónami postavenými na prostorové analýze.",
-  "Bakalářské studium **Geoinformatiky a kartografie** jsem absolvoval na **[Katedře geoinformatiky](https://www.geoinformatics.upol.cz/)** Univerzity Palackého v Olomouci. V bakalářské práci jsem vytvořil **uživatelský GIS toolbox pro hodnocení dostupnosti parků a zelených ploch pro obyvatele měst** — [práce je dostupná zde](https://geoinformatics.upol.cz/dprace/bakalarske/mikeska25). V současnosti pokračuji v **navazujícím magisterském studiu** se zaměřením na pokročilou práci s prostorovými daty a webovou kartografii; diplomová práce porovnává kvalitu map generovaných LLM s tradičním GIS workflow.",
-  "Technický základ mám ze **[Střední školy informačních technologií](https://www.ssinfotech.cz/)** ve Frýdku-Místku, obor **Programování a vývoj aplikací — Internet věcí**: programování, webové technologie, sítě a databáze.",
+  "Studuji **[Geoinformatiku a kartografii](https://www.geoinformatics.upol.cz/)** na Univerzitě Palackého v Olomouci. [Bakalářská práce](https://geoinformatics.upol.cz/dprace/bakalarske/mikeska25) byla GIS toolbox pro hodnocení dostupnosti parků; diplomová porovnává kvalitu map generovaných LLM s tradičním GIS workflow.",
   "Computer vision vidí pixel, GIS vidí místo. Zajímá mě to, co potřebuje obojí.",
 ];
 
@@ -91,11 +108,9 @@ export const education: Education[] = [
     degree: "Mgr. – Geoinformatika a kartografie (probíhá)",
     type: "Navazující magisterské · prezenční · 2 roky",
     highlights: [
-      "Zaměření: pokročilá práce s prostorovými daty a webová kartografie",
-      "Webový GIS, mapové aplikace a servery",
+      "Webový GIS a mapové servery",
       "Dálkový průzkum Země a zpracování obrazu",
-      "Pokročilé prostorové analýzy a modelování",
-      "Drony, laserové skenování, 3D tisk, VR",
+      "Drony, laserové skenování, 3D tisk",
     ],
   },
   {
@@ -105,10 +120,9 @@ export const education: Education[] = [
     degree: "Bc. – Geoinformatika a kartografie",
     type: "Bakalářské · prezenční · 3 roky",
     highlights: [
-      "GIS, DPZ, GPS, geostatistika, počítačová kartografie",
+      "GIS, DPZ, GPS, geostatistika",
       "Prostorové analýzy a územní plánování",
       "Tematická kartografie",
-      "Bakalářská práce: uživatelský GIS toolbox pro hodnocení dostupnosti parků a zelených ploch pro obyvatele měst",
     ],
   },
   {
@@ -119,10 +133,7 @@ export const education: Education[] = [
     type: "Střední odborná škola · 4 roky",
     highlights: [
       "Programování a vývoj aplikací",
-      "Webové technologie (HTML, CSS, backend)",
-      "Počítačové sítě a správa systémů",
-      "Databáze a aplikační software",
-      "Základy elektroniky a Internetu věcí",
+      "Webové technologie, sítě, databáze a Internet věcí",
     ],
   },
 ];
@@ -134,12 +145,12 @@ export const experience: Experience[] = [
     period: "červen 2026 – současnost",
     location: "Brno, remote",
     highlights: [
-      "Vyvíjím GeoAI pipeline pro automatickou detekci a klasifikaci dopravního značení z mobilního mapování — od anotace dat přes trénink modelu po produkční nasazení",
-      "Lokalizace značek bez přesného GNSS: multi-view triangulace pozorování z desítek průjezdů, least-squares refinement a fúze do jedné entity, doplněné monokulárním odhadem vzdálenosti (Depth Anything V2, MoGe-2) jako nezávislým zdrojem — validováno nulovým testem a scénářovými syntetickými daty",
+      "GeoAI pipeline pro automatickou detekci a klasifikaci dopravního značení z mobilního mapování — od anotace dat přes trénink YOLOv8 po produkční nasazení",
+      "Lokalizace značek bez přesného GNSS: multi-view triangulace z desítek průjezdů, least-squares refinement a fúze do jedné entity; monokulární odhad hloubky (Depth Anything V2, MoGe-2) jako nezávislý zdroj, validovaný nulovým testem",
       "Kalibrace panoramatického kamerového rigu přes COLMAP SfM — extrinsics a intrinsics pro převod detekcí do reálného prostoru",
-      "Dataset engineering: per-track split proti data leakage, deduplikace sekvenčních snímků a řízení class imbalance nad desítkami tisíc cropů; syntetická augmentace scén a obohacení o počasí a světelné podmínky",
-      "Detekce panelů dopravního značení přímo v LiDAR mračnu (RIEGL) a křížové ověření proti obrazovým detekcím",
-      "Stack: Python, PyTorch, Ultralytics YOLOv8/OBB, SAHI, ONNX Runtime, OpenCV, Open3D, laspy, COLMAP, CVAT, PostGIS, GeoPandas, Shapely",
+      "Dataset engineering: per-track split proti data leakage, deduplikace sekvenčních snímků a řízení class imbalance nad desítkami tisíc cropů",
+      "Detekce panelů přímo v LiDAR mračnu (RIEGL, laspy, PDAL) a křížové ověření proti obrazovým detekcím",
+      "Stack: Python, PyTorch, Ultralytics YOLOv8/OBB, SAHI, OpenCV, Open3D, PDAL, COLMAP, PostGIS, GeoPandas",
     ],
   },
   {
@@ -148,10 +159,9 @@ export const experience: Experience[] = [
     period: "duben 2026 – současnost",
     location: "Frýdek-Místek",
     highlights: [
-      "Spoluvlastním a vedu VečerkaPlus — noční rozvoz nápojů a pochutin ve Frýdku-Místku a přilehlém okolí",
-      "Postavili jsme celou webovou platformu od nuly: React, Supabase, Vercel",
+      "Spoluvlastním a vedu noční rozvoz nápojů a pochutin ve Frýdku-Místku a okolí; celou platformu jsem postavil od nuly (React, Supabase, Vercel)",
       "Systém doručovacích zón postavený na prostorové analýze — cena a dostupnost podle reálné dojezdové vzdálenosti, ne vzdušnou čarou",
-      "Kromě vývoje řídím provoz: nákup, logistiku kurýrů a růstovou strategii směrem k prvnímu externímu investičnímu kolu",
+      "Kromě vývoje řídím provoz: nákup, logistiku kurýrů a růstovou strategii",
     ],
     links: [{ label: "vecerkaplus.cz", url: "https://vecerkaplus.cz/" }],
   },
@@ -162,8 +172,7 @@ export const experience: Experience[] = [
     location: "Česká republika",
     highlights: [
       "Spravuji weby s celkem 199 800 návštěvníky a 452 000 zobrazeními — olomouckymajales.cz a meetup.upol.cz",
-      "Garantuji zapracování úprav do 24 hodin od zadání, nepřetržitý provoz během klíčových akcí",
-      "Implementace designových a funkčních změn bez výpadků na produkčním prostředí",
+      "Úpravy do 24 hodin od zadání, nepřetržitý provoz během klíčových akcí, změny bez výpadků na produkci",
       "Nástroje: WordPress, YOOtheme Builder",
     ],
     links: [
@@ -177,29 +186,10 @@ export const experience: Experience[] = [
     period: "únor 2025 – září 2025",
     location: "Česká republika",
     highlights: [
-      "Zpracování multispektrálních satelitních snímků pro tvorbu tematických map půdního potenciálu",
+      "Zpracování multispektrálních satelitních snímků pro tematické mapy půdního potenciálu",
       "Analýza a interpretace DPZ dat: Sentinel (SNAP), GDAL, EO Browser",
-      "Python automatizace analytických kroků — od batch processingu snímků po výstupní mapy",
-      "Nástroje: QGIS, ArcGIS Pro, EO Browser, Python, SNAP",
+      "Python automatizace od batch processingu snímků po výstupní mapy",
     ],
-  },
-  {
-    company: "Dronové snímkování",
-    role: "Drone Operator (freelance)",
-    period: "2024–2025",
-    location: "Ostrava, remote",
-    highlights: [
-      "Jednorázová zakázka: drone záběry pro korporátní marketingové materiály firmy z oboru Business Continuity",
-      "Plánování a realizace letových misí v souladu s předpisy EASA A1/A3",
-      "Nástroje: DJI Mini 3 Pro, certifikát ÚCL/EASA A1/A3",
-    ],
-  },
-  {
-    company: "Weiron Dynamics",
-    role: "Web Developer",
-    period: "2024 (~4 měsíce)",
-    location: "Česká republika",
-    highlights: ["Tvorba firemních webů ve WordPressu (2–3 projekty)"],
   },
 ];
 
@@ -212,10 +202,9 @@ export const universityProjects: Experience[] = [
     project:
       "Výzkum vnímání vizuální pozornosti v městském prostředí pomocí eye-tracking technologie",
     highlights: [
-      "Logistická koordinace terénních jízd se sledováním vizuální pozornosti účastníků pomocí eye-tracking brýlí v Olomouci",
-      "Preprocessing záznamů v Tobii Pro Lab: tvorba eventů a segmentace nahrávek pro navazující analýzu",
-      "Tvorba ROI (regionů zájmu) pro hodnocení vizuální expozice venkovní reklamy",
-      "Zpracování a čištění dat ze sledování pohledů; příprava datových výstupů pro analýzu",
+      "Koordinace terénních jízd se sledováním vizuální pozornosti účastníků pomocí eye-tracking brýlí",
+      "Preprocessing v Tobii Pro Lab: eventy, segmentace nahrávek a ROI pro hodnocení vizuální expozice venkovní reklamy",
+      "Čištění dat ze sledování pohledů a příprava výstupů pro analýzu",
     ],
   },
   {
@@ -227,8 +216,7 @@ export const universityProjects: Experience[] = [
       "Modelování, zpracování a výroba rozměrných 3D modelů dvou grott včetně světelné a vodní instalace",
     highlights: [
       "3D modelování objektů pro fyzickou instalaci a 3D tisk",
-      "Úprava a optimalizace geometrie modelů pro výrobu",
-      "Nástroje: Blender, 3D Builder",
+      "Optimalizace geometrie modelů pro výrobu (Blender, 3D Builder)",
     ],
   },
 ];
@@ -237,24 +225,43 @@ export const projects: Project[] = [
   {
     title: "VečerkaPlus",
     description:
-      "Spoluzakladatel a technický lead nočního rozvozu nápojů a pochutin ve Frýdku-Místku a okolí — kategorie, kterou tu Bolt Food ani Wolt neprovozují. Postavil jsem celou platformu od nuly a zároveň řídím provoz. Průměrná tržba 452 Kč na objednávku, marže 36,5 %.",
+      "Noční rozvoz nápojů a pochutin ve Frýdku-Místku (pá/so 22:00–06:00) — kategorie, kterou tu Bolt Food ani Wolt neprovozují. Postavil jsem celou platformu od nuly a zároveň řídím provoz: e-shop, administraci, kurýrský portál i analytiku.",
     features: [
-      "React 19 + Vite + TypeScript frontend s vlastním design systémem — bez UI frameworků třetích stran",
-      "Supabase backend: PostgreSQL + PL/pgSQL triggery + RLS políčka, Vercel Edge Functions",
-      "Delivery zone z 1 093 grid bodů přes Google Distance Matrix API — přesnost na ulici, ne jen vzdušnou čarou",
-      "Automatické notifikace zákazníkům i dispečerovi: email (Resend), Telegram Bot, Twilio",
-      "GIS analýza tržní příležitosti: 265 783 obyvatel, RÚIAN + SLDB 2021 + OSM POI",
+      "Supabase backend: PostgreSQL s RLS a PL/pgSQL triggery, které server-side vynucují integritu objednávek — klient nemůže zmanipulovat součet ani vyčerpat sklad; Vercel Functions jako API vrstva",
+      "Kurýrská PWA: JWT, Web Push, wake-lock a live GPS tracking 1 Hz do vlastní PostGIS databáze na Hetzneru přes Tailscale VPN",
+      "Nacenění dopravy podle reálné jízdní vzdálenosti (Google Distance Matrix + server-side cache) — 4 pásma do 20 km, přesnost na ulici, ne vzdušnou čarou",
+      "Analytika nad objednávkami: market basket analýza (Apriori), maržové reporty, ceník kalibrovaný Monte Carlo simulací a OSMnx síťovou analýzou; GIS analýza spádové oblasti nad RÚIAN a SLDB 2021",
     ],
     tags: [
       "React",
+      "TypeScript",
       "Vite",
       "Supabase",
       "PostgreSQL",
+      "PostGIS",
+      "Vercel",
       "Google Maps API",
-      "JavaScript",
     ],
     link: "https://vecerkaplus.cz/",
     linkLabel: "vecerkaplus.cz",
+  },
+  {
+    title: "Detekce obsazenosti parkoviště z kamerového streamu",
+    description:
+      "Systém, který z kamer areálu odvozuje obsazenost parkoviště a běží bez obsluhy — od snímku přes detekci až po zápis do databáze. Nasazeno v provozu lyžařského areálu.",
+    features: [
+      "Ultralytics YOLO + PyTorch: několik detekčních modelů běží současně a jejich výstupy slučuje vlastní NMS merge; inference na CUDA s automatickým fallbackem na CPU",
+      "Pipeline snímek → georeference do S-JTSK (rasterio, pyproj) → časové řady obsazenosti → PostgreSQL přes SSH tunel",
+      "Dashboardové API je samostatná FastAPI služba oddělená od inference, takže server s API netahá GPU závislosti; provoz bez obsluhy včetně dopočtu intervalů chybějících po výpadku",
+    ],
+    tags: [
+      "Python",
+      "YOLO",
+      "PyTorch",
+      "FastAPI",
+      "PostgreSQL",
+      "rasterio",
+    ],
   },
 
   {
@@ -264,20 +271,19 @@ export const projects: Project[] = [
     features: [
       "YOLOv8-OBB + SAHI: inference na snímcích větších, než pojme GPU — workaround pro GTX 1060 3 GB VRAM",
       "DBSCAN clusterování detekovaných vozidel + Voronoi-based adresace v GeoPandas a Shapely",
-      "End-to-end Python pipeline: anotace CVAT → trénink → georeferencing → prostorová analýza → výstupy",
+      "End-to-end Python pipeline: anotace → trénink → georeferencing → prostorová analýza → výstupy",
     ],
     tags: ["Python", "YOLOv8-OBB", "SAHI", "GeoPandas", "CUDA", "GIS"],
-    link: "https://github.com/MetrPikeska/vehicle-detection-ortophoto",
+    link: "https://github.com/MetrPikeska/medpz-geoai",
     linkLabel: "GitHub",
   },
   {
     title: "AI Map Generation Evaluation",
     description:
-      "Diplomová práce: první systematické porovnání kvality map generovaných LLM (ChatGPT, Claude, Gemini, Mistral, GitHub Copilot) vs. tradiční GIS workflow pomocí objektních metrik a kartografické analýzy.",
+      "Diplomová práce: první systematické porovnání kvality map generovaných LLM (ChatGPT, Claude, Gemini, Mistral, Perplexity) vs. referenční workflow v ArcGIS Pro pomocí objektních metrik a kartografické analýzy.",
     features: [
-      "Batch processing pipeline v Pythonu: hodnocení map z 5 LLM modelů pomocí GIS metrik a kartografické analýzy",
-      "Kvantitativní i kvalitativní porovnání — kde AI mapování selhává a kde překvapí",
-      "Interaktivní Leaflet webmapa s choropleth vizualizací výsledků",
+      "Batch pipeline v Pythonu: hodnocení map z 5 LLM modelů pomocí GIS metrik a kartografické analýzy",
+      "Kvantitativní i kvalitativní porovnání a interaktivní Leaflet webmapa s choropleth vizualizací výsledků",
     ],
     tags: ["Python", "GIS", "AI/ML"],
     link: "https://github.com/MetrPikeska/ai-generated-map-evaluation",
@@ -298,28 +304,12 @@ export const projects: Project[] = [
     webLinkLabel: "Web",
   },
   {
-    title: "GEOTE Klima",
-    description:
-      "Full-stack Web GIS platforma pro vizualizaci a dotazování klimatických a environmentálních dat — od PostGIS backendu po interaktivní Leaflet mapu.",
-    features: [
-      "PostGIS + Flask REST API: prostorové dotazy na klimatické indikátory bez zpoždění",
-      "Leaflet frontend s dynamickým filtrováním a vizualizací dat přímo na mapě",
-      "PostgreSQL s prostorovými indexy — škáluje bez přepisování dotazů",
-    ],
-    tags: ["PostGIS", "REST API", "JavaScript", "Python"],
-    link: "https://github.com/MetrPikeska/geote-klima-ui",
-    linkLabel: "GitHub",
-    webLink: "https://petrmikeska.cz/geote",
-    webLinkLabel: "Web",
-  },
-  {
     title: "Vehicle Detection – Roundabout",
     description:
       "Computer vision systém pro automatické počítání vozidel opouštějících kruhový objezd. Line-crossing logika s GPU akcelerací pro zpracování videa v reálném čase.",
     features: [
       "YOLOv8 detekce + geometrický tracking přes Shapely polygony — stabilní ID i při okluzi vozidel",
-      "CUDA GPU akcelerace: zpracování videosekvencí v reálném čase na GTX 1060",
-      "Export statistik pohybu vozidel do CSV pro další prostorovou analýzu",
+      "CUDA akcelerace pro zpracování v reálném čase na GTX 1060; export statistik do CSV pro další prostorovou analýzu",
     ],
     tags: ["Python", "YOLOv8", "OpenCV", "Shapely", "CUDA"],
     link: "https://github.com/MetrPikeska/01_Detekce_vyjezdu",
@@ -331,8 +321,7 @@ export const projects: Project[] = [
       "Analytické a syntetické kartografické mapy znečištění ovzduší v Moravskoslezském kraji — jednom z nejvíce zatížených regionů ČR.",
     features: [
       "Interpolace rastrových dat znečišťujících látek a identifikace zdrojů na úrovni obcí",
-      "Syntetická typizace území podle kombinace více ukazatelů znečištění",
-      "Publikováno v odborném sborníku (PDF ke stažení)",
+      "Syntetická typizace území podle kombinace více ukazatelů; publikováno v odborném sborníku",
     ],
     tags: ["Kartografie", "GIS", "Analytické mapy"],
     link: "https://petrmikeska.cz/sykar2026_kapitola_Mikeska.pdf",
@@ -342,127 +331,92 @@ export const projects: Project[] = [
 
 export const skills: SkillCategory[] = [
   {
-    name: "GIS & Spatial Tools",
+    name: "GIS a prostorová data",
     items: [
       "QGIS",
       "ArcGIS Pro",
+      "PostGIS",
       "GDAL/OGR",
       "GeoServer",
-      "MapServer",
-      "SNAP",
-      "Agisoft Metashape",
-      "COLMAP",
-      "OGC Standards",
-      "CloudCompare",
-      "FileGDB / GeoPackage",
-      "LAS/LAZ",
+      "GeoPandas",
+      "Shapely",
+      "pyproj",
+      "Rasterio",
+      "H3",
+      "Leaflet",
+      "OGC standardy",
       "EPSG 3045 / 5514 / 4326",
     ],
   },
   {
-    name: "Doména & standardy",
+    name: "Computer vision a AI",
+    items: [
+      "PyTorch",
+      "Ultralytics YOLOv8 / OBB",
+      "SAHI",
+      "OpenCV",
+      "Hugging Face Transformers",
+      "Depth Anything V2",
+      "MoGe-2",
+      "scikit-learn",
+    ],
+  },
+  {
+    name: "LiDAR, 3D a fotogrammetrie",
+    items: [
+      "Zpracování mračen bodů (RIEGL)",
+      "Segmentace a detekce objektů v mračnu",
+      "Structure from Motion (COLMAP)",
+      "Multi-view triangulace",
+      "Kalibrace multikamerového rigu",
+      "Monokulární odhad hloubky",
+      "DTM/DSM",
+      "Open3D",
+      "laspy",
+      "PDAL",
+      "CloudCompare",
+      "Blender",
+    ],
+  },
+  {
+    name: "Vývoj a databáze",
+    items: [
+      "Python",
+      "JavaScript / TypeScript",
+      "SQL",
+      "Bash",
+      "React",
+      "REST API",
+      "FastAPI",
+      "PostgreSQL",
+      "Supabase",
+      "WordPress",
+    ],
+  },
+  {
+    name: "Doména a standardy",
     items: [
       "TP 65 (dopravní značení)",
       "HD mapy",
       "Mobilní mapovací systémy (MMS)",
+      "DPZ a Sentinel (SNAP)",
       "GNSS přesnost",
       "NMEA",
       "TomTom / StreetNet data",
     ],
   },
   {
-    name: "Programming Languages",
-    items: ["Python", "JavaScript", "SQL", "Bash", "C#"],
-  },
-  {
-    name: "Web Technologies",
-    items: ["HTML", "CSS", "REST API", "WordPress", "YOOtheme", "Supabase"],
-  },
-  {
-    name: "Databases",
-    items: ["PostgreSQL", "PostGIS", "MySQL", "Supabase"],
-  },
-  {
-    name: "Geospatial & Data Libraries",
-    items: [
-      "GeoPandas",
-      "Shapely",
-      "pyproj",
-      "Rasterio",
-      "pyogrio",
-      "laspy",
-      "Open3D",
-      "H3",
-      "Folium",
-      "NumPy",
-      "Pandas",
-      "SciPy",
-      "Matplotlib",
-    ],
-  },
-  {
-    name: "Computer Vision & AI",
-    items: [
-      "PyTorch",
-      "Ultralytics",
-      "YOLOv8",
-      "YOLOv8-OBB",
-      "SAHI",
-      "OpenCV",
-      "torchvision",
-      "Hugging Face Transformers",
-      "Depth Anything V2",
-      "MoGe-2",
-      "scikit-learn",
-      "ONNX Runtime",
-      "CVAT",
-    ],
-  },
-  {
-    name: "LiDAR & 3D",
-    items: [
-      "Zpracování mračen bodů (RIEGL)",
-      "Segmentace a detekce objektů v mračnu",
-      "DBSCAN nad mračnem",
-      "DTM/DSM",
-      "Open3D",
-      "laspy",
-      "CloudCompare",
-    ],
-  },
-  {
-    name: "Fotogrammetrie & 3D rekonstrukce",
-    items: [
-      "Structure from Motion (COLMAP)",
-      "Multi-view triangulace",
-      "Kalibrace multikamerového rigu",
-      "Extrinsics / intrinsics",
-      "Monokulární odhad hloubky",
-      "Least-squares refinement (SciPy)",
-    ],
-  },
-  {
-    name: "AI Nástroje",
-    items: [
-      "Claude Code (agentic workflow, MCP, custom skills)",
-      "GitHub Copilot",
-    ],
-  },
-  {
-    name: "3D & Visualization",
-    items: ["Blender", "MeshLab"],
-  },
-  {
-    name: "DevOps & Infrastructure",
+    name: "Infrastruktura a AI-asistovaný vývoj",
     items: [
       "Git",
-      "GitHub",
-      "Linux",
-      "Ubuntu",
-      "WSL",
+      "Linux / WSL",
       "Docker",
       "CUDA",
       "pytest",
+      "Vercel",
+      "Claude Code — vlastní rozšíření",
+      "Orchestrace paralelních agentů",
+      "MCP klienti",
     ],
   },
 ];
@@ -473,7 +427,7 @@ export const certifications: Certification[] = [
     issuer: "Esri",
     date: "Květen 2023",
     description:
-      "Kurz pokrývající základy programování v Pythonu se zaměřením na automatizaci GIS úloh a práci s geoprostorovými daty.",
+      "Základy Pythonu se zaměřením na automatizaci GIS úloh a práci s geoprostorovými daty.",
     pdfUrl: "/certifikaty/python-for-everyone.pdf",
   },
   {
@@ -481,7 +435,7 @@ export const certifications: Certification[] = [
     issuer: "Cisco Networking Academy",
     date: "Duben 2020",
     description:
-      "Kurz pokrýval IoT a digitální transformaci, důležitost softwaru a dat, automatizaci, umělou inteligenci a základy síťové bezpečnosti.",
+      "IoT a digitální transformace, automatizace, umělá inteligence a základy síťové bezpečnosti.",
     pdfUrl: "/certifikaty/iot-cisco.pdf",
   },
   {
@@ -489,7 +443,7 @@ export const certifications: Certification[] = [
     issuer: "Úřad pro civilní letectví ČR / EASA",
     date: "Říjen 2024",
     description:
-      "Certifikát / Oprávnění pro piloty bezpilotních prostředků vydaný Úřadem pro civilní letectví ČR v souladu s předpisy EASA.",
+      "Oprávnění pilota bezpilotních prostředků podle předpisů EASA, kategorie A1/A3.",
     pdfUrl: "/certifikaty/pilot-dron.pdf",
   },
   {
@@ -497,7 +451,7 @@ export const certifications: Certification[] = [
     issuer: "APUL",
     date: "Prosinec 2021 – Leden 2027",
     description:
-      "Licence instrukce snowboardingu – Asociace profesionálních učitelů lyžování a lyžařských škol.",
+      "Licence instruktora snowboardingu, platná do ledna 2027.",
     pdfUrl: "/certifikaty/apul-snowboard.pdf",
   },
   {
@@ -505,15 +459,8 @@ export const certifications: Certification[] = [
     issuer: "Katedra geoinformatiky, UPOL",
     date: "Duben 2026",
     description:
-      "Certifikát účasti na mezinárodní jarní škole vizualizace. Téma: Emotions and Map: The Affective Dimension of Visualisation.",
+      "Mezinárodní jarní škola vizualizace, téma Emotions and Map: The Affective Dimension of Visualisation.",
     pdfUrl: "/certifikaty/ISSonVIS2026_Mikeska_Petr.pdf",
-  },
-  {
-    name: "IRSSS 2026 – Blended Intensive Programme Remote Sensing",
-    issuer: "Katedra geoinformatiky, UPOL / mezinárodní program",
-    date: "Červenec 2026",
-    description:
-      "Blended Intensive Programme zaměřený na dálkový průzkum Země. Stará Lesná, Slovensko.",
   },
 ];
 
@@ -523,7 +470,7 @@ export const services: Service[] = [
     question:
       "Potřebujete prostorová data v databázi, která odpovídá na dotazy v milisekundách?",
     description:
-      "Návrh a implementace PostgreSQL + PostGIS databází s efektivními prostorovými indexy. Od datového modelu po REST API backend — spatial queries, které nebrzdí ani vaši aplikaci, ani vás.",
+      "PostgreSQL + PostGIS s efektivními prostorovými indexy — od datového modelu po REST API backend.",
     tags: ["PostGIS", "PostgreSQL", "REST API", "Spatial indexy"],
   },
   {
@@ -531,14 +478,14 @@ export const services: Service[] = [
     question:
       "Chcete mapu, která zobrazuje vaše data živě — ne statický obrázek?",
     description:
-      "Stavím Web GIS aplikace s Leaflet frontendem, PostGIS backendem a REST API. Real-time WebSocket streamy, spatial filtering, vlastní mapové vrstvy — vše přizpůsobené vašemu use case.",
+      "Web GIS aplikace s Leaflet frontendem a PostGIS backendem: real-time streamy, spatial filtering, vlastní mapové vrstvy.",
     tags: ["Leaflet", "Webové mapy", "WebSocket", "Dashboard"],
   },
   {
     title: "Python Automation & Data Processing",
     question: "Opakujete ručně stejné kroky nad geodaty každý týden?",
     description:
-      "Python scripty a pipelines, které přebírají vaši rutinu: batch processing satelitních snímků, GeoPandas transformace, GDAL operace, ETL do databáze. Jednou nastavíte, pak to běží samo.",
+      "Pipelines, které přebírají rutinu: batch processing snímků, GeoPandas transformace, GDAL operace, ETL do databáze.",
     tags: ["Python", "GeoPandas", "GDAL", "ETL pipeline"],
   },
   {
@@ -546,21 +493,21 @@ export const services: Service[] = [
     question:
       "Potřebujete automaticky rozpoznávat objekty z videa, ortofot nebo satelitních snímků?",
     description:
-      "YOLOv8 detekce, segmentace a klasifikace — a propojení výsledků s PostGIS pro prostorové analýzy. Zkušenosti z produkčního R&D prostředí (CEDA Maps) i akademických projektů (POGEO 2026).",
+      "YOLOv8 detekce, segmentace a klasifikace, propojené s PostGIS pro prostorovou analýzu. Z produkčního R&D (CEDA Maps) i akademických projektů (POGEO 2026).",
     tags: ["YOLOv8", "OpenCV", "GeoAI", "PostGIS"],
   },
   {
     title: "Remote Sensing & DEM Processing",
     question: "Máte satelitní snímky nebo terénní data, která ještě nehovoří?",
     description:
-      "Zpracování Sentinel/multispektrálních snímků (SNAP, GDAL), DEM/DSM analýzy (sklon, aspekt, hydrologie), ortorektifikace a mosaicing. Výstupy ve formátech připravených pro GIS i publikaci.",
+      "Sentinel a multispektrální snímky (SNAP, GDAL), DEM/DSM analýzy, ortorektifikace a mosaicing — výstupy připravené pro GIS i publikaci.",
     tags: ["DPZ", "SNAP", "GDAL", "DEM/DSM"],
   },
   {
     title: "IoT & Real-Time Data Systems",
     question: "Sbíráte data ze senzorů a zatím je nikde pořádně nevidíte?",
     description:
-      "End-to-end IoT architektura: ESP32 senzory → MQTT/HTTP → Python/FastAPI → PostgreSQL → real-time dashboard. WebSocket streamy, time-series persistence a alerting — od prototypu po produkci.",
+      "ESP32 senzory → MQTT/HTTP → FastAPI → PostgreSQL → dashboard. Time-series persistence a alerting, od prototypu po produkci.",
     tags: ["ESP32", "MQTT", "FastAPI", "PostgreSQL"],
   },
   {
@@ -568,7 +515,7 @@ export const services: Service[] = [
     question:
       "Máte mračno bodů z mobilního mapování nebo skenování a nevíte, co z něj dostat?",
     description:
-      "Segmentace, detekce objektů a extrakce prvků z mračna — včetně fúze mračna s obrazovými detekcemi, takže se dvě nezávislá měření ověřují navzájem. Open3D, laspy, CloudCompare, PDAL.",
+      "Segmentace, detekce objektů a extrakce prvků z mračna — včetně fúze s obrazovými detekcemi, aby se dvě nezávislá měření ověřovala navzájem.",
     tags: ["LiDAR", "Point Cloud", "DTM/DSM", "Open3D"],
   },
 ];
@@ -605,12 +552,184 @@ export const ui = {
     tagline:
       "Spolupráce na GIS, GeoAI nebo webové mapové aplikaci — napište mi.",
   },
+  a11y: {
+    skipToContent: "Přeskočit na obsah",
+    openMenu: "Otevřít menu",
+    closeMenu: "Zavřít menu",
+    switchLanguage: "Switch to English",
+  },
+  actions: {
+    copyEmail: "Kopírovat e-mailovou adresu",
+    copied: "E-mailová adresa zkopírována",
+    copyFailed: "Zkopírování se nepovedlo — adresu označte a zkopírujte ručně",
+  },
   footer: {
     icoLabel: "IČO",
+    updated: "Aktualizováno",
     copyright:
       "© 2026 Petr Mikeska — Fyzická osoba podnikající dle živnostenského zákona",
   },
+  /**
+   * Strings the shadcn layout (v3) needs. Each design system phrases the same
+   * ideas in its own register — the instrument surface is telegraphic ("CV"),
+   * this one speaks in full labels ("Stáhnout CV") — so the wording lives per
+   * system rather than being shared and flattened to the shortest form.
+   */
+  v3: {
+    /**
+     * Five destinations. `ui.nav` still carries all nine labels because v1 and
+     * v2 still name nine sections; this is the v3 set, and it doubles as the
+     * section headings so a label and the heading it leads to never disagree.
+     */
+    nav: {
+      about: "O mně",
+      experience: "Práce",
+      portfolio: "Portfolio",
+      services: "Služby",
+      contact: "Kontakt",
+    },
+    downloadCv: "Stáhnout CV",
+    viewWork: "Prohlédnout portfolio",
+    publications: "Publikace",
+    openCertificate: "Otevřít certifikát",
+    toolsCatalogued: "nástrojů napříč kategoriemi",
+    closeMenu: "Zavřít",
+    theme: {
+      toDark: "Přepnout na tmavý režim",
+      toLight: "Přepnout na světlý režim",
+    },
+    /**
+     * A section lead exists to say what the heading cannot. Restating the
+     * heading in a full sentence ("Kde jsem se to naučil." under "Vzdělání")
+     * costs a line and returns nothing, so every lead here carries a fact,
+     * a scope or the next step instead.
+     */
+    lead: {
+      about: "Geoinformatika, computer vision a web — a proč to spojuji.",
+      experience: "Od GeoAI pipeline v R&D po vlastní produkčně nasazenou platformu, včetně univerzitního výzkumu.",
+      portfolio: "Věci, které běží — s odkazy na kód i nasazení.",
+      services: "Poptávka začíná e-mailem nebo telefonem — kontakt je na konci stránky.",
+    },
+    channels: {
+      email: "E-mail",
+      phone: "Telefon",
+      web: "Web",
+      linkedin: "LinkedIn",
+      github: "GitHub",
+      base: "Sídlo",
+    },
+  },
+  /**
+   * Strings the instrument layout needs and the topographic one does not:
+   * rail keys, ledger headers and the short answer that runs under the hero.
+   * Values stay out of here — every number comes from the data above or is
+   * derived in `lib/instrument-metrics.ts`.
+   */
+  instrument: {
+    availability: "Přijímá zakázky",
+    cv: "CV",
+    rail: {
+      operator: "Operátor",
+      base: "Základna",
+      coord: "Souřadnice",
+      focus: "Zaměření",
+      index: "Index projektů",
+    },
+    result: {
+      figure: "Nástrojů v katalogu",
+      projects: "Projektů",
+      roles: "Rolí",
+      categories: "Kategorií",
+      publications: "Publikací",
+      ico: "IČO",
+    },
+    field: {
+      verdict: "Pixel a místo",
+      tags: ["Detekce", "Stopa", "Reziduum"],
+      caption: "Seedované pole · deterministické",
+    },
+    answers: [
+      {
+        head: "Computer vision",
+        body: "Trénuji detekční modely na obraz z mobilního mapování, ortofot a lidaru — od anotace dat po produkční nasazení.",
+      },
+      {
+        head: "Geoinformatika",
+        body: "Výstupy detekce převádím do prostoru: triangulace, klastrování, deduplikace a analýza v PostGIS a GeoPandas.",
+      },
+      {
+        head: "Web a data",
+        body: "Stavím mapové aplikace a prostorové databáze, které někdo reálně používá — React, PostGIS, Leaflet, Supabase.",
+      },
+    ],
+    sequence: {
+      label: "Pipeline detekce dopravního značení · CEDA Maps",
+      steps: [
+        { title: "Anotace", note: "Per-track split" },
+        { title: "Trénink", note: "YOLOv8 / OBB, SAHI" },
+        { title: "Triangulace", note: "Multi-view, least-squares" },
+        { title: "Fúze", note: "Obraz + LiDAR mračno" },
+      ],
+      result: { title: "Značka v prostoru", note: "Jedna entita z desítek průjezdů" },
+    },
+    figure: {
+      generated: "Generovaná plachta — nejde o data projektu",
+      open: "Otevřít",
+    },
+    ledger: {
+      institution: "Instituce",
+      degree: "Titul",
+      notes: "Poznámky",
+      company: "Subjekt",
+      role: "Role",
+      period: "Období",
+      project: "Projekt",
+      stack: "Stack",
+      link: "Odkaz",
+      category: "Kategorie",
+      count: "Počet",
+      items: "Položky",
+      certificate: "Certifikát",
+      issuer: "Vydavatel",
+      date: "Datum",
+      service: "Služba",
+      question: "Otázka",
+      publication: "Publikace",
+      kind: "Typ",
+      year: "Rok",
+      channel: "Kanál",
+      value: "Hodnota",
+    },
+    channels: {
+      email: "E-mail",
+      phone: "Telefon",
+      web: "Web",
+    },
+    publications: "Publikace",
+    allCategories: "Vše",
+    selectorHint: "Šířka pruhu kóduje počet položek v kategorii",
+  },
 };
+
+export const publications: Publication[] = [
+  {
+    title:
+      "Uživatelský GIS toolbox pro hodnocení dostupnosti parků a zelených ploch pro obyvatele měst",
+    kind: "Bakalářská práce",
+    year: "2025",
+    venue: "Katedra geoinformatiky UP Olomouc",
+    url: "https://geoinformatics.upol.cz/dprace/bakalarske/mikeska25",
+    urlLabel: "geoinformatics.upol.cz",
+  },
+  {
+    title: "Porovnání kvality map generovaných LLM s tradičním GIS workflow",
+    kind: "Diplomová práce",
+    year: "probíhá",
+    venue: "Katedra geoinformatiky UP Olomouc",
+    url: "https://github.com/MetrPikeska/ai-generated-map-evaluation",
+    urlLabel: "GitHub",
+  },
+];
 
 export const contact = {
   email: "piter.mikeska@gmail.com",
@@ -624,6 +743,8 @@ export const footer = {
   name: "Petr Mikeska",
   address: "Čeladná 53",
   zip: "739 12 Čeladná",
+  /** Short form for status bars — a place name, not a postal address. */
+  base: "Čeladná, CZ",
   ico: "23195126",
   copyright:
     "\u00a9 2026 Petr Mikeska \u2014 Fyzická osoba podnikající dle živnostenského zákona",

@@ -16,8 +16,8 @@
 #>
 [CmdletBinding()]
 param(
-    [ValidateSet('general', 'geoai', 'gis', 'academic')]
-    [string[]] $Variant = @('general', 'geoai', 'gis', 'academic'),
+    [ValidateSet('general', 'ai', 'geoai', 'gis', 'academic')]
+    [string[]] $Variant = @('general', 'ai', 'geoai', 'gis', 'academic'),
 
     [ValidateSet('cz', 'en')]
     [string[]] $Lang = @('cz', 'en'),

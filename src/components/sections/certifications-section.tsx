@@ -18,7 +18,7 @@ export function CertificationsSection() {
               <div className="py-6 first:pt-0 last:pb-0">
                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
                   <h3 className="font-serif text-lg">{cert.name}</h3>
-                  <p className="text-xs text-muted-foreground whitespace-nowrap">
+                  <p className="text-xs text-muted-foreground text-pretty sm:text-right">
                     {cert.issuer} · {cert.date}
                   </p>
                 </div>
@@ -30,7 +30,7 @@ export function CertificationsSection() {
                     href={cert.pdfUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 mt-3 text-xs text-topo hover:underline"
+                    className="inline-flex items-center gap-1.5 mt-2 py-1.5 text-xs text-topo hover:underline"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                     Zobrazit certifikát

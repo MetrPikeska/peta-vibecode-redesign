@@ -1,0 +1,1027 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   INSTRUMENT — binary measurement surface
+   ──────────────────────────────────────────────────────────────────────────
+   The page is one continuous ruled field, not an article in a container.
+   Hierarchy comes from scale, density, inversion and evidence. Nothing else.
+
+   Everything visual is scoped under `.instrument` so the v1 "topographic"
+   system in index.css keeps working if App.tsx is switched back. Only the
+   page ground, selection, scrollbar and focus ring are declared globally —
+   those belong to the browser chrome, not to a section.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Type ──
+   One family, two instrument voices, selected by the width axis rather than by
+   a second file: `font-stretch: 62.5%` is the extra-condensed display face,
+   `75%` the condensed text face. Both subsets carry wdth 62.5–100 and
+   wght 100–900, so the browser interpolates instead of faux-bolding. */
+
+@font-face {
+  font-family: 'Noto Sans Mono Var';
+  src: url('/fonts/noto-sans-mono-var-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 62.5% 100%;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Czech diacritics live here — without this subset the page falls back to a
+   system mono for every š, č and ř, which is most of the copy. */
+@font-face {
+  font-family: 'Noto Sans Mono Var';
+  src: url('/fonts/noto-sans-mono-var-latin-ext.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 62.5% 100%;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-017F, U+018F, U+0192, U+01A0-01A1, U+01AF-01B0,
+    U+0218-021B, U+02C6, U+02DA, U+02DC, U+2C60-2C7F;
+}
+
+/* ── Page ground ──
+   Dark is the only mode. The viewer's own surface shows through anything the
+   page leaves transparent, so both html and body are painted. */
+
+html,
+body {
+  background: #000;
+  color-scheme: dark;
+}
+
+::selection {
+  background: #fff;
+  color: #000;
+}
+
+html {
+  scrollbar-color: #fff #000;
+}
+
+::-webkit-scrollbar {
+  width: 13px;
+  height: 13px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #fff;
+  border: 2px solid #000;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Scope root
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.instrument {
+  --signal-white: #ffffff;
+  --field-black: #000000;
+  --rule-white: rgba(255, 255, 255, 0.42);
+  --signal-dim: rgba(255, 255, 255, 0.7);
+
+  --inset: clamp(1rem, 4vw, 4rem);
+  --rhythm: clamp(5rem, 9vw, 10rem);
+  --rail-left: 232px;
+  --rail-right: 220px;
+
+  background: var(--field-black);
+  color: var(--signal-white);
+  font-family: 'Noto Sans Mono Var', ui-monospace, monospace;
+  font-stretch: 75%;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.55;
+  /* Rule — Instrument type: every number on this surface is tabular. */
+  font-variant-numeric: tabular-nums lining-nums;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Rule — Flat measurement. No raised surfaces anywhere, at any nesting depth.
+   Depth is structural: 1px rules make layers, inversion marks state. */
+.instrument *,
+.instrument *::before,
+.instrument *::after {
+  border-radius: 0;
+  box-shadow: none;
+  text-shadow: none;
+  backdrop-filter: none;
+}
+
+.instrument :focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.instrument a {
+  color: inherit;
+  text-decoration: none;
+}
+.instrument a:hover,
+.instrument a:focus-visible {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.24em;
+}
+
+.instrument button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.instrument hr {
+  border: 0;
+  border-top: 1px solid var(--rule-white);
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .instrument {
+    --rhythm: 6rem;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Typographic scale
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.t-display,
+.t-headline,
+.t-sub,
+.t-num {
+  font-stretch: 62.5%;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* Leading is 1.0, not the 0.89/0.94 a Latin-only display setting would take.
+   The copy is Czech: uppercase Á É Í Ý Ě Š Č Ř Ž carry accents well above the
+   cap line, and at 0.89 the accents of one line crash into the line above it.
+   1.0 is the tightest setting that still stacks the lines without collision. */
+.t-display {
+  font-size: clamp(3rem, 6.4vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  max-width: 12ch;
+  text-wrap: balance;
+}
+
+.t-headline {
+  font-size: clamp(2.35rem, 4.5vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  max-width: 15ch;
+  text-wrap: balance;
+}
+
+.t-sub {
+  font-size: 1.35rem;
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+}
+
+/* Monumental figures — the display face used purely as a number. */
+.t-num {
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  text-transform: none;
+}
+
+.t-body {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.55;
+  max-width: 68ch;
+}
+
+.t-label {
+  font-size: 0.72rem;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.t-dim {
+  color: var(--signal-dim);
+}
+
+/* Emphasis inside body copy. Density, not a third voice: same width axis, one
+   step of weight. Everything is already full-opacity white, so colour is not
+   available to mark a phrase. */
+.t-strong {
+  font-weight: 600;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Barcode — the system's only texture. Width encodes magnitude.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.barcode {
+  background-image: repeating-linear-gradient(
+    90deg,
+    currentColor 0 1px,
+    transparent 1px 4px
+  );
+}
+
+.barcode-glyph {
+  display: block;
+  width: 42px;
+  height: 22px;
+  flex: none;
+  background-image: repeating-linear-gradient(
+    90deg,
+    #fff 0 1px,
+    transparent 1px 4px
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Inversion — the only state change on a control
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.invert {
+  background: var(--signal-white);
+  color: var(--field-black);
+}
+
+.invertible:hover,
+.invertible:focus-visible,
+.invertible[aria-pressed='true'],
+.invertible[data-active='true'] {
+  background: var(--signal-white);
+  color: var(--field-black);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Plate — one instrument plate per section, ruled off from the next
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.plate {
+  border-bottom: 1px solid var(--rule-white);
+  padding: var(--rhythm) var(--inset);
+}
+
+.plate--flush {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.plate__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  padding-bottom: 1.25rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--rule-white);
+}
+
+.plate--flush .plate__head {
+  padding-left: var(--inset);
+  padding-right: var(--inset);
+}
+
+/* Ordinary content inside a flush plate, next to a full-bleed child. */
+.plate--flush .plate__body {
+  padding: 2.5rem var(--inset) 0;
+}
+
+.plate__index {
+  color: var(--signal-dim);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Hero shell — 232px data rail / fluid field / 220px result rail
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.hero {
+  display: grid;
+  grid-template-columns: var(--rail-left) minmax(0, 1fr) var(--rail-right);
+  border-bottom: 1px solid var(--rule-white);
+  /* The third-party consent banner is fixed over the first viewport until it
+     is answered; use-consent-inset publishes its height so the field is not
+     read through it. */
+  padding-bottom: var(--consent-inset, 0px);
+}
+
+.hero__col {
+  min-width: 0;
+  border-right: 1px solid var(--rule-white);
+}
+.hero__col:last-child {
+  border-right: 0;
+}
+
+@media (max-width: 1100px) {
+  .instrument {
+    --rail-left: 180px;
+  }
+  .hero {
+    grid-template-columns: var(--rail-left) minmax(0, 1fr);
+  }
+  .hero__col--result {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hero__col {
+    border-right: 0;
+    border-bottom: 1px solid var(--rule-white);
+  }
+  .hero__col:last-child {
+    border-bottom: 0;
+  }
+}
+
+/* ── Data rail ── */
+
+.rail {
+  display: flex;
+  flex-direction: column;
+}
+
+.rail__row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.7rem var(--inset) 0.7rem 1rem;
+  border-bottom: 1px solid var(--rule-white);
+}
+
+.rail__key {
+  color: var(--signal-dim);
+}
+
+.rail__val {
+  color: var(--signal-white);
+  font-weight: 300;
+  font-size: 0.85rem;
+  word-break: break-word;
+}
+
+.rail__list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Full-bleed square buttons: no inset, no gap — the rail is one surface. */
+.rail__btn {
+  display: block;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--rule-white);
+}
+
+@media (max-width: 760px) {
+  /* The rail becomes a horizontally scrollable selector band. */
+  .rail {
+    flex-direction: row;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+  .rail__row,
+  .rail__btn {
+    flex: none;
+    min-width: 148px;
+    border-bottom: 0;
+    border-right: 1px solid var(--rule-white);
+    padding-inline: 1rem;
+  }
+  .rail__list {
+    flex-direction: row;
+  }
+}
+
+/* ── Result rail ── */
+
+.result {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem 0;
+}
+
+.result__figure {
+  font-size: 2.3rem;
+}
+
+.result__dl {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  margin: 1.25rem 0 0;
+}
+
+.result__dl dt,
+.result__dl dd {
+  padding: 0.45rem 0;
+  border-bottom: 1px dotted var(--rule-white);
+}
+
+.result__dl dt {
+  color: var(--signal-dim);
+}
+.result__dl dd {
+  margin: 0;
+  text-align: right;
+}
+
+.result__state {
+  margin-top: auto;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--signal-white);
+  border-bottom: 1px solid var(--signal-white);
+  margin-bottom: 1rem;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Signature field — seeded barcode canvas, the system's only motion
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.field {
+  position: relative;
+  min-height: clamp(320px, 46vh, 520px);
+  display: grid;
+}
+
+.field__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  grid-area: 1 / 1;
+}
+
+.field__overlay {
+  grid-area: 1 / 1;
+  position: relative;
+  pointer-events: none;
+}
+
+.field__tag {
+  position: absolute;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--signal-white);
+  background: var(--field-black);
+  font-size: 0.69rem;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.field__verdict {
+  position: absolute;
+  right: var(--inset);
+  bottom: 1.25rem;
+  max-width: 18ch;
+  text-align: right;
+  font-stretch: 62.5%;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(1.1rem, 2vw, 1.9rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  background: var(--field-black);
+  padding: 0.2rem 0 0.2rem 0.4rem;
+}
+
+.field__claim {
+  padding: 2rem var(--inset) 1rem;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Answer strip — the short answer, before any methodology
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.answers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--rule-white);
+}
+
+.answers__cell {
+  padding: 2.25rem var(--inset);
+  border-right: 1px solid var(--rule-white);
+  font-size: clamp(1.05rem, 1.4vw, 1.4rem);
+  line-height: 1.35;
+}
+.answers__cell:last-child {
+  border-right: 0;
+}
+
+.answers__cell strong {
+  font-stretch: 62.5%;
+  font-weight: 800;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 760px) {
+  .answers {
+    grid-template-columns: 1fr;
+  }
+  .answers__cell {
+    border-right: 0;
+    border-bottom: 1px solid var(--rule-white);
+  }
+  .answers__cell:last-child {
+    border-bottom: 0;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Selector strip — 7 cells, bar width encodes a real magnitude
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.selector {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-top: 1px solid var(--rule-white);
+  border-bottom: 1px solid var(--rule-white);
+}
+
+.selector__cell {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 0.75rem;
+  min-height: 128px;
+  padding: 1rem;
+  border-right: 1px solid var(--rule-white);
+}
+.selector__cell:last-child {
+  border-right: 0;
+}
+
+.selector__bar {
+  align-self: center;
+  height: 26px;
+  width: var(--strength, 4%);
+  min-width: 4%;
+}
+
+.selector__val {
+  font-stretch: 62.5%;
+  font-weight: 800;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.selector__hint {
+  padding: 0.75rem var(--inset) 0;
+}
+
+@media (max-width: 760px) {
+  .selector {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(92px, 1fr);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Ledger — CV rows, project metadata, method notes
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* The ledger stops before the right edge. This is the one place the surface is
+   not full-bleed, and it is a component width, not a centred page container —
+   it stays left-aligned against the plate inset. Full width put 150 monospace
+   characters on a line; the grid now ends near where the prose inside it does,
+   so the rules frame the reading instead of running past it. */
+.ledger {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) minmax(0, 1.6fr) minmax(0, 2fr);
+  max-width: 56rem;
+  border-top: 1px solid var(--rule-white);
+  border-left: 1px solid var(--rule-white);
+}
+
+.ledger--two {
+  grid-template-columns: minmax(150px, 1fr) minmax(0, 3fr);
+}
+
+.ledger__cell {
+  padding: 0.7rem 0.85rem;
+  border-right: 1px solid var(--rule-white);
+  border-bottom: 1px solid var(--rule-white);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  min-width: 0;
+  word-break: break-word;
+}
+
+.ledger__cell--head {
+  background: var(--signal-white);
+  color: var(--field-black);
+  font-stretch: 62.5%;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+/* Prose inside a ledger keeps sentence case — uppercasing a paragraph of
+   Czech makes it unreadable, and the ledger is evidence, not a label. */
+.ledger__cell--prose {
+  text-transform: none;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.ledger__cell--prose > * {
+  max-width: 80ch;
+}
+
+.ledger__cell--dim {
+  color: var(--signal-dim);
+}
+
+/* Evidence that belongs to the row above it, not to one of its columns. */
+.ledger__cell--span {
+  grid-column: 1 / -1;
+}
+
+.ledger__cell--lead {
+  font-stretch: 62.5%;
+  font-weight: 800;
+}
+
+@media (max-width: 900px) {
+  .ledger,
+  .ledger--two {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Copy-to-clipboard control and its live region, on one baseline. */
+.copy-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  min-height: 2.75rem;
+}
+
+/* Several links on one line, separated by a rule rather than by punctuation. */
+.link-run + .link-run {
+  margin-left: 0.85rem;
+  padding-left: 0.85rem;
+  border-left: 1px solid var(--rule-white);
+}
+
+/* Tag run — inline, ruled, never a pill */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.55rem;
+  color: var(--signal-dim);
+}
+.tags > li {
+  list-style: none;
+}
+.tags > li + li::before {
+  content: '·';
+  margin-right: 0.55rem;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Sequence row — a pipeline read left to right, ending in a result
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.sequence {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr 44px) auto;
+  align-items: center;
+  border-top: 1px solid var(--rule-white);
+  border-bottom: 1px solid var(--rule-white);
+}
+
+.sequence__step {
+  padding: 1.5rem 1rem;
+  min-width: 0;
+}
+
+.sequence__num {
+  font-size: clamp(2rem, 3.4vw, 3.25rem);
+}
+
+.sequence__link {
+  position: relative;
+  height: 1px;
+  width: 28px;
+  justify-self: center;
+  background: var(--signal-white);
+}
+/* Arrowhead: two sides of a square rotated 45°, not a glyph. */
+.sequence__link::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-top: 1px solid var(--signal-white);
+  border-right: 1px solid var(--signal-white);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.sequence__result {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5rem 1.25rem;
+  background: var(--signal-white);
+  color: var(--field-black);
+}
+
+@media (max-width: 900px) {
+  .sequence {
+    grid-template-columns: 1fr;
+  }
+  .sequence__step,
+  .sequence__result {
+    border-bottom: 1px solid var(--rule-white);
+  }
+  .sequence__link {
+    width: 1px;
+    height: 28px;
+    margin: 0.5rem 0;
+  }
+  .sequence__link::after {
+    right: auto;
+    top: auto;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) rotate(135deg);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Evidence figures — full-width, never a thumbnail
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.figure {
+  margin: 0;
+  border: 1px solid var(--signal-white);
+}
+
+.figure__frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+}
+
+.figure__frame > svg,
+.figure__frame > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.figure__caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 1.5rem;
+  padding: 0.6rem 0.85rem;
+  border-top: 1px solid var(--signal-white);
+}
+
+.figure__meta {
+  display: flex;
+  gap: 0.85rem;
+  color: var(--signal-dim);
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  /* Legibility over fit: the figure keeps its size and the reader scrolls it. */
+  .figure__scroll {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+  .figure__frame {
+    width: auto;
+    height: 440px;
+    aspect-ratio: auto;
+  }
+  .figure__frame > svg,
+  .figure__frame > img {
+    width: auto;
+    height: 440px;
+    max-width: none;
+  }
+}
+
+/* A selected entry is marked, never hidden or filtered away. The mark is the
+   one rule on the plate drawn at full white instead of at rule-white. */
+.entry {
+  scroll-margin-top: 5rem;
+}
+
+.entry[data-active='true'] {
+  border-left: 1px solid var(--signal-white);
+  padding-left: 1rem;
+}
+
+/* Photographs and figures are unified into the palette — never redrawn. */
+.mono-img {
+  filter: grayscale(1) contrast(1.35);
+  opacity: 0.82;
+  transition: opacity 240ms ease-out;
+}
+.mono-img:hover,
+a:focus-visible .mono-img {
+  opacity: 1;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Navigation
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Off-screen until focused, then an inverted block in the top-left corner. */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 60;
+}
+.skip:focus {
+  left: 0;
+  background: var(--signal-white);
+  color: var(--field-black);
+  padding: 0.6rem 1rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.5rem;
+  min-height: 64px;
+  padding: 0 var(--inset);
+  background: rgba(0, 0, 0, 0.96);
+  border-bottom: 1px solid var(--signal-white);
+}
+
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-stretch: 62.5%;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.nav__anchors {
+  display: flex;
+  justify-content: center;
+  gap: 1.1rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  /* Lowercase anchors: text, not chrome. */
+  font-size: 0.82rem;
+}
+.nav__anchors::-webkit-scrollbar {
+  display: none;
+}
+/* Lowercase against the uppercase status metadata around them: the anchors are
+   text you read, not controls you operate. */
+.nav__anchors a {
+  white-space: nowrap;
+  text-transform: lowercase;
+}
+
+.nav__meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--signal-dim);
+  white-space: nowrap;
+}
+
+/* Scoped to beat `.instrument button { border: 0 }`, which is more specific
+   than a bare class — without this a <button> control loses its frame while the
+   <a> next to it keeps one, and the pair stops reading as the same control. */
+.instrument .nav__ctrl {
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--rule-white);
+  color: var(--signal-white);
+}
+
+@media (max-width: 1100px) {
+  .nav__meta .nav__meta-item {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  /* Below 760px the bar returns to document flow. */
+  .nav {
+    position: static;
+    grid-template-columns: 1fr auto;
+    gap: 0.75rem 1rem;
+    padding-block: 0.75rem;
+  }
+  .nav__anchors {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    padding-bottom: 0.5rem;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Footer
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.foot {
+  display: flex;
+  align-items: center;
+  gap: 1rem 2rem;
+  flex-wrap: wrap;
+  min-height: 100px;
+  padding: 1.5rem var(--inset);
+  font-size: 0.68rem;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  color: var(--signal-dim);
+}
+
+.foot__spread {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  flex: 1;
+  justify-content: space-between;
+}
+
+@media (max-width: 760px) {
+  .foot {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .foot__spread {
+    flex-direction: column;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Utility
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.stack-sm > * + * {
+  margin-top: 0.5rem;
+}
+.stack > * + * {
+  margin-top: 1.25rem;
+}
+.stack-lg > * + * {
+  margin-top: 2.5rem;
+}
+
+.scroll-x {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+
+.instrument ul.bullets {
+  list-style: none;
+  padding: 0;
+}
+.instrument ul.bullets > li {
+  padding-left: 1.1rem;
+  position: relative;
+}
+.instrument ul.bullets > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 7px;
+  height: 1px;
+  background: var(--signal-white);
+}

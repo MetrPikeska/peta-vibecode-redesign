@@ -27,6 +27,7 @@ typst watch --root . --input variant=general --input lang=cz cv\cv.typ cv\out\pr
 |---|---|---|---|
 | `Petr_Mikeska_CV.pdf` | general | CZ | 2 strany |
 | `Petr_Mikeska_CV_en.pdf` | general | EN | 2 strany |
+| `Petr_Mikeska_CV_ai.pdf` (+`_en`) | aplikovaná AI / computer vision | CZ / EN | 2 strany |
 | `Petr_Mikeska_CV_geoai.pdf` (+`_en`) | computer vision / GeoAI | CZ / EN | 2 strany |
 | `Petr_Mikeska_CV_gis.pdf` (+`_en`) | geoinformatika | CZ / EN | 2 strany |
 | `Petr_Mikeska_CV_academic.pdf` (+`_en`) | akademická | CZ / EN | 3 strany |
@@ -73,6 +74,7 @@ deklaruje, které tagy ji zajímají, a `lib/render.typ` podle toho vybírá.
 | `3d` | LiDAR, mračna bodů, 3D rekonstrukce a modelování |
 | `gis` | prostorové analýzy, databáze, DPZ, kartografie |
 | `web` | webový vývoj, aplikace, provoz |
+| `ai` | AI-asistovaný vývoj, agentní workflow, vlastní nástroje |
 | `biz` | vedení, provoz, obchodní stránka |
 | `acad` | jen akademická varianta |
 | `full` | jen dlouhé varianty (obecná, akademická) |
