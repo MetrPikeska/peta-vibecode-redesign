@@ -13,6 +13,7 @@
 //   3d    — LiDAR, mračna bodů, 3D rekonstrukce a modelování
 //   gis   — prostorové analýzy, databáze, DPZ, kartografie
 //   web   — webový vývoj, aplikace, provoz
+//   ai    — AI-asistovaný vývoj, agentní workflow, vlastní nástroje
 //   biz   — vedení, provoz, obchodní stránka
 //   acad  — jen pro akademickou variantu
 
@@ -43,6 +44,10 @@
   geoai: (
     cz: "Computer vision & GeoAI · Detekce objektů a jejich lokalizace v prostoru",
     en: "Computer vision & GeoAI · Object detection and spatial localisation",
+  ),
+  ai: (
+    cz: "Applied AI & Computer Vision · Produkční detekční pipeline · AI-asistovaný vývoj",
+    en: "Applied AI & Computer Vision · Production detection pipelines · AI-assisted development",
   ),
   gis: (
     cz: "GIS analytik · Prostorové databáze · Web GIS a kartografie",
@@ -88,6 +93,22 @@
       multi-view triangulation, least-squares refinement, monocular depth estimation
       and cross-validation against a LiDAR point cloud. Production R&D experience at
       CEDA Maps, research presented at the POGEO 2026 conference.],
+  ),
+  ai: (
+    cz: [Inženýr aplikované computer vision se zázemím v geoinformatice. Provozuji
+      dvě detekční pipeline: obsazenost parkoviště z kamerového streamu, běžící bez
+      obsluhy od snímku po databázi, a detekci dopravního značení z mobilního mapování
+      v R&D týmu CEDA Maps. Práce pokrývá celý řetězec — anotaci, dataset engineering
+      proti data leakage a class imbalance, trénink, inferenci i nasazení. Vývojové
+      agentní nástroje používám denně a doménová pravidla práce s prostorovými daty
+      jsem do nich zapsal vlastním rozšířením.],
+    en: [Applied computer vision engineer with a geoinformatics background. I run two
+      detection pipelines: parking occupancy from a camera stream, operating unattended
+      from frame to database, and road sign detection from mobile mapping in the CEDA
+      Maps R&D team. The work covers the whole chain — annotation, dataset engineering
+      against data leakage and class imbalance, training, inference and deployment.
+      I use agentic development tooling daily and encoded the domain rules of spatial
+      data work into it as my own extension.],
   ),
   gis: (
     cz: [GIS analytik se zaměřením na prostorové databáze, webovou kartografii
@@ -143,6 +164,9 @@
             s tradičním GIS workflow_],
        en: [Master's thesis (in progress): _Evaluating LLM-generated maps against
             a traditional GIS workflow_]),
+      (tags: ("core",),
+       cz: [Erasmus+ — studijní pobyt v Řecku, říjen 2026 – únor 2027],
+       en: [Erasmus+ — study period in Greece, October 2026 – February 2027]),
       (tags: ("3d", "acad"),
        cz: [Drony, laserové skenování, 3D tisk a virtuální realita],
        en: [Drones, laser scanning, 3D printing and virtual reality]),
@@ -290,6 +314,14 @@
        en: [Supabase backend: PostgreSQL with PL/pgSQL triggers and RLS policies,
             Vercel Edge Functions, automated notifications via Resend, a Telegram bot
             and Twilio]),
+      (tags: ("web", "ai"),
+       cz: [Provoz produkční aplikace včetně incidentů hlášených zákazníky — oprava
+            pádu objednávkového toku na Safari/iOS; redesign kurýrního portálu
+            a ověření celé objednávky automatizovaným průchodem prohlížečem],
+       en: [Running the application in production, incidents reported by customers
+            included — fixing a crash of the ordering flow on Safari/iOS; a redesign of
+            the courier portal and verification of the whole order through automated
+            browser runs]),
       (tags: ("core", "biz"),
        cz: [Vedle vývoje řídím provoz — nákup, logistiku kurýrů a růstovou strategii;
             průměrná tržba 452 Kč na objednávku při marži 36,5 %],
@@ -473,6 +505,55 @@
     stack: "Python · YOLOv8-OBB · SAHI · GeoPandas · Shapely · CUDA",
   ),
   (
+    tags: ("core", "geoai", "ai", "web"),
+    name: (cz: "Detekce obsazenosti parkoviště z kamerového streamu",
+           en: "Parking Occupancy Detection from a Camera Stream"),
+    period: "2025 – 2026",
+    link: none,
+    desc: (
+      cz: [Systém, který z kamer areálu odvozuje obsazenost parkoviště a běží bez
+        obsluhy: plánovač spustí snímkování, detekci i zápis do PostgreSQL, navazující
+        skripty dopočítají výpadky. Inference kombinuje více detekčních modelů
+        s vlastním slučováním překryvů, snímky se georeferencují do S-JTSK. Samostatná
+        větev čte registrační značky a výstup OCR se validuje proti masce české SPZ,
+        aby se do dat nedostal nesmysl. Dashboardové API je záměrně oddělená FastAPI
+        služba, takže server s API netahá GPU závislosti.],
+      en: [A system deriving parking occupancy from site cameras that runs unattended:
+        a scheduler triggers capture, detection and the write to PostgreSQL, with
+        follow-up scripts backfilling gaps. Inference combines several detection models
+        with custom overlap merging, and frames are georeferenced into the Czech
+        national grid. A separate branch reads number plates and validates the OCR
+        output against a Czech plate mask, so nonsense never reaches the data. The
+        dashboard API is a deliberately separate FastAPI service, keeping GPU
+        dependencies off the API server.],
+    ),
+    stack: "Python · Ultralytics YOLO · PyTorch · OpenCV · FastAPI · PostgreSQL · rasterio · pyproj · pytest",
+  ),
+  (
+    tags: ("core", "ai"),
+    name: (cz: "Vlastní nástroje pro agentní vývoj", en: "Own Tooling for Agentic Development"),
+    period: "2026",
+    link: none,
+    desc: (
+      cz: [Rozšíření _geospatial-engineer_ — specifikace a sedm referenčních dokumentů —
+        kóduje doménová pravidla práce s prostorovými daty: souřadnicové systémy,
+        hranice zájmových území a tiché chyby při zpracování rastrů, které se jinak
+        musí opakovat v každém projektu. K tomu přenositelná konfigurace vývojového
+        prostředí mezi stroji s vlastním paměťovým systémem a automatické AI code
+        review v CI přes GitHub Actions. Do open-source nástroje _aw-watcher-git_
+        podán pull request rozšiřující sledování procesů mimo Linux (psutil).],
+      en: [The _geospatial-engineer_ extension — a specification and seven reference
+        documents — encodes the domain rules of spatial data work: coordinate systems,
+        area-of-interest boundaries and the silent failures of raster processing that
+        otherwise have to be restated in every project. Alongside it, a portable
+        development environment configuration with its own memory system, and automated
+        AI code review in CI via GitHub Actions. A pull request extending process
+        sampling beyond Linux (psutil) is open against the open-source tool
+        _aw-watcher-git_.],
+    ),
+    stack: "Claude Code · Markdown · PowerShell · GitHub Actions",
+  ),
+  (
     tags: ("core", "web", "biz"),
     name: "VečerkaPlus",
     period: "2026",
@@ -560,19 +641,19 @@
     stack: "Python · YOLOv8 · OpenCV · Shapely · CUDA",
   ),
   (
-    tags: ("geoai", "acad"),
+    tags: ("geoai", "ai", "acad"),
     name: (cz: "Evaluace map generovaných LLM", en: "LLM-Generated Map Evaluation"),
     period: (cz: "2026 – probíhá", en: "2026 – in progress"),
     link: (label: "github.com/MetrPikeska/ai-generated-map-evaluation",
            url: "https://github.com/MetrPikeska/ai-generated-map-evaluation"),
     desc: (
       cz: [Diplomová práce: systematické porovnání kvality map generovaných pěti
-        velkými jazykovými modely (ChatGPT, Claude, Gemini, Mistral, GitHub Copilot)
-        s tradičním GIS workflow pomocí objektních metrik a kartografické analýzy.
+        velkými jazykovými modely (ChatGPT, Claude, Gemini, Mistral, Perplexity)
+        s referenčním workflow v ArcGIS Pro pomocí objektních metrik a kartografické analýzy.
         Batch pipeline v Pythonu, výsledky v interaktivní Leaflet mapě.],
       en: [Master's thesis: a systematic comparison of maps generated by five large
-        language models (ChatGPT, Claude, Gemini, Mistral, GitHub Copilot) against
-        a traditional GIS workflow, using object-based metrics and cartographic
+        language models (ChatGPT, Claude, Gemini, Mistral, Perplexity) against
+        a reference workflow in ArcGIS Pro, using object-based metrics and cartographic
         analysis. A Python batch pipeline, with results in an interactive Leaflet map.],
     ),
     stack: "Python · GeoPandas · Leaflet · GIS metriky",
@@ -681,7 +762,7 @@
   (
     tags: ("core", "geoai"),
     name: (cz: "Computer vision a strojové učení", en: "Computer vision & machine learning"),
-    items: "PyTorch · Ultralytics YOLOv8 / OBB · SAHI · OpenCV · torchvision · Hugging Face Transformers · Depth Anything V2 · MoGe-2 · scikit-learn · ONNX Runtime · CVAT · CUDA",
+    items: "PyTorch · Ultralytics YOLOv8 / OBB · SAHI · OpenCV · torchvision · Hugging Face Transformers · Depth Anything V2 · MoGe-2 · scikit-learn · ONNX Runtime · OCR / ANPR · CVAT · CUDA",
   ),
   (
     tags: ("core", "gis"),
@@ -703,7 +784,13 @@
   (
     tags: ("core",),
     name: (cz: "Nástroje a provoz", en: "Tooling & operations"),
-    items: "Git / GitHub · Linux / Ubuntu / WSL · Docker · pytest · NumPy · Pandas · SciPy · Matplotlib · Claude Code · GitHub Copilot",
+    items: "Git / GitHub · Linux / Ubuntu / WSL · Docker · pytest · NumPy · Pandas · SciPy · Matplotlib",
+  ),
+  (
+    tags: ("core",),
+    name: (cz: "AI-asistovaný vývoj", en: "AI-assisted development"),
+    items: "Claude Code — vlastní rozšíření, projektová pravidla a paměť, orchestrace paralelních agentů · MCP klienti (Supabase, Vercel, automatizace prohlížeče) · GitHub Copilot · AI code review v CI (GitHub Actions)",
+    items-en: "Claude Code — custom extensions, project rules and memory, orchestration of parallel agents · MCP clients (Supabase, Vercel, browser automation) · GitHub Copilot · AI code review in CI (GitHub Actions)",
   ),
   (
     tags: ("geoai", "gis", "acad"),

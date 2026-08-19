@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- A ridge line that reads as the letter M: terrain profile and initial in
+       a single polyline, which is what keeps it legible at 16px.
+
+       The colour is declared here rather than inherited. A favicon is rendered
+       outside the page, so `currentColor` would resolve to black and disappear
+       against a dark tab strip; the media query gives the browser both. -->
+  <style>
+    path { stroke: #0a0a0a; }
+    @media (prefers-color-scheme: dark) { path { stroke: #fafafa; } }
+  </style>
+  <path d="M4 25 L10 9 L16 18 L22 9 L28 25"
+        fill="none" stroke-width="3.5"
+        stroke-linecap="square" stroke-linejoin="miter" />
+</svg>

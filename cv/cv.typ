@@ -9,6 +9,7 @@
 #import "lib/render.typ": render
 
 #import "variants/general.typ"
+#import "variants/ai.typ"
 #import "variants/geoai.typ"
 #import "variants/gis.typ"
 #import "variants/academic.typ"
@@ -16,6 +17,7 @@
 
 #let variants = (
   general: general.profile,
+  ai: ai.profile,
   geoai: geoai.profile,
   gis: gis.profile,
   academic: academic.profile,

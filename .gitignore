@@ -32,3 +32,13 @@ bun.lockb
 # hero.cvUrl po nasazení vracel 404.
 cv/out/
 cv/targeted/
+
+# Nástroje agenta. Impeccable se obnoví přes `npx impeccable install`,
+# settings.local.json je už názvem lokální a .impeccable/ je jen stav a cache.
+.claude/
+.impeccable/
+
+# Interní produktový a portfoliový kontext. Nese obchodní čísla VečerkyPlus,
+# a repozitář je veřejný — proto zůstávají mimo git, ne jen mimo web.
+PRODUCT.md
+CLAUDE_PORTFOLIO_CONTEXT.md

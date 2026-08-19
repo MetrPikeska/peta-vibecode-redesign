@@ -11,14 +11,24 @@ import { ServicesSection } from "@/components/sections/services-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { footer } from "@/data/content";
 import { useContent } from "@/hooks/use-content";
+import { useHashScroll } from "@/hooks/use-hash-scroll";
+import { useConsentInset } from "@/hooks/use-consent-inset";
 
 export default function V1OriginalPage() {
   const { ui } = useContent();
+  useHashScroll();
+  useConsentInset();
 
   return (
     <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-60 focus:rounded-full focus:bg-hero-text focus:px-7 focus:py-2.5 focus:text-[13px] focus:font-medium focus:text-hero-bg"
+      >
+        {ui.a11y.skipToContent}
+      </a>
       <Navigation />
-      <main>
+      <main id="main">
         <HeroSection />
         <AboutSection />
         <EducationSection />

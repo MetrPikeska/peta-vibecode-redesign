@@ -7,70 +7,191 @@
       LinkedIn: https://www.linkedin.com/in/michal-p%C5%A1en%C4%8D%C3%ADk-304303145/
     -->
     <meta charset="UTF-8" />
-    <script src="https://sbmesiotanujqjhlqzjk.supabase.co/storage/v1/object/public/cmp/v1/banner.js"
-      data-gt-key="gdpr_live_bc998becffa65157031df39530a3c50247641fed7e58b9f7"
-      data-gt-site="ef030e5b-be71-4bfd-b227-6dcfe47c451c"
-      defer></script>
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- The SVG carries its own light/dark rule and is what every current
+         browser picks; the 96px PNG is the fallback for the ones that ignore
+         SVG icons, and the tile is what iOS puts on a home screen. -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Petr Mikeska – GIS analytik a geoinformatik specialista na Web GIS, Remote Sensing, GeoAI, prostorové databáze a computer vision." />
+    <meta name="description" content="Petr Mikeska – geoinformatik na průniku computer vision a GIS. Detekce objektů z mobilního mapování, ortofot a LiDAR mračen, prostorové databáze a mapové aplikace. OSVČ, Čeladná." />
     <meta name="keywords" content="GIS, Web GIS, Remote Sensing, PostGIS, Spatial Databases, GeoAI, computer vision, geospatial analysis, Python, JavaScript" />
     <meta name="author" content="Petr Mikeska" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
     <link rel="canonical" href="https://petrmikeska.cz/" />
-    <title>Petr Mikeska – Geoinformatik & GIS Analytik | Web GIS · Remote Sensing · GeoAI</title>
+    <!-- Stránka je klientsky renderovaná, takže crawler, který nespouští JS,
+         vidí jen tuhle hlavičku. llms.txt nese tytéž fakty jako dokument,
+         který žádný runtime nepotřebuje. Generuje ho `npm run seo`. -->
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
+    <title>Petr Mikeska – Geoinformatik &amp; GIS analytik | Computer vision · GeoAI · Web GIS</title>
     <!-- Open Graph -->
     <meta property="og:type" content="profile" />
-    <meta property="og:title" content="Petr Mikeska – Geoinformatik & GIS Analytik" />
-    <meta property="og:description" content="Web GIS, Remote Sensing, GeoAI, Spatial Databases a Computer Vision specializace. Profesionální portfolio." />
+    <meta property="og:title" content="Petr Mikeska – Geoinformatik &amp; GIS analytik" />
+    <meta property="og:description" content="Geoinformatik na průniku computer vision a GIS. Detekce z mobilního mapování, ortofot a LiDAR mračen, prostorové databáze a mapové aplikace." />
     <meta property="og:url" content="https://petrmikeska.cz/" />
     <meta property="og:site_name" content="Petr Mikeska - GIS Portfolio" />
-    <meta property="og:image" content="https://petrmikeska.cz/assets/img/passport.webp" />
+    <!-- Bylo /assets/img/passport.webp, kde soubor nikdy nebyl — náhled
+         odkazu byl proto na každé sociální síti prázdný. -->
+    <meta property="og:image" content="https://petrmikeska.cz/passport.webp" />
     <meta property="og:image:alt" content="Petr Mikeska" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:locale" content="cs_CZ" />
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Petr Mikeska – GIS Analytik & Geoinformatik" />
-    <meta name="twitter:description" content="Web GIS, Remote Sensing, GeoAI, Spatial Databases specialista." />
-    <meta name="twitter:image" content="https://petrmikeska.cz/assets/img/passport.webp" />
+    <meta name="twitter:title" content="Petr Mikeska – Geoinformatik &amp; GIS analytik" />
+    <meta name="twitter:description" content="Geoinformatik na průniku computer vision a GIS — detekce z obrazu a LiDARu, prostorové databáze, mapové aplikace." />
+    <meta name="twitter:image" content="https://petrmikeska.cz/passport.webp" />
     <meta name="twitter:image:alt" content="Petr Mikeska" />
     <meta name="theme-color" content="#0a0a0a" />
+    <!-- Theme, before first paint. The v3 surface reads the same key at runtime
+         (src/lib/theme-store.ts); resolving it here as well is what keeps a
+         visitor whose system is dark from being shown a white page first. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var dark = stored === "dark" || (stored !== "light" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+          if (dark) document.documentElement.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
+    <!-- Instrument system (v2): one self-hosted variable family, both width and
+         weight axes intact. Not preloaded — v2 is not the mounted system, and
+         `@font-face` in styles/instrument.css still fetches both subsets when
+         it is. Restore the preloads if v2 goes live again. -->
+    <!-- v1 "topographic" system — kept so src/pages/v1-original.tsx still renders. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <!-- JSON-LD Schema: Person -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- JSON-LD. Každá hodnota tu musí odpovídat src/data/content.ts:
+         rozpor v entitních údajích škodí podle PRODUCT.md víc než údaj
+         chybějící, a tenhle blok byl rozporný ve čtyřech polích naráz
+         (LinkedIn, GitHub, e-mail, jobTitle). -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Petr Mikeska",
-      "jobTitle": "GIS Analyst & Geoinformatics Student",
-      "url": "https://petrmikeska.cz",
-      "image": "https://petrmikeska.cz/assets/img/passport.webp",
-      "sameAs": [
-        "https://www.linkedin.com/in/petr-mikeska-b25669262/",
-        "https://github.com/metrpikeska"
-      ],
-      "knowsAbout": [
-        "GIS",
-        "Web GIS",
-        "Remote Sensing",
-        "PostGIS",
-        "Spatial Databases",
-        "GeoAI",
-        "Computer Vision",
-        "Geospatial Analysis",
-        "PostgreSQL",
-        "Python",
-        "JavaScript",
-        "QGIS",
-        "ArcGIS"
-      ],
-      "areaServed": "CZ",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "Email",
-        "email": "petr@petrmikeska.cz"
-      }
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://petrmikeska.cz/#website",
+          "url": "https://petrmikeska.cz/",
+          "name": "Petr Mikeska",
+          "inLanguage": "cs-CZ",
+          "publisher": { "@id": "https://petrmikeska.cz/#petr" }
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://petrmikeska.cz/#profile",
+          "url": "https://petrmikeska.cz/",
+          "name": "Petr Mikeska — geoinformatik, computer vision a GIS",
+          "isPartOf": { "@id": "https://petrmikeska.cz/#website" },
+          "about": { "@id": "https://petrmikeska.cz/#petr" },
+          "inLanguage": "cs-CZ",
+          "dateModified": "2026-08-20"
+        },
+        {
+          "@type": "Person",
+          "@id": "https://petrmikeska.cz/#petr",
+          "name": "Petr Mikeska",
+          "jobTitle": "Geoinformatik — GIS analytik a computer vision",
+          "description": "Geoinformatik na průniku computer vision, GIS, 3D/LiDAR a webového vývoje. Vyvíjí GeoAI pipeline pro detekci dopravního značení z mobilního mapování.",
+          "url": "https://petrmikeska.cz",
+          "image": "https://petrmikeska.cz/passport.webp",
+          "email": "piter.mikeska@gmail.com",
+          "telephone": "+420773426330",
+          "sameAs": [
+            "https://www.linkedin.com/in/mikeskapetr",
+            "https://github.com/MetrPikeska"
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Čeladná 53",
+            "postalCode": "739 12",
+            "addressLocality": "Čeladná",
+            "addressCountry": "CZ"
+          },
+          "knowsLanguage": [
+            { "@type": "Language", "name": "Czech", "alternateName": "cs" },
+            { "@type": "Language", "name": "English", "alternateName": "en" }
+          ],
+          "worksFor": {
+            "@type": "Organization",
+            "name": "CEDA Maps",
+            "url": "https://www.ceda.cz/"
+          },
+          "alumniOf": [
+            {
+              "@type": "CollegeOrUniversity",
+              "name": "Univerzita Palackého v Olomouci",
+              "url": "https://www.upol.cz/"
+            },
+            {
+              "@type": "EducationalOrganization",
+              "name": "Střední škola informačních technologií",
+              "url": "https://www.ssinfotech.cz/"
+            }
+          ],
+          "hasCredential": [
+            {
+              "@type": "EducationalOccupationalCredential",
+              "name": "Python for Everyone",
+              "credentialCategory": "certificate",
+              "recognizedBy": { "@type": "Organization", "name": "Esri" },
+              "url": "https://petrmikeska.cz/certifikaty/python-for-everyone.pdf"
+            },
+            {
+              "@type": "EducationalOccupationalCredential",
+              "name": "Introduction to IoT",
+              "credentialCategory": "certificate",
+              "recognizedBy": { "@type": "Organization", "name": "Cisco Networking Academy" },
+              "url": "https://petrmikeska.cz/certifikaty/iot-cisco.pdf"
+            },
+            {
+              "@type": "EducationalOccupationalCredential",
+              "name": "Pilot bezpilotních prostředků A1/A3",
+              "credentialCategory": "license",
+              "recognizedBy": { "@type": "Organization", "name": "Úřad pro civilní letectví ČR / EASA" },
+              "url": "https://petrmikeska.cz/certifikaty/pilot-dron.pdf"
+            }
+          ],
+          "knowsAbout": [
+            "Computer vision",
+            "GeoAI",
+            "Detekce objektů v obraze",
+            "Geoinformatika",
+            "GIS",
+            "Web GIS",
+            "Prostorové databáze",
+            "PostGIS",
+            "PostgreSQL",
+            "Dálkový průzkum Země",
+            "LiDAR a mračna bodů",
+            "Fotogrammetrie",
+            "Structure from Motion",
+            "Kartografie",
+            "Python",
+            "TypeScript",
+            "React"
+          ],
+          "areaServed": { "@type": "Country", "name": "Česká republika" },
+          "mainEntityOfPage": { "@id": "https://petrmikeska.cz/#profile" }
+        },
+        {
+          "@type": "ScholarlyArticle",
+          "@id": "https://petrmikeska.cz/bp/#thesis",
+          "headline": "Uživatelský GIS toolbox pro hodnocení dostupnosti parků a zelených ploch pro obyvatele měst",
+          "author": { "@id": "https://petrmikeska.cz/#petr" },
+          "datePublished": "2025",
+          "url": "https://petrmikeska.cz/bp/",
+          "sameAs": "https://geoinformatics.upol.cz/dprace/bakalarske/mikeska25",
+          "publisher": {
+            "@type": "CollegeOrUniversity",
+            "name": "Univerzita Palackého v Olomouci"
+          }
+        }
+      ]
     }
     </script>
     <!-- Google tag (gtag.js) -->
@@ -82,6 +203,13 @@
 
       gtag('config', 'G-PMX8ZPEHYK');
     </script>
+    <!-- Souhlas s cookies — externí CMP. Stával na začátku <head>, před
+         <title> i před ikonami; teď je poslední, protože nic v hlavičce na
+         něm nezávisí a `defer` ho stejně spustí až po parsování. -->
+    <script src="https://sbmesiotanujqjhlqzjk.supabase.co/storage/v1/object/public/cmp/v1/banner.js"
+      data-gt-key="gdpr_live_bc998becffa65157031df39530a3c50247641fed7e58b9f7"
+      data-gt-site="ef030e5b-be71-4bfd-b227-6dcfe47c451c"
+      defer></script>
   </head>
   <body>
     <div id="root"></div>

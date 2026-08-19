@@ -50,7 +50,7 @@ export function ExperienceSection() {
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-topo transition-colors"
+                        className="inline-flex items-center gap-1.5 py-1.5 text-xs font-medium text-muted-foreground hover:text-topo transition-colors"
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
                         {link.label}

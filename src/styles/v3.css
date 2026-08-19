@@ -1,0 +1,161 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   v3 — the shadcn/ui surface
+   ──────────────────────────────────────────────────────────────────────────
+   The palette of thatmike1/vite-react-shadcn-starter, unchanged: New York
+   style, `neutral` base, radius 0.625rem, light and dark.
+
+   Everything is scoped under `.v3` rather than `:root` because `src/index.css`
+   already owns `:root` for the topographic system (v1) — parchment background,
+   topo-green primary, radius 0.5rem. Those two palettes cannot both be the
+   document default, and v1 has no dark variant to fall back on. Scoping keeps
+   all three systems installable side by side: whichever page `App.tsx` mounts
+   brings its own tokens with it.
+
+   `@theme inline` in index.css emits `var(--background)` into the utilities
+   themselves, so the cascade — not the build — decides which palette a given
+   subtree resolves to. Nothing here has to be re-declared as a Tailwind color.
+   ────────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* shadcn's accordion ships with these two utilities and expects the design
+     system to supply the motion. tw-animate-css covers `animate-in` for the
+     sheet, but not the height interpolation an accordion needs. */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+/* The sheet, the toaster and every other portalled overlay render as children
+   of `<body>`, outside the `.v3` subtree — so the palette has to reach the body
+   too, or those overlays resolve v1's parchment tokens from `:root`. Declaring
+   the literal background and colour there was not enough: an overlay styled
+   with `bg-background` or `hover:bg-accent` reads the *variables*, and picked
+   up v1's parchment and terracotta while inheriting v3's text colour.
+   Painting the body from the same palette also keeps the page background right
+   during overscroll. */
+.v3,
+body:has(.v3) {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  /* The template ships `oklch(0.708 0 0)` here, which draws a 2.1:1 focus ring
+     on white — below the 3:1 WCAG 2.2 requires of a focus indicator, and
+     `index.css` neutralises the browser's own ring for every element. Darkened
+     until the ring passes on its own. */
+  --ring: oklch(0.45 0 0);
+
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.dark .v3,
+.dark body:has(.v3) {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.75 0 0);
+}
+
+/* ── focus ──
+   `index.css` recolours the UA outline to `outline-ring/50` for every element,
+   which leaves nothing visible once `--ring` is halved. This restores one
+   deliberate indicator across the surface — including the bare `<a>` elements
+   in the nav, the contact rows and the publication list, which carry no focus
+   class of their own. Scoped to the body rather than `.v3` so the links inside
+   the portalled mobile menu are covered by the same indicator. */
+body:has(.v3) :focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* ── touch targets ──
+   shadcn's `size="icon"` button is 36px; pointer guidance asks for 44. The hit
+   area is expanded without redrawing the control, so the toolbar keeps its
+   proportions. */
+.v3 .tap-44 {
+  position: relative;
+}
+
+.v3 .tap-44::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  min-width: 44px;
+  min-height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+/* ── skip link ──
+   Off-screen until focused, then a real target in the top-left corner. */
+.v3 .skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+
+.v3 .skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* ── consent banner coexistence ──
+   The CMP owns the bottom of the viewport until it is answered. The hero gives
+   that space back rather than putting its CTAs behind it; `--consent-inset` is
+   published by `use-consent-inset` and is 0 on every visit after the first. */
+.v3 .hero-shell {
+  min-height: calc(100svh - var(--consent-inset, 0px));
+}
+
+/* Shrinking the shell is not enough on a phone, where the hero's own content is
+   taller than what is left: the calls to action still end up behind the banner.
+   Reserving the inset as padding pushes them clear of it, and collapses to
+   nothing on every visit after consent is answered. */
+.v3 .hero-inner {
+  padding-bottom: var(--consent-inset, 0px);
+}

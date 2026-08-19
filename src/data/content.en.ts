@@ -5,9 +5,27 @@ import type {
   SkillCategory,
   Certification,
   Service,
+  Publication,
 } from "./content";
 
-export { hero, contact, footer } from "./content";
+import { hero as csHero } from "./content";
+
+export { contact, footer } from "./content";
+
+/**
+ * Identity, links and coordinates are language-neutral and stay shared. The
+ * three prose fields are not: the instrument layout sets `tagline` as the
+ * page's display claim, so leaving it Czech would put the headline of the
+ * English page in the wrong language.
+ */
+export const hero = {
+  ...csHero,
+  tagline: "I train models that see. I put the results on a map.",
+  subtagline:
+    "Geoinformatics & cartography @ UPOL · GIS analyst · Computer vision · Web development",
+  intro:
+    "I connect GIS, spatial databases and web technologies into map solutions that get used. My current focus is computer vision — detecting objects in video, orthophotos, lidar and mobile mapping, with the spatial processing that follows.",
+};
 
 export const ui = {
   nav: {
@@ -41,20 +59,168 @@ export const ui = {
     tagline:
       "If you're interested in working together, feel free to get in touch.",
   },
+  a11y: {
+    skipToContent: "Skip to content",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+    switchLanguage: "Přepnout do češtiny",
+  },
+  actions: {
+    copyEmail: "Copy email address",
+    copied: "Email address copied",
+    copyFailed: "Copy failed — select the address and copy it manually",
+  },
   footer: {
     icoLabel: "Company ID",
+    updated: "Updated",
     copyright:
       "© 2026 Petr Mikeska — Self-employed under Czech Trade Licensing Act",
   },
+  v3: {
+    /** The five v3 destinations — see the Czech file for why `nav` is here. */
+    nav: {
+      about: "About",
+      experience: "Work",
+      portfolio: "Portfolio",
+      services: "Services",
+      contact: "Contact",
+    },
+    downloadCv: "Download CV",
+    viewWork: "View portfolio",
+    publications: "Publications",
+    openCertificate: "Open certificate",
+    toolsCatalogued: "tools across all categories",
+    closeMenu: "Close",
+    theme: {
+      toDark: "Switch to dark mode",
+      toLight: "Switch to light mode",
+    },
+    lead: {
+      about: "Geoinformatics, computer vision and the web — and why I put them together.",
+      experience: "From a GeoAI pipeline in R&D to a platform of my own in production, plus the university research.",
+      portfolio: "Things that run — with links to the code and the deployment.",
+      services: "An enquiry starts with an email or a call — contact details are at the end of the page.",
+    },
+    channels: {
+      email: "Email",
+      phone: "Phone",
+      web: "Web",
+      linkedin: "LinkedIn",
+      github: "GitHub",
+      base: "Based in",
+    },
+  },
+  instrument: {
+    availability: "Open to work",
+    cv: "CV",
+    rail: {
+      operator: "Operator",
+      base: "Base",
+      coord: "Coordinates",
+      focus: "Focus",
+      index: "Project index",
+    },
+    result: {
+      figure: "Tools catalogued",
+      projects: "Projects",
+      roles: "Roles",
+      categories: "Categories",
+      publications: "Publications",
+      ico: "Company ID",
+    },
+    field: {
+      verdict: "Pixel and place",
+      tags: ["Detection", "Trace", "Residual"],
+      caption: "Seeded field · deterministic",
+    },
+    answers: [
+      {
+        head: "Computer vision",
+        body: "I train detection models on mobile mapping imagery, orthophotos and lidar — from data annotation to production deployment.",
+      },
+      {
+        head: "Geoinformatics",
+        body: "Detections are carried into space: triangulation, clustering, deduplication and analysis in PostGIS and GeoPandas.",
+      },
+      {
+        head: "Web and data",
+        body: "I build map applications and spatial databases people actually use — React, PostGIS, Leaflet, Supabase.",
+      },
+    ],
+    sequence: {
+      label: "Road sign detection pipeline · CEDA Maps",
+      steps: [
+        { title: "Annotation", note: "Per-track split" },
+        { title: "Training", note: "YOLOv8 / OBB, SAHI" },
+        { title: "Triangulation", note: "Multi-view, least-squares" },
+        { title: "Fusion", note: "Imagery + LiDAR cloud" },
+      ],
+      result: { title: "Sign in space", note: "One entity from dozens of passes" },
+    },
+    figure: {
+      generated: "Generated plate — not project data",
+      open: "Open",
+    },
+    ledger: {
+      institution: "Institution",
+      degree: "Degree",
+      notes: "Notes",
+      company: "Entity",
+      role: "Role",
+      period: "Period",
+      project: "Project",
+      stack: "Stack",
+      link: "Link",
+      category: "Category",
+      count: "Count",
+      items: "Items",
+      certificate: "Certificate",
+      issuer: "Issuer",
+      date: "Date",
+      service: "Service",
+      question: "Question",
+      publication: "Publication",
+      kind: "Type",
+      year: "Year",
+      channel: "Channel",
+      value: "Value",
+    },
+    channels: {
+      email: "Email",
+      phone: "Phone",
+      web: "Web",
+    },
+    publications: "Publications",
+    allCategories: "All",
+    selectorHint: "Bar width encodes the number of items in the category",
+  },
 };
 
+export const publications: Publication[] = [
+  {
+    title:
+      "A user GIS toolbox for assessing the accessibility of parks and green spaces for urban residents",
+    kind: "Bachelor thesis",
+    year: "2025",
+    venue: "Dept. of Geoinformatics, Palacký University Olomouc",
+    url: "https://geoinformatics.upol.cz/dprace/bakalarske/mikeska25",
+    urlLabel: "geoinformatics.upol.cz",
+  },
+  {
+    title: "Evaluating LLM-generated maps against a traditional GIS workflow",
+    kind: "Master thesis",
+    year: "in progress",
+    venue: "Dept. of Geoinformatics, Palacký University Olomouc",
+    url: "https://github.com/MetrPikeska/ai-generated-map-evaluation",
+    urlLabel: "GitHub",
+  },
+];
+
 export const about: string[] = [
-  "My name is **Petr Mikeska** and I'm a geoinformatics specialist focused on **computer vision**, spatial databases, and web development. I connect GIS, databases, and web technologies into map-based solutions people actually use.",
-  "I work at the intersection of object detection from imagery and spatial analysis of its output — from raw video, orthophotos, or lidar point clouds to a layer you can keep working with in GIS.",
-  "On the R&D team at **CEDA Maps** I develop a **GeoAI pipeline for automatic detection and classification of traffic signs** from mobile mapping: preparing and annotating training data, training the model, and clustering and deduplicating detections across dozens of drive-throughs.",
+  "My name is **Petr Mikeska** and I'm a geoinformatics specialist focused on **computer vision**, spatial databases and web development. I work at the intersection of object detection from imagery and spatial analysis of its output — from raw video, orthophotos or lidar point clouds to a layer you can keep working with in GIS.",
+  "On the R&D team at **CEDA Maps** I develop a **GeoAI pipeline for automatic detection and classification of traffic signs** from mobile mapping: data annotation, model training, and clustering and deduplication of detections across dozens of drive-throughs.",
   "I'm a co-founder and technical lead of **[VečerkaPlus](https://vecerkaplus.cz/)** — a production platform (React, Supabase, Vercel) with delivery zones built on spatial analysis.",
-  "I completed my bachelor's in **Geoinformatics and Cartography** at the **[Department of Geoinformatics](https://www.geoinformatics.upol.cz/)**, Palacký University Olomouc. My thesis produced a **GIS toolbox for evaluating the accessibility of parks and green spaces for urban residents** — [the thesis is available here](https://geoinformatics.upol.cz/dprace/bakalarske/mikeska25). I'm currently in the **follow-up master's programme**, focusing on advanced spatial data work and web cartography; my master's thesis compares the quality of LLM-generated maps against traditional GIS workflows.",
-  "My technical foundation comes from the **[Secondary School of Information Technology](https://www.ssinfotech.cz/)** in Frýdek-Místek, field of **Application Programming and Development — Internet of Things**: programming, web technologies, networks, and databases.",
+  "I study **[Geoinformatics and Cartography](https://www.geoinformatics.upol.cz/)** at Palacký University Olomouc. My [bachelor's thesis](https://geoinformatics.upol.cz/dprace/bakalarske/mikeska25) was a GIS toolbox for evaluating park accessibility; the master's thesis compares the quality of LLM-generated maps against traditional GIS workflows.",
   "Computer vision sees a pixel. GIS sees a place. I'm interested in what needs both.",
 ];
 
@@ -66,24 +232,21 @@ export const education: Education[] = [
     degree: "MSc – Geoinformatics and Cartography (in progress)",
     type: "Follow-up Master's · full-time · 2 years",
     highlights: [
-      "Advanced spatial analysis and modeling",
-      "Web GIS, mapping applications and servers",
+      "Web GIS and map servers",
       "Remote sensing and image processing",
-      "Advanced cartography and visualization",
-      "Drones, laser scanning, 3D printing, VR",
+      "Drones, laser scanning, 3D printing",
     ],
   },
   {
     institution: "Palacký University Olomouc",
-    institutionUrl: "https://www.upol.cz/",
-    location: "Faculty of Science · Olomouc",
+    institutionUrl: "https://www.geoinformatics.upol.cz/",
+    location: "Department of Geoinformatics · Olomouc",
     degree: "BSc – Geoinformatics and Cartography",
     type: "Bachelor's · full-time · 3 years",
     highlights: [
-      "GIS, RS, GPS, geostatistics, computer cartography",
+      "GIS, RS, GPS, geostatistics",
       "Spatial analysis and land-use planning",
       "Thematic cartography",
-      "Bachelor's thesis: GIS toolbox for evaluating park accessibility in cities",
     ],
   },
   {
@@ -95,28 +258,37 @@ export const education: Education[] = [
     type: "Secondary vocational school · 4 years",
     highlights: [
       "Programming and application development",
-      "Web technologies (HTML, CSS, backend)",
-      "Computer networks and system administration",
-      "Electronics fundamentals and Internet of Things",
-      "Databases and application software",
+      "Web technologies, networks, databases and the Internet of Things",
     ],
   },
 ];
 
 export const experience: Experience[] = [
   {
-    company: "Skymaps s.r.o.",
-    role: "GIS & Remote Sensing Analyst",
-    period: "February 2025 – Present",
-    location: "Czech Republic",
+    company: "CEDA Maps",
+    role: "GIS & Computer Vision Analyst (freelance)",
+    period: "June 2026 – Present",
+    location: "Brno, remote",
     highlights: [
-      "Processing satellite imagery and raster data in a GIS environment",
-      "Analyzing image data and subsequent interpretation",
-      "Creating thematic soil potential maps using remote sensing",
-      "Automating analytical steps with Python",
-      "Linking image data with spatial analyses and map outputs",
-      "Tools: QGIS, ArcGIS Pro, EO Browser",
+      "GeoAI pipeline for automatic detection and classification of traffic signs from mobile mapping — from data annotation through YOLOv8 training to production deployment",
+      "Locating signs without precise GNSS: multi-view triangulation across dozens of drive-throughs, least-squares refinement and fusion into a single entity; monocular depth estimation (Depth Anything V2, MoGe-2) as an independent source, validated with a null test",
+      "Panoramic camera rig calibration via COLMAP SfM — extrinsics and intrinsics for lifting detections into real-world space",
+      "Dataset engineering: per-track split against data leakage, deduplication of sequential frames and class-imbalance control over tens of thousands of crops",
+      "Detecting sign panels directly in the LiDAR point cloud (RIEGL, laspy, PDAL) and cross-checking them against the image detections",
+      "Stack: Python, PyTorch, Ultralytics YOLOv8/OBB, SAHI, OpenCV, Open3D, PDAL, COLMAP, PostGIS, GeoPandas",
     ],
+  },
+  {
+    company: "VečerkaPlus",
+    role: "Co-founder & technical lead",
+    period: "April 2026 – Present",
+    location: "Frýdek-Místek",
+    highlights: [
+      "I co-own and lead a late-night drinks and snacks delivery service in Frýdek-Místek; I built the whole platform from scratch (React, Supabase, Vercel)",
+      "Delivery zones built on spatial analysis — price and availability follow real driving distance, not straight-line distance",
+      "Beyond development I run the operation: purchasing, courier logistics and growth strategy",
+    ],
+    links: [{ label: "vecerkaplus.cz", url: "https://vecerkaplus.cz/" }],
   },
   {
     company: "Palacký University Olomouc",
@@ -124,10 +296,8 @@ export const experience: Experience[] = [
     period: "May 2023 – Present",
     location: "Czech Republic",
     highlights: [
-      "Managing high-traffic websites – 199,800 visitors and 452,000 page views in total",
-      "Delivering requested changes within 24 hours",
-      "Resolving website issues and implementing fixes",
-      "Updating content and features to reflect current information",
+      "Managing sites with 199,800 visitors and 452,000 page views in total — olomouckymajales.cz and meetup.upol.cz",
+      "Changes delivered within 24 hours of request, uninterrupted service during key events, no production downtime",
       "Tools: WordPress, YOOtheme Builder",
     ],
     links: [
@@ -138,11 +308,12 @@ export const experience: Experience[] = [
   {
     company: "Skymaps s.r.o.",
     role: "GIS & Remote Sensing Analyst",
-    period: "February 2025 – March 2025",
+    period: "February 2025 – September 2025",
     location: "Czech Republic",
     highlights: [
-      "Processing satellite imagery and raster data in a GIS environment",
-      "Analyzing image data and subsequent interpretation",
+      "Processing multispectral satellite imagery into thematic soil-potential maps",
+      "Analysing and interpreting remote sensing data: Sentinel (SNAP), GDAL, EO Browser",
+      "Python automation from batch processing of imagery to the output maps",
     ],
   },
 ];
@@ -150,18 +321,14 @@ export const experience: Experience[] = [
 export const universityProjects: Experience[] = [
   {
     company: "Palacký University Olomouc – KGI / FF / VTP UP + Advolution",
-    role: "Data Collection Coordinator & Field Researcher",
+    role: "Field Data Coordinator & Data Analyst",
     period: "2026 – present",
     location: "Olomouc, Czech Republic",
-    project: "Visual Attention and Perception Research in Urban Environments",
+    project: "Visual attention and perception research in urban environments",
     highlights: [
-      "Conducted 40–60 eye-tracking sessions in Olomouc, recording participants' visual attention during on-foot and in-vehicle routes",
-      "Coordinated participants – experiment logistics, route timing, transfers, and communication",
-      "Preprocessing recordings in Tobii Pro Lab: event creation and segmentation of recordings for downstream analysis",
-      "Defining ROIs (regions of interest) for evaluating visual exposure to outdoor advertising",
-      "Collected and managed spatial field data (GPS/GPX tracks, synchronisation with eye-tracking recordings)",
-      "Interdisciplinary collaboration spanning geoinformatics, psychology, academia, and the private sector",
-      "Prospective analyses: route visualisations, fixation heatmaps, spatial attention time-series",
+      "Coordinating field drives that record participants' visual attention with eye-tracking glasses",
+      "Preprocessing in Tobii Pro Lab: events, segmentation and ROIs for evaluating visual exposure to outdoor advertising",
+      "Cleaning gaze data and preparing the outputs for analysis",
     ],
   },
   {
@@ -170,11 +337,10 @@ export const universityProjects: Experience[] = [
     period: "December 2025 – February 2026",
     location: "Czech Republic",
     project:
-      "Modeling, processing, and production of large-scale 3D models of two grottos including lighting and water installation",
+      "Modeling, processing and production of large-scale 3D models of two grottos including lighting and water installation",
     highlights: [
       "3D modeling of objects for physical installation and 3D printing",
-      "Adjusting and optimizing model geometry for manufacturing",
-      "Tools: Blender, 3D Builder",
+      "Optimising model geometry for manufacturing (Blender, 3D Builder)",
     ],
   },
 ];
@@ -183,50 +349,66 @@ export const projects: Project[] = [
   {
     title: "VečerkaPlus",
     description:
-      "Late-night alcohol, drinks, and snacks delivery in Frýdek-Místek and surroundings, with emphasis on speed, simple ordering, and a modern web application.",
+      "A late-night drinks and snacks delivery service in Frýdek-Místek (Fri/Sat 22:00–06:00) — a category neither Bolt Food nor Wolt operates here. I built the entire platform from scratch and run the operation: storefront, admin, courier portal and analytics.",
     features: [
-      "Web ordering application development (React + Vite)",
-      "Supabase integration (order and product database)",
-      "Google Maps API integration (distance and delivery calculation)",
-      "Notification automation (email + Telegram)",
-      "UX design for fast late-night ordering",
+      "Supabase backend: PostgreSQL with RLS and PL/pgSQL triggers enforcing order integrity server-side — the client cannot tamper with a total or oversell stock; Vercel Functions as the API layer",
+      "Courier PWA: JWT auth, Web Push, wake lock and 1 Hz live GPS tracking into a self-hosted PostGIS database on Hetzner over a Tailscale VPN",
+      "Delivery pricing from real driving distance (Google Distance Matrix + server-side cache) — four bands up to 20 km, accurate to the street rather than as the crow flies",
+      "Order analytics: market basket analysis (Apriori), margin reports, a price list calibrated with Monte Carlo simulation and OSMnx network analysis; GIS analysis of the catchment area over RÚIAN and the 2021 census",
+      "GIS analysis of the market opportunity: 265,783 residents in the catchment area, RÚIAN + 2021 Census + OSM POI",
+      "End-to-end test of the whole order flow (checkout → database → courier → delivery) running against production with test data kept isolated",
     ],
     tags: [
       "React",
+      "TypeScript",
       "Vite",
       "Supabase",
       "PostgreSQL",
+      "PostGIS",
+      "Vercel",
       "Google Maps API",
-      "JavaScript",
     ],
     link: "https://vecerkaplus.cz/",
     linkLabel: "vecerkaplus.cz",
   },
   {
-    title: "POGEO – Czech Pirate Party Election Analysis 2025",
+    title: "Parking Occupancy Detection from a Camera Stream",
     description:
-      "Spatial analysis of the Czech Pirate Party's electoral success across 6,157 municipalities using Geographically Weighted Regression.",
+      "A system deriving parking occupancy from site cameras that runs unattended — from the frame through detection to the write into the database. Deployed at a ski resort.",
     features: [
-      "GWR model (R² 0.445) vs OLS (R² 0.188) — elimination of spatial autocorrelation in residuals",
-      "Predictors from the 2021 Czech Census: education, employment, religiosity, etc.",
-      "Cartographic outputs and an interactive electoral atlas",
+      "Ultralytics YOLO + PyTorch: several detection models run at once and their outputs are combined by a custom NMS merge; inference on CUDA with an automatic CPU fallback",
+      "Pipeline from frame → georeferencing into the Czech national grid (rasterio, pyproj) → occupancy time series → PostgreSQL over an SSH tunnel",
+      "The dashboard API is a separate FastAPI service kept apart from inference, keeping GPU dependencies off the API server; runs unattended, including backfilling the intervals missed during an outage",
     ],
-    tags: ["R", "GWR", "Spatial Analysis", "Cartography", "ArcGIS Pro"],
-    link: "https://github.com/SvobVojtech/pogeo_2026",
+    tags: [
+      "Python",
+      "YOLO",
+      "PyTorch",
+      "FastAPI",
+      "PostgreSQL",
+      "rasterio",
+    ],
+  },
+  {
+    title: "Vehicle Detection on Orthophoto Maps",
+    description:
+      "YOLOv8-OBB vehicle detection on large-format orthophoto maps of Olomouc, fully integrated into a GIS workflow. Results presented at the POGEO 2026 international conference.",
+    features: [
+      "YOLOv8-OBB + SAHI: inference on images larger than the GPU can hold — a workaround for a GTX 1060 with 3 GB of VRAM",
+      "DBSCAN clustering of detected vehicles and Voronoi-based address assignment in GeoPandas and Shapely",
+      "End-to-end Python pipeline: annotation → training → georeferencing → spatial analysis → outputs",
+    ],
+    tags: ["Python", "YOLOv8-OBB", "SAHI", "GeoPandas", "CUDA", "GIS"],
+    link: "https://github.com/MetrPikeska/medpz-geoai",
     linkLabel: "GitHub",
-    links: [
-      { label: "Electoral Atlas", url: "https://petrmikeska.cz/pogeo/" },
-      { label: "Interactive Map", url: "https://petrmikeska.cz/pogeo/map/" },
-    ],
   },
   {
     title: "AI Map Generation Evaluation",
     description:
-      "Master's thesis: evaluating the quality of AI-generated maps using object-based metrics and cartographic analysis.",
+      "Master's thesis: the first systematic comparison of maps generated by LLMs (ChatGPT, Claude, Gemini, Mistral, Perplexity) against a reference workflow in ArcGIS Pro, using object-based metrics and cartographic analysis.",
     features: [
-      "Analysis of AI-generated maps compared to traditional cartographic outputs",
-      "Comparison with traditional outputs using GIS metrics",
-      "Python pipeline for batch processing and statistical analysis",
+      "Batch pipeline in Python: maps from five LLMs scored with GIS metrics and cartographic analysis",
+      "Quantitative and qualitative comparison, plus an interactive Leaflet web map with a choropleth visualisation of the results",
     ],
     tags: ["Python", "GIS", "AI/ML"],
     link: "https://github.com/MetrPikeska/ai-generated-map-evaluation",
@@ -235,10 +417,10 @@ export const projects: Project[] = [
   {
     title: "Park Accessibility Toolbox",
     description:
-      "ArcGIS toolbox for analyzing park and green space accessibility in cities. Bachelor's thesis.",
+      "ArcGIS Python toolbox for assessing pedestrian accessibility of parks and green spaces in three large Czech cities. Bachelor's thesis, graded B.",
     features: [
-      "Network and spatial analysis for evaluating green space accessibility",
-      "Pedestrian accessibility assessment of public green areas in urban environments",
+      "Network Analyst accessibility analysis for Olomouc, Brno and Ostrava — three cities compared in one workflow",
+      "ArcPy toolbox: automated from data input to output maps, with no manual steps",
     ],
     tags: ["ArcGIS Pro", "Python", "Network Analyst"],
     link: "https://github.com/MetrPikeska/park-accessibility-toolbox",
@@ -247,28 +429,12 @@ export const projects: Project[] = [
     webLinkLabel: "Web",
   },
   {
-    title: "GEOTE Klima",
-    description:
-      "Web GIS platform for climate and environmental data with a PostGIS backend and interactive map.",
-    features: [
-      "PostGIS database with REST API for spatial queries on climate indicators",
-      "Interactive Leaflet map with data visualization and filtering",
-      "Full-stack: Python/Flask backend, PostgreSQL with spatial indexes",
-    ],
-    tags: ["PostGIS", "REST API", "JavaScript", "Python"],
-    link: "https://github.com/MetrPikeska/geote-klima-ui",
-    linkLabel: "GitHub",
-    webLink: "https://petrmikeska.cz/geote",
-    webLinkLabel: "Web",
-  },
-  {
     title: "Vehicle Detection – Roundabout",
     description:
-      "YOLOv8 computer vision: vehicle detection and tracking from video with line-crossing logic.",
+      "Computer vision system that counts vehicles leaving a roundabout automatically. Line-crossing logic with GPU acceleration for real-time video processing.",
     features: [
-      "YOLOv8 object detection + geometric tracking (Shapely polygons)",
-      "GPU acceleration (CUDA) for real-time video sequence processing",
-      "Aggregation of results into CSV and vehicle movement statistics",
+      "YOLOv8 detection + geometric tracking through Shapely polygons — stable IDs even when vehicles occlude each other",
+      "CUDA acceleration for real-time processing on a GTX 1060; movement statistics exported to CSV for further spatial analysis",
     ],
     tags: ["Python", "YOLOv8", "OpenCV", "Shapely", "CUDA"],
     link: "https://github.com/MetrPikeska/01_Detekce_vyjezdu",
@@ -277,11 +443,10 @@ export const projects: Project[] = [
   {
     title: "Air Pollution in MSK Region",
     description:
-      "Cartographic study analyzing and visualizing air pollution in the Moravia-Silesia Region using analytical and synthetic maps.",
+      "Analytical and synthetic cartographic maps of air pollution in the Moravian-Silesian Region — one of the most heavily burdened parts of the Czech Republic.",
     features: [
-      "Raster data, interpolation, pollutant analysis",
-      "Cartographic visualization with analytical maps and synthetic typology",
-      "GIS workflow for evaluating environmental burden in the Czech Republic",
+      "Interpolation of raster pollutant data and identification of sources at municipality level",
+      "Synthetic typology of the territory from a combination of pollution indicators; published in a peer-reviewed proceedings volume",
     ],
     tags: ["Cartography", "GIS", "Analytical maps"],
     link: "https://petrmikeska.cz/sykar2026_kapitola_Mikeska.pdf",
@@ -291,50 +456,93 @@ export const projects: Project[] = [
 
 export const skills: SkillCategory[] = [
   {
-    name: "GIS & Spatial Tools",
+    name: "GIS and spatial data",
     items: [
       "QGIS",
       "ArcGIS Pro",
+      "PostGIS",
       "GDAL/OGR",
       "GeoServer",
-      "MapServer",
-      "SNAP",
-      "Agisoft Metashape",
-      "OGC Standards",
-      "CloudCompare",
+      "GeoPandas",
+      "Shapely",
+      "pyproj",
+      "Rasterio",
+      "H3",
+      "Leaflet",
+      "OGC standards",
+      "EPSG 3045 / 5514 / 4326",
     ],
   },
   {
-    name: "Programming Languages",
-    items: ["Python", "JavaScript", "SQL", "Bash", "C#"],
+    name: "Computer vision and AI",
+    items: [
+      "PyTorch",
+      "Ultralytics YOLOv8 / OBB",
+      "SAHI",
+      "OpenCV",
+      "Hugging Face Transformers",
+      "Depth Anything V2",
+      "MoGe-2",
+      "scikit-learn",
+    ],
   },
   {
-    name: "Web Technologies",
-    items: ["HTML", "CSS", "REST API", "WordPress", "YOOtheme", "Supabase"],
+    name: "LiDAR, 3D and photogrammetry",
+    items: [
+      "Point cloud processing (RIEGL)",
+      "Segmentation and object detection in point clouds",
+      "Structure from Motion (COLMAP)",
+      "Multi-view triangulation",
+      "Multi-camera rig calibration",
+      "Monocular depth estimation",
+      "DTM/DSM",
+      "Open3D",
+      "laspy",
+      "PDAL",
+      "CloudCompare",
+      "Blender",
+    ],
   },
   {
-    name: "Databases",
-    items: ["PostgreSQL", "PostGIS", "MySQL", "Supabase"],
+    name: "Development and databases",
+    items: [
+      "Python",
+      "JavaScript / TypeScript",
+      "SQL",
+      "Bash",
+      "React",
+      "REST API",
+      "FastAPI",
+      "PostgreSQL",
+      "Supabase",
+      "WordPress",
+    ],
   },
   {
-    name: "Geospatial & Data Libraries",
-    items: ["GeoPandas", "Shapely", "NumPy", "Pandas", "Matplotlib"],
+    name: "Domain and standards",
+    items: [
+      "TP 65 (Czech traffic sign standard)",
+      "HD maps",
+      "Mobile mapping systems (MMS)",
+      "Remote sensing and Sentinel (SNAP)",
+      "GNSS accuracy",
+      "NMEA",
+      "TomTom / StreetNet data",
+    ],
   },
   {
-    name: "Computer Vision & AI",
-    items: ["YOLOv8", "OpenCV", "PyTorch"],
-  },
-  {
-    name: "AI Tools",
-    items: ["GitHub Copilot", "Claude"],
-  },
-  {
-    name: "3D & Visualization",
-    items: ["Blender", "MeshLab"],
-  },
-  {
-    name: "DevOps & Infrastructure",
-    items: ["Git", "GitHub", "Linux", "Ubuntu", "Docker"],
+    name: "Infrastructure and AI-assisted development",
+    items: [
+      "Git",
+      "Linux / WSL",
+      "Docker",
+      "CUDA",
+      "pytest",
+      "Vercel",
+      "Claude Code — custom extensions",
+      "Parallel agent orchestration",
+      "MCP clients",
+    ],
   },
 ];
 
@@ -344,7 +552,7 @@ export const certifications: Certification[] = [
     issuer: "Esri",
     date: "May 2023",
     description:
-      "Course covering Python programming fundamentals with a focus on GIS task automation and geospatial data processing.",
+      "Python fundamentals with a focus on GIS task automation and geospatial data processing.",
     pdfUrl: "/certifikaty/python-for-everyone.pdf",
   },
   {
@@ -352,7 +560,7 @@ export const certifications: Certification[] = [
     issuer: "Cisco Networking Academy",
     date: "April 2020",
     description:
-      "Course covering IoT and digital transformation, the importance of software and data, automation, artificial intelligence, and network security fundamentals.",
+      "IoT and digital transformation, automation, artificial intelligence and network security fundamentals.",
     pdfUrl: "/certifikaty/iot-cisco.pdf",
   },
   {
@@ -360,7 +568,7 @@ export const certifications: Certification[] = [
     issuer: "Civil Aviation Authority CR / EASA",
     date: "October 2024",
     description:
-      "Certificate / Authorization for unmanned aircraft pilots issued by the Civil Aviation Authority of the Czech Republic in compliance with EASA regulations.",
+      "Unmanned aircraft pilot authorisation under EASA regulations, categories A1/A3.",
     pdfUrl: "/certifikaty/pilot-dron.pdf",
   },
   {
@@ -368,7 +576,7 @@ export const certifications: Certification[] = [
     issuer: "APUL",
     date: "December 2021 – January 2027",
     description:
-      "Snowboard instruction license – Association of Professional Ski and Snowboard Instructors.",
+      "Snowboard instructor licence, valid through January 2027.",
     pdfUrl: "/certifikaty/apul-snowboard.pdf",
   },
   {
@@ -376,7 +584,7 @@ export const certifications: Certification[] = [
     issuer: "Department of Geoinformatics, UPOL",
     date: "April 2026",
     description:
-      "Certificate of attendance at the international spring school on visualization. Topic: Emotions and Map: The Affective Dimension of Visualisation.",
+      "International spring school on visualization, topic Emotions and Map: The Affective Dimension of Visualisation.",
     pdfUrl: "/certifikaty/ISSonVIS2026_Mikeska_Petr.pdf",
   },
 ];
@@ -385,46 +593,53 @@ export const services: Service[] = [
   {
     title: "Spatial Databases & API",
     question:
-      "Do you need a PostGIS database with REST API for spatial queries?",
+      "Do you need spatial data in a database that answers queries in milliseconds?",
     description:
-      "Design and implementation of spatial databases in PostgreSQL + PostGIS. Creating efficient indexes, SQL spatial queries, and REST API backends for web applications.",
-    tags: ["GIS", "Vector data", "Raster data", "Automation"],
+      "PostgreSQL + PostGIS with efficient spatial indexes — from the data model to the REST API backend.",
+    tags: ["PostGIS", "PostgreSQL", "REST API", "Spatial indexes"],
   },
   {
     title: "Web GIS Applications",
-    question:
-      "Do you need an interactive map or dashboard with real-time data?",
+    question: "Do you want a map that shows your data live, not a static image?",
     description:
-      "Development of Web GIS applications with Leaflet frontend, PostGIS backend, and REST API. Real-time WebSocket streams, spatial filtering, and modern frontend architecture.",
-    tags: ["Leaflet", "Web maps", "Data visualization", "Dashboard"],
+      "Web GIS applications with a Leaflet frontend and a PostGIS backend: real-time streams, spatial filtering, custom map layers.",
+    tags: ["Leaflet", "Web maps", "WebSocket", "Dashboard"],
   },
   {
     title: "Python Automation & Data Processing",
-    question: "Do you have repetitive geodata tasks you'd like to automate?",
+    question: "Are you repeating the same steps over geodata every week?",
     description:
-      "Python scripts for vector/raster data processing, geopandas pipelines, GDAL operations. GIS workflow automation, batch processing of satellite imagery, and ETL pipelines.",
-    tags: ["PostGIS", "SQL", "Data models", "Data management"],
+      "Pipelines that take over the routine: batch processing of imagery, GeoPandas transformations, GDAL operations, ETL into a database.",
+    tags: ["Python", "GeoPandas", "GDAL", "ETL pipeline"],
   },
   {
     title: "Computer Vision & GeoAI",
     question:
-      "Do you need object detection from video or satellite image analysis with AI?",
+      "Do you need to recognise objects automatically in video, orthophotos or satellite imagery?",
     description:
-      "YOLOv8 detection, image classification, segmentation. Remote sensing data processing and linking CV outputs with PostGIS for spatial analysis and visualization.",
-    tags: ["YOLO", "OpenCV", "Python", "AI detection"],
+      "YOLOv8 detection, segmentation and classification, linked to PostGIS for spatial analysis. From production R&D (CEDA Maps) and academic projects (POGEO 2026).",
+    tags: ["YOLOv8", "OpenCV", "GeoAI", "PostGIS"],
   },
   {
     title: "Remote Sensing & DEM Processing",
-    question: "Do you want to work with satellite imagery or DEM data?",
+    question: "Do you have satellite imagery or terrain data that isn't talking yet?",
     description:
-      "Processing satellite imagery (SNAP, GDAL), DEM/DSM analysis. Terrain operations (slope, aspect, hydrology), mosaicing, and orthorectification with GDAL/QGIS workflow.",
-    tags: ["DEM/DSM", "3D modeling", "Terrain analysis", "Visualization"],
+      "Sentinel and multispectral imagery (SNAP, GDAL), DEM/DSM analysis, orthorectification and mosaicing — outputs ready for GIS and for publication.",
+    tags: ["Remote sensing", "SNAP", "GDAL", "DEM/DSM"],
   },
   {
     title: "IoT & Real-Time Data Systems",
-    question: "Do you need data collection and visualization from IoT sensors?",
+    question: "Are you collecting sensor data you cannot properly see anywhere?",
     description:
-      "IoT architecture: ESP32 sensors → MQTT/HTTP → Python backend → PostgreSQL. Real-time dashboards with WebSocket streams, time-series data, and monitoring applications.",
-    tags: ["ESP32", "MQTT", "Python", "PostgreSQL"],
+      "ESP32 sensors → MQTT/HTTP → FastAPI → PostgreSQL → dashboard. Time-series persistence and alerting, from prototype to production.",
+    tags: ["ESP32", "MQTT", "FastAPI", "PostgreSQL"],
+  },
+  {
+    title: "LiDAR & 3D Point Cloud Processing",
+    question:
+      "Do you have a point cloud from mobile mapping or scanning and no idea what to get out of it?",
+    description:
+      "Segmentation, object detection and feature extraction from the cloud — including fusion with image detections, so two independent measurements verify each other.",
+    tags: ["LiDAR", "Point Cloud", "DTM/DSM", "Open3D"],
   },
 ];

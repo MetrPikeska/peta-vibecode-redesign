@@ -94,7 +94,7 @@ function ProjectCard({
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-topo transition-colors group-hover:text-topo"
+                className="inline-flex items-center gap-1.5 py-1.5 text-xs font-medium text-muted-foreground hover:text-topo transition-colors group-hover:text-topo"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
                 {project.linkLabel}
@@ -105,7 +105,7 @@ function ProjectCard({
                 href={project.webLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-topo transition-colors"
+                className="inline-flex items-center gap-1.5 py-1.5 text-xs font-medium text-muted-foreground hover:text-topo transition-colors"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
                 {project.webLinkLabel}
@@ -117,7 +117,7 @@ function ProjectCard({
                 href={l.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-topo transition-colors"
+                className="inline-flex items-center gap-1.5 py-1.5 text-xs font-medium text-muted-foreground hover:text-topo transition-colors"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
                 {l.label}

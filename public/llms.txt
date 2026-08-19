@@ -1,0 +1,251 @@
+# Petr Mikeska
+
+> Trénuji modely, které vidí. Výsledky dávám na mapu. Geoinformatika & kartografie @ UPOL · GIS analytik · Computer vision · Web development
+
+Jmenuji se Petr Mikeska a jsem geoinformatik zaměřený na computer vision, prostorové databáze a webový vývoj. Pracuji na průniku detekce objektů z obrazu a prostorové analýzy jejich výstupů — od surového videa, ortofota nebo lidarového mračna až po vrstvu, se kterou jde dál pracovat v GIS.
+
+V R&D týmu CEDA Maps vyvíjím GeoAI pipeline pro automatickou detekci a klasifikaci dopravního značení z mobilního mapování: anotace dat, trénink modelu, klastrování a deduplikace detekcí z desítek průjezdů.
+
+Jsem spoluzakladatel a technický lead VečerkaPlus (https://vecerkaplus.cz/) — produkčně nasazené platformy (React, Supabase, Vercel) s doručovacími zónami postavenými na prostorové analýze.
+
+Studuji Geoinformatiku a kartografii (https://www.geoinformatics.upol.cz/) na Univerzitě Palackého v Olomouci. Bakalářská práce (https://geoinformatics.upol.cz/dprace/bakalarske/mikeska25) byla GIS toolbox pro hodnocení dostupnosti parků; diplomová porovnává kvalitu map generovaných LLM s tradičním GIS workflow.
+
+Computer vision vidí pixel, GIS vidí místo. Zajímá mě to, co potřebuje obojí.
+
+## Kontakt
+
+- E-mail: piter.mikeska@gmail.com
+- Telefon: +420 773 426 330
+- Web: https://petrmikeska.cz
+- LinkedIn: https://www.linkedin.com/in/mikeskapetr
+- GitHub: https://github.com/MetrPikeska
+- Sídlo: Čeladná 53, 739 12 Čeladná
+- IČO: 23195126
+
+## Praxe
+
+### GIS & Computer Vision Analytik (OSVČ) — CEDA Maps
+červen 2026 – současnost · Brno, remote
+
+- GeoAI pipeline pro automatickou detekci a klasifikaci dopravního značení z mobilního mapování — od anotace dat přes trénink YOLOv8 po produkční nasazení
+- Lokalizace značek bez přesného GNSS: multi-view triangulace z desítek průjezdů, least-squares refinement a fúze do jedné entity; monokulární odhad hloubky (Depth Anything V2, MoGe-2) jako nezávislý zdroj, validovaný nulovým testem
+- Kalibrace panoramatického kamerového rigu přes COLMAP SfM — extrinsics a intrinsics pro převod detekcí do reálného prostoru
+- Dataset engineering: per-track split proti data leakage, deduplikace sekvenčních snímků a řízení class imbalance nad desítkami tisíc cropů
+- Detekce panelů přímo v LiDAR mračnu (RIEGL, laspy, PDAL) a křížové ověření proti obrazovým detekcím
+- Stack: Python, PyTorch, Ultralytics YOLOv8/OBB, SAHI, OpenCV, Open3D, PDAL, COLMAP, PostGIS, GeoPandas
+
+### Spoluzakladatel & technický lead — VečerkaPlus
+duben 2026 – současnost · Frýdek-Místek
+
+- Spoluvlastním a vedu noční rozvoz nápojů a pochutin ve Frýdku-Místku a okolí; celou platformu jsem postavil od nuly (React, Supabase, Vercel)
+- Systém doručovacích zón postavený na prostorové analýze — cena a dostupnost podle reálné dojezdové vzdálenosti, ne vzdušnou čarou
+- Kromě vývoje řídím provoz: nákup, logistiku kurýrů a růstovou strategii
+- Odkaz: vecerkaplus.cz — https://vecerkaplus.cz/
+
+### Web Developer & Administrator — Univerzita Palackého v Olomouci
+květen 2023 – současnost · Česká republika
+
+- Spravuji weby s celkem 199 800 návštěvníky a 452 000 zobrazeními — olomouckymajales.cz a meetup.upol.cz
+- Úpravy do 24 hodin od zadání, nepřetržitý provoz během klíčových akcí, změny bez výpadků na produkci
+- Nástroje: WordPress, YOOtheme Builder
+- Odkaz: olomouckymajales.cz — https://olomouckymajales.cz/
+- Odkaz: meetup.upol.cz — https://meetup.upol.cz/
+
+### GIS & Remote Sensing Analyst — Skymaps s.r.o.
+únor 2025 – září 2025 · Česká republika
+
+- Zpracování multispektrálních satelitních snímků pro tematické mapy půdního potenciálu
+- Analýza a interpretace DPZ dat: Sentinel (SNAP), GDAL, EO Browser
+- Python automatizace od batch processingu snímků po výstupní mapy
+
+## Výzkum
+
+### Koordinátor terénního sběru dat a datový analytik — Univerzita Palackého v Olomouci – KGI / FF / VTP UP + Advolution
+2026 – dosud · Olomouc, Česká republika
+Projekt: Výzkum vnímání vizuální pozornosti v městském prostředí pomocí eye-tracking technologie
+
+- Koordinace terénních jízd se sledováním vizuální pozornosti účastníků pomocí eye-tracking brýlí
+- Preprocessing v Tobii Pro Lab: eventy, segmentace nahrávek a ROI pro hodnocení vizuální expozice venkovní reklamy
+- Čištění dat ze sledování pohledů a příprava výstupů pro analýzu
+
+### 3D Modeling Specialist — Univerzita Palackého v Olomouci
+prosinec 2025 – únor 2026 · Česká republika
+Projekt: Modelování, zpracování a výroba rozměrných 3D modelů dvou grott včetně světelné a vodní instalace
+
+- 3D modelování objektů pro fyzickou instalaci a 3D tisk
+- Optimalizace geometrie modelů pro výrobu (Blender, 3D Builder)
+
+## Publikace
+
+- Uživatelský GIS toolbox pro hodnocení dostupnosti parků a zelených ploch pro obyvatele měst (Bakalářská práce, 2025, Katedra geoinformatiky UP Olomouc) — https://geoinformatics.upol.cz/dprace/bakalarske/mikeska25
+- Porovnání kvality map generovaných LLM s tradičním GIS workflow (Diplomová práce, probíhá, Katedra geoinformatiky UP Olomouc) — https://github.com/MetrPikeska/ai-generated-map-evaluation
+
+## Projekty
+
+### VečerkaPlus
+
+Noční rozvoz nápojů a pochutin ve Frýdku-Místku (pá/so 22:00–06:00) — kategorie, kterou tu Bolt Food ani Wolt neprovozují. Postavil jsem celou platformu od nuly a zároveň řídím provoz: e-shop, administraci, kurýrský portál i analytiku.
+
+- Supabase backend: PostgreSQL s RLS a PL/pgSQL triggery, které server-side vynucují integritu objednávek — klient nemůže zmanipulovat součet ani vyčerpat sklad; Vercel Functions jako API vrstva
+- Kurýrská PWA: JWT, Web Push, wake-lock a live GPS tracking 1 Hz do vlastní PostGIS databáze na Hetzneru přes Tailscale VPN
+- Nacenění dopravy podle reálné jízdní vzdálenosti (Google Distance Matrix + server-side cache) — 4 pásma do 20 km, přesnost na ulici, ne vzdušnou čarou
+- Analytika nad objednávkami: market basket analýza (Apriori), maržové reporty, ceník kalibrovaný Monte Carlo simulací a OSMnx síťovou analýzou; GIS analýza spádové oblasti nad RÚIAN a SLDB 2021
+- Technologie: React, TypeScript, Vite, Supabase, PostgreSQL, PostGIS, Vercel, Google Maps API
+- vecerkaplus.cz: https://vecerkaplus.cz/
+
+### Detekce obsazenosti parkoviště z kamerového streamu
+
+Systém, který z kamer areálu odvozuje obsazenost parkoviště a běží bez obsluhy — od snímku přes detekci až po zápis do databáze. Nasazeno v provozu lyžařského areálu.
+
+- Ultralytics YOLO + PyTorch: několik detekčních modelů běží současně a jejich výstupy slučuje vlastní NMS merge; inference na CUDA s automatickým fallbackem na CPU
+- Pipeline snímek → georeference do S-JTSK (rasterio, pyproj) → časové řady obsazenosti → PostgreSQL přes SSH tunel
+- Dashboardové API je samostatná FastAPI služba oddělená od inference, takže server s API netahá GPU závislosti; provoz bez obsluhy včetně dopočtu intervalů chybějících po výpadku
+- Technologie: Python, YOLO, PyTorch, FastAPI, PostgreSQL, rasterio
+
+### Vehicle Detection na Ortofotomapách
+
+YOLOv8-OBB detekce vozidel na velkoplošných ortofotomapách Olomouce s plnou integrací do GIS workflow. Výsledky prezentovány na mezinárodní konferenci POGEO 2026.
+
+- YOLOv8-OBB + SAHI: inference na snímcích větších, než pojme GPU — workaround pro GTX 1060 3 GB VRAM
+- DBSCAN clusterování detekovaných vozidel + Voronoi-based adresace v GeoPandas a Shapely
+- End-to-end Python pipeline: anotace → trénink → georeferencing → prostorová analýza → výstupy
+- Technologie: Python, YOLOv8-OBB, SAHI, GeoPandas, CUDA, GIS
+- GitHub: https://github.com/MetrPikeska/medpz-geoai
+
+### AI Map Generation Evaluation
+
+Diplomová práce: první systematické porovnání kvality map generovaných LLM (ChatGPT, Claude, Gemini, Mistral, Perplexity) vs. referenční workflow v ArcGIS Pro pomocí objektních metrik a kartografické analýzy.
+
+- Batch pipeline v Pythonu: hodnocení map z 5 LLM modelů pomocí GIS metrik a kartografické analýzy
+- Kvantitativní i kvalitativní porovnání a interaktivní Leaflet webmapa s choropleth vizualizací výsledků
+- Technologie: Python, GIS, AI/ML
+- GitHub: https://github.com/MetrPikeska/ai-generated-map-evaluation
+
+### Park Accessibility Toolbox
+
+ArcGIS Python toolbox pro hodnocení pěší dostupnosti parků a zelených ploch ve třech velkých českých městech. Bakalářská práce hodnocená B.
+
+- Síťová analýza dostupnosti (Network Analyst) pro Olomouc, Brno a Ostravu — porovnání tří měst v jednom workflow
+- ArcPy toolbox: automatizace od vstupu dat po výstupní mapy bez manuálních kroků
+- Technologie: ArcGIS Pro, Python, Network Analyst
+- GitHub: https://github.com/MetrPikeska/park-accessibility-toolbox
+- Web: https://petrmikeska.cz/bp/
+
+### Vehicle Detection – Roundabout
+
+Computer vision systém pro automatické počítání vozidel opouštějících kruhový objezd. Line-crossing logika s GPU akcelerací pro zpracování videa v reálném čase.
+
+- YOLOv8 detekce + geometrický tracking přes Shapely polygony — stabilní ID i při okluzi vozidel
+- CUDA akcelerace pro zpracování v reálném čase na GTX 1060; export statistik do CSV pro další prostorovou analýzu
+- Technologie: Python, YOLOv8, OpenCV, Shapely, CUDA
+- GitHub: https://github.com/MetrPikeska/01_Detekce_vyjezdu
+
+### Znečištění ovzduší v MSK
+
+Analytické a syntetické kartografické mapy znečištění ovzduší v Moravskoslezském kraji — jednom z nejvíce zatížených regionů ČR.
+
+- Interpolace rastrových dat znečišťujících látek a identifikace zdrojů na úrovni obcí
+- Syntetická typizace území podle kombinace více ukazatelů; publikováno v odborném sborníku
+- Technologie: Kartografie, GIS, Analytické mapy
+- PDF: https://petrmikeska.cz/sykar2026_kapitola_Mikeska.pdf
+
+## Služby
+
+### Spatial Databases & API
+
+Potřebujete prostorová data v databázi, která odpovídá na dotazy v milisekundách?
+
+PostgreSQL + PostGIS s efektivními prostorovými indexy — od datového modelu po REST API backend.
+
+Technologie: PostGIS, PostgreSQL, REST API, Spatial indexy
+
+### Web GIS Applications
+
+Chcete mapu, která zobrazuje vaše data živě — ne statický obrázek?
+
+Web GIS aplikace s Leaflet frontendem a PostGIS backendem: real-time streamy, spatial filtering, vlastní mapové vrstvy.
+
+Technologie: Leaflet, Webové mapy, WebSocket, Dashboard
+
+### Python Automation & Data Processing
+
+Opakujete ručně stejné kroky nad geodaty každý týden?
+
+Pipelines, které přebírají rutinu: batch processing snímků, GeoPandas transformace, GDAL operace, ETL do databáze.
+
+Technologie: Python, GeoPandas, GDAL, ETL pipeline
+
+### Computer Vision & GeoAI
+
+Potřebujete automaticky rozpoznávat objekty z videa, ortofot nebo satelitních snímků?
+
+YOLOv8 detekce, segmentace a klasifikace, propojené s PostGIS pro prostorovou analýzu. Z produkčního R&D (CEDA Maps) i akademických projektů (POGEO 2026).
+
+Technologie: YOLOv8, OpenCV, GeoAI, PostGIS
+
+### Remote Sensing & DEM Processing
+
+Máte satelitní snímky nebo terénní data, která ještě nehovoří?
+
+Sentinel a multispektrální snímky (SNAP, GDAL), DEM/DSM analýzy, ortorektifikace a mosaicing — výstupy připravené pro GIS i publikaci.
+
+Technologie: DPZ, SNAP, GDAL, DEM/DSM
+
+### IoT & Real-Time Data Systems
+
+Sbíráte data ze senzorů a zatím je nikde pořádně nevidíte?
+
+ESP32 senzory → MQTT/HTTP → FastAPI → PostgreSQL → dashboard. Time-series persistence a alerting, od prototypu po produkci.
+
+Technologie: ESP32, MQTT, FastAPI, PostgreSQL
+
+### LiDAR & 3D Point Cloud Processing
+
+Máte mračno bodů z mobilního mapování nebo skenování a nevíte, co z něj dostat?
+
+Segmentace, detekce objektů a extrakce prvků z mračna — včetně fúze s obrazovými detekcemi, aby se dvě nezávislá měření ověřovala navzájem.
+
+Technologie: LiDAR, Point Cloud, DTM/DSM, Open3D
+
+## Vzdělání
+
+### Mgr. – Geoinformatika a kartografie (probíhá)
+Univerzita Palackého v Olomouci (https://www.upol.cz/) · Přírodovědecká fakulta · Olomouc · Navazující magisterské · prezenční · 2 roky
+
+- Webový GIS a mapové servery
+- Dálkový průzkum Země a zpracování obrazu
+- Drony, laserové skenování, 3D tisk
+
+### Bc. – Geoinformatika a kartografie
+Univerzita Palackého v Olomouci (https://www.geoinformatics.upol.cz/) · Katedra geoinformatiky · Přírodovědecká fakulta · Olomouc · Bakalářské · prezenční · 3 roky
+
+- GIS, DPZ, GPS, geostatistika
+- Prostorové analýzy a územní plánování
+- Tematická kartografie
+
+### Maturita – Programování a vývoj aplikací – Internet věcí
+Střední škola informačních technologií (https://www.ssinfotech.cz/) · Frýdek-Místek · Střední odborná škola · 4 roky
+
+- Programování a vývoj aplikací
+- Webové technologie, sítě, databáze a Internet věcí
+
+## Dovednosti
+
+- **GIS a prostorová data**: QGIS, ArcGIS Pro, PostGIS, GDAL/OGR, GeoServer, GeoPandas, Shapely, pyproj, Rasterio, H3, Leaflet, OGC standardy, EPSG 3045 / 5514 / 4326
+- **Computer vision a AI**: PyTorch, Ultralytics YOLOv8 / OBB, SAHI, OpenCV, Hugging Face Transformers, Depth Anything V2, MoGe-2, scikit-learn
+- **LiDAR, 3D a fotogrammetrie**: Zpracování mračen bodů (RIEGL), Segmentace a detekce objektů v mračnu, Structure from Motion (COLMAP), Multi-view triangulace, Kalibrace multikamerového rigu, Monokulární odhad hloubky, DTM/DSM, Open3D, laspy, PDAL, CloudCompare, Blender
+- **Vývoj a databáze**: Python, JavaScript / TypeScript, SQL, Bash, React, REST API, FastAPI, PostgreSQL, Supabase, WordPress
+- **Doména a standardy**: TP 65 (dopravní značení), HD mapy, Mobilní mapovací systémy (MMS), DPZ a Sentinel (SNAP), GNSS přesnost, NMEA, TomTom / StreetNet data
+- **Infrastruktura a AI-asistovaný vývoj**: Git, Linux / WSL, Docker, CUDA, pytest, Vercel, Claude Code — vlastní rozšíření, Orchestrace paralelních agentů, MCP klienti
+
+## Certifikace
+
+- **Python for Everyone** — Esri, Květen 2023. Základy Pythonu se zaměřením na automatizaci GIS úloh a práci s geoprostorovými daty. (https://petrmikeska.cz/certifikaty/python-for-everyone.pdf)
+- **Introduction to IoT** — Cisco Networking Academy, Duben 2020. IoT a digitální transformace, automatizace, umělá inteligence a základy síťové bezpečnosti. (https://petrmikeska.cz/certifikaty/iot-cisco.pdf)
+- **Online výcvik pilota bezpilotních prostředků** — Úřad pro civilní letectví ČR / EASA, Říjen 2024. Oprávnění pilota bezpilotních prostředků podle předpisů EASA, kategorie A1/A3. (https://petrmikeska.cz/certifikaty/pilot-dron.pdf)
+- **Instruktor snowboardingu APUL/D** — APUL, Prosinec 2021 – Leden 2027. Licence instruktora snowboardingu, platná do ledna 2027. (https://petrmikeska.cz/certifikaty/apul-snowboard.pdf)
+- **ISSonVIS 2026 – International Spring School on Visualization** — Katedra geoinformatiky, UPOL, Duben 2026. Mezinárodní jarní škola vizualizace, téma Emotions and Map: The Affective Dimension of Visualisation. (https://petrmikeska.cz/certifikaty/ISSonVIS2026_Mikeska_Petr.pdf)
+
+---
+
+Aktualizováno: 2026-08-19
