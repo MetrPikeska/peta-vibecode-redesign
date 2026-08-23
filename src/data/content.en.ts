@@ -5,6 +5,7 @@ import type {
   SkillCategory,
   Certification,
   Service,
+  ServicesMeta,
   Publication,
 } from "./content";
 
@@ -91,6 +92,13 @@ export const ui = {
     openCertificate: "Open certificate",
     toolsCatalogued: "tools across all categories",
     closeMenu: "Close",
+    engagement: {
+      heading: "Working together",
+      rate: "Indicative rate",
+      availability: "Availability",
+      billing: "Billing",
+      cta: "Send an enquiry",
+    },
     theme: {
       toDark: "Switch to dark mode",
       toLight: "Switch to light mode",
@@ -588,6 +596,14 @@ export const certifications: Certification[] = [
     pdfUrl: "/certifikaty/ISSonVIS2026_Mikeska_Petr.pdf",
   },
 ];
+
+export const servicesMeta: ServicesMeta = {
+  rate: "800–1200 CZK/h",
+  rateNote:
+    "A range, by the kind of work — analysis and consulting at the lower end, model training and production deployment at the upper. Well-bounded jobs can be quoted at a fixed price instead.",
+  availability:
+    "Room for one smaller engagement at a time — evenings and weekends alongside R&D work and study.",
+};
 
 export const services: Service[] = [
   {

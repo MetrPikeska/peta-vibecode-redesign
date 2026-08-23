@@ -207,6 +207,16 @@ Segmentace, detekce objektů a extrakce prvků z mračna — včetně fúze s ob
 
 Technologie: LiDAR, Point Cloud, DTM/DSM, Open3D
 
+### Podmínky spolupráce
+
+Orientační sazba: 800–1200 Kč/h
+
+Rozpětí podle typu práce — analýza a konzultace u spodní hranice, trénink modelů a produkční nasazení u horní. Ohraničené zakázky umím nacenit i fixně.
+
+Dostupnost: Kapacita na jednu menší zakázku souběžně — večery a víkendy vedle R&D práce a studia.
+
+Fakturace: IČO 23195126
+
 ## Vzdělání
 
 ### Mgr. – Geoinformatika a kartografie (probíhá)
@@ -248,4 +258,4 @@ Střední škola informačních technologií (https://www.ssinfotech.cz/) · Fr�
 
 ---
 
-Aktualizováno: 2026-08-19
+Aktualizováno: 2026-08-23

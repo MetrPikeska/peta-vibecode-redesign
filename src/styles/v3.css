@@ -1,8 +1,13 @@
 /* ──────────────────────────────────────────────────────────────────────────
    v3 — the shadcn/ui surface
    ──────────────────────────────────────────────────────────────────────────
-   The palette of thatmike1/vite-react-shadcn-starter, unchanged: New York
-   style, `neutral` base, radius 0.625rem, light and dark.
+   The palette of thatmike1/vite-react-shadcn-starter — New York style,
+   `neutral` base, radius 0.625rem, light and dark — with one deliberate
+   departure: `--primary` and `--ring` carry terracotta instead of the
+   template's greyscale. A portfolio that looks like the starter it was built
+   from says nothing about whose portfolio it is, and one hue plus the heading
+   face is the smallest change that fixes it. Everything else stays stock;
+   the structure is not what needed a voice.
 
    Everything is scoped under `.v3` rather than `:root` because `src/index.css`
    already owns `:root` for the topographic system (v1) — parchment background,
@@ -51,7 +56,12 @@ body:has(.v3) {
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  /* Terakota — jediná barva, kterou si tenhle povrch přináší sám. Odstín 35
+     přebírá v1 (`--color-terracotta` v index.css), ale ne jeho světlost: v1 ho
+     nese jako doplňkovou barvu, tady je to výplň tlačítka s bílým popiskem.
+     Původních `L 0.62` dá bílému textu 3.74:1, tedy pod 4.5:1 — `L 0.55` dá
+     5.01:1 na výplni a 5.23:1 proti bílému pozadí. */
+  --primary: oklch(0.55 0.16 35);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -64,9 +74,10 @@ body:has(.v3) {
   --input: oklch(0.922 0 0);
   /* The template ships `oklch(0.708 0 0)` here, which draws a 2.1:1 focus ring
      on white — below the 3:1 WCAG 2.2 requires of a focus indicator, and
-     `index.css` neutralises the browser's own ring for every element. Darkened
-     until the ring passes on its own. */
-  --ring: oklch(0.45 0 0);
+     `index.css` neutralises the browser's own ring for every element. Nyní nese
+     akcent, takže je fokus vidět jako záměr, ne jako zbytek prohlížeče; 5.23:1
+     proti bílému pozadí drží původní laťku s rezervou. */
+  --ring: oklch(0.55 0.16 35);
 
   background-color: var(--background);
   color: var(--foreground);
@@ -80,7 +91,9 @@ body:has(.v3) {
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
+  /* Tmavý režim potřebuje terakotu světlejší, jinak zmizí do pozadí:
+     `L 0.72` dá tmavému popisku na výplni 6.83:1 a proti pozadí 7.55:1. */
+  --primary: oklch(0.72 0.14 35);
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
@@ -91,7 +104,7 @@ body:has(.v3) {
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.75 0 0);
+  --ring: oklch(0.72 0.14 35);
 }
 
 /* ── focus ──

@@ -6,16 +6,30 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 npm run dev       # start dev server at http://localhost:5173
-npm run build     # TypeScript check + Vite production build
+npm run seo       # regenerate public/llms.txt, robots.txt, sitemap.xml from content.ts
+npm run build     # seo + tsc -b + client build + SSR build + prerender injection
 npm run lint      # ESLint
-npm run preview   # preview production build locally
+npm run preview   # preview production build locally at http://localhost:4173
 ```
+
+`npm run seo` must stay the first step of `build`: it writes into `public/`, which the client build copies into `dist/`. Moved after it, the three files never reach `dist`.
 
 No test suite is configured.
 
 ## Architecture
 
 This is a **personal portfolio website** for Petr Mikeska, built as a single-page React app.
+
+### Rendering — the built page is prerendered
+
+`npm run build` runs two Vite passes: the normal client build, then `vite build --ssr src/entry-server.tsx`, and `scripts/prerender.mjs` injects `renderToString(<App/>)` into `dist/index.html`. `src/main.tsx` therefore calls `hydrateRoot` when `#root` already has children and `createRoot` when it does not — the dev server serves the source `index.html`, so `npm run dev` keeps mounting from scratch.
+
+Two rules follow, and both are easy to break by accident:
+
+- **Nothing may touch `window` or `document` during render.** Effects are fine; module-level and render-time access is not, and it fails the build, not the page. `theme-store.ts` and `language-context.tsx` both guard with `typeof window === "undefined"` — copy that shape.
+- **The first client render must reproduce the prerendered markup.** The page is prerendered in Czech with the light theme, so state read from `localStorage` has to arrive on a *second* pass: `useState("cs")` plus an effect (`language-context.tsx`), or `useSyncExternalStore`'s server snapshot (`use-theme.ts`). Seeding `useState` from storage directly makes React throw the prerendered tree away — the page still looks right, so the regression is invisible without checking the console.
+
+`scripts/prerender.mjs` throws if the render is under 10 kB or lacks the site owner's name, so a silently empty prerender fails the build instead of shipping.
 
 ### Data flow
 
@@ -48,7 +62,7 @@ Tailwind CSS v4 with custom design tokens defined in `src/index.css` under `@the
 
 **Topographic (v1)** — `topo` green accent, `terracotta`, `hero-bg` / `hero-text`, `parchment-dark`; `font-sans` = Space Grotesk, `font-serif` = Instrument Serif.
 
-**shadcn (v3)** — the starter template's palette verbatim: New York style, `neutral` base, `--radius: 0.625rem`, light and dark, no accent hue of its own. Built only from `components/ui/*` primitives (Card, Badge, Button, Accordion, Sheet, Separator, Sonner) — add more with `npx shadcn@latest add <name>`, which leaves `index.css` alone. Dark mode is a `.dark` class on `<html>`, driven by `lib/theme-store.ts` through `hooks/use-theme.ts`; v1 and v2 declare no dark tokens, so the class is inert for them. Copy that v3 needs and the others do not lives under `ui.v3` in the content files.
+**shadcn (v3)** — the starter template's palette with exactly one departure: New York style, `neutral` base, `--radius: 0.625rem`, light and dark, and **terracotta on `--primary` and `--ring`** — `oklch(0.55 0.16 35)` light, `oklch(0.72 0.14 35)` dark. The hue is v1's `--color-terracotta`; the lightness is not, because here it fills a button under a white label and v1's `L 0.62` gives that label 3.74:1. Any change to those two tokens is a contrast decision — measure it, don't eyeball it. Everything else (`--secondary`, `--muted`, `--accent`, radius, spacing) stays stock: the structure never needed a voice, only the accent did. Typography is Space Grotesk across the whole surface, inherited from `--font-sans` in `index.css` — v3 declares no face of its own, so a `font-sans` class on a v3 element is a no-op. Built only from `components/ui/*` primitives (Card, Badge, Button, Accordion, Sheet, Separator, Sonner) — add more with `npx shadcn@latest add <name>`, which leaves `index.css` alone. Dark mode is a `.dark` class on `<html>`, driven by `lib/theme-store.ts` through `hooks/use-theme.ts`; v1 and v2 declare no dark tokens, so the class is inert for them. Copy that v3 needs and the others do not lives under `ui.v3` in the content files.
 
 ### Conventions (from README)
 
