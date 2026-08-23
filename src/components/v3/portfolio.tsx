@@ -42,9 +42,12 @@ function ProjectCard({
   return (
     <Card className={cn("flex flex-col", featured && "md:col-span-2")}>
       {project.image ? (
+        // The screenshot is the evidence for the claim in the card, not
+        // decoration beside it — an empty alt hides the one thing on a
+        // detection project a reader cannot get from the prose.
         <img
           src={project.image}
-          alt=""
+          alt={project.title}
           loading="lazy"
           className="aspect-video w-full rounded-t-xl border-b object-cover"
         />

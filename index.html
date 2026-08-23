@@ -19,9 +19,10 @@
     <meta name="author" content="Petr Mikeska" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
     <link rel="canonical" href="https://petrmikeska.cz/" />
-    <!-- Stránka je klientsky renderovaná, takže crawler, který nespouští JS,
-         vidí jen tuhle hlavičku. llms.txt nese tytéž fakty jako dokument,
-         který žádný runtime nepotřebuje. Generuje ho `npm run seo`. -->
+    <!-- Nasazená stránka je prerenderovaná (`scripts/prerender.mjs`), takže
+         crawler bez JS vidí celý dokument, ne jen tuhle hlavičku. llms.txt
+         zůstává jako čistý strojový přepis týchž faktů bez markupu.
+         Generuje ho `npm run seo`. -->
     <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
     <title>Petr Mikeska – Geoinformatik &amp; GIS analytik | Computer vision · GeoAI · Web GIS</title>
     <!-- Open Graph -->

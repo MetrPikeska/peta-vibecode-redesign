@@ -2,10 +2,11 @@
  * Generates the three static files an AI crawler reads before it reads anything
  * else: `llms.txt`, `robots.txt` and `sitemap.xml`.
  *
- * `llms.txt` matters here more than on a normal site. The app is a client-side
- * SPA, so `dist/index.html` ships an empty `<div id="root">` — a crawler that
- * does not run JavaScript sees the `<head>` and nothing else. This file puts
- * the same facts in a document that needs no runtime at all.
+ * `llms.txt` no longer carries the page on its own: since `scripts/prerender.mjs`
+ * was added, `dist/index.html` ships the whole rendered page and a crawler that
+ * runs no JavaScript can read it. It is kept because the same facts stated once,
+ * in reading order and without any markup, are still the cleanest thing to hand
+ * a model — and because it costs one build step.
  *
  * It is generated rather than written so the content layer stays the single
  * source of truth: `src/data/content.ts` is the only place a project title, a
@@ -34,6 +35,7 @@ const {
   skills,
   certifications,
   services,
+  servicesMeta,
   publications,
   contact,
   footer,
@@ -103,6 +105,15 @@ for (const s of services) {
   push(`### ${s.title}`, "", `${s.question}`, "", s.description, "");
   push(`Technologie: ${s.tags.join(", ")}`, "");
 }
+
+// Podminky spoluprace patri do digestu ze stejneho duvodu jako na stranku:
+// asistent, ktery web cituje, dostane otazku "kolik si uctuje" a bez tohohle
+// odstavce na ni odpovi domnenkou.
+push("### Podmínky spolupráce", "");
+push(`Orientační sazba: ${servicesMeta.rate}`, "");
+push(servicesMeta.rateNote, "");
+push(`Dostupnost: ${servicesMeta.availability}`, "");
+push(`Fakturace: IČO ${footer.ico}`, "");
 
 push("## Vzdělání", "");
 for (const e of education) {

@@ -39,7 +39,17 @@ const LanguageContext = createContext<{ lang: Lang; toggle: () => void }>({
 });
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>(readStoredLang);
+  // Not `useState(readStoredLang)`. The page ships prerendered in Czech, and
+  // the first client render has to reproduce that markup or React discards the
+  // prerendered tree and rebuilds the page from scratch — which is the whole
+  // point of prerendering, thrown away. A returning English visitor therefore
+  // sees Czech for one frame, and the stored preference applies one pass later.
+  const [lang, setLang] = useState<Lang>("cs");
+
+  useEffect(() => {
+    const stored = readStoredLang();
+    if (stored !== "cs") setLang(stored);
+  }, []);
 
   // Keep the document language in sync so screen readers pronounce the page
   // with the right voice after a switch.

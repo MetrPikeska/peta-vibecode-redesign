@@ -68,6 +68,20 @@ export interface Service {
   tags: string[];
 }
 
+/**
+ * Podminky spoluprace pod mrizkou sluzeb.
+ *
+ * `PRODUCT.md` zakazuje cenik — tedy tabulku sluzeb s cenou za polozku. Sazba
+ * jako rozpeti zakazana neni a je to jedina informace, ktera navstevnikovi
+ * chybela k rozhodnuti, jestli ma vubec psat. Odsud, nikde jinde: cislo
+ * uvedene na dvou mistech se dockne dne, kdy si odporuje.
+ */
+export interface ServicesMeta {
+  rate: string;
+  rateNote: string;
+  availability: string;
+}
+
 export const hero = {
   name: "Petr Mikeska",
   tagline: "Trénuji modely, které vidí. Výsledky dávám na mapu.",
@@ -520,6 +534,14 @@ export const services: Service[] = [
   },
 ];
 
+export const servicesMeta: ServicesMeta = {
+  rate: "800–1200 Kč/h",
+  rateNote:
+    "Rozpětí podle typu práce — analýza a konzultace u spodní hranice, trénink modelů a produkční nasazení u horní. Ohraničené zakázky umím nacenit i fixně.",
+  availability:
+    "Kapacita na jednu menší zakázku souběžně — večery a víkendy vedle R&D práce a studia.",
+};
+
 export const ui = {
   nav: {
     about: "O mně",
@@ -594,6 +616,13 @@ export const ui = {
     openCertificate: "Otevřít certifikát",
     toolsCatalogued: "nástrojů napříč kategoriemi",
     closeMenu: "Zavřít",
+    engagement: {
+      heading: "Spolupráce",
+      rate: "Orientační sazba",
+      availability: "Dostupnost",
+      billing: "Fakturace",
+      cta: "Napsat poptávku",
+    },
     theme: {
       toDark: "Přepnout na tmavý režim",
       toLight: "Přepnout na světlý režim",
