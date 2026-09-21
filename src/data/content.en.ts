@@ -95,7 +95,6 @@ export const ui = {
     engagement: {
       heading: "Working together",
       rate: "Indicative rate",
-      availability: "Availability",
       billing: "Billing",
       cta: "Send an enquiry",
     },
@@ -227,7 +226,7 @@ export const publications: Publication[] = [
 export const about: string[] = [
   "My name is **Petr Mikeska** and I'm a geoinformatics specialist focused on **computer vision**, spatial databases and web development. I work at the intersection of object detection from imagery and spatial analysis of its output — from raw video, orthophotos or lidar point clouds to a layer you can keep working with in GIS.",
   "On the R&D team at **CEDA Maps** I develop a **GeoAI pipeline for automatic detection and classification of traffic signs** from mobile mapping: data annotation, model training, and clustering and deduplication of detections across dozens of drive-throughs.",
-  "I'm a co-founder and technical lead of **[VečerkaPlus](https://vecerkaplus.cz/)** — a production platform (React, Supabase, Vercel) with delivery zones built on spatial analysis.",
+  "I'm a co-founder and technical lead of **[VečerkaPlus](https://vecerkaplus.cz/)** — a production platform with delivery zones built on spatial analysis.",
   "I study **[Geoinformatics and Cartography](https://www.geoinformatics.upol.cz/)** at Palacký University Olomouc. My [bachelor's thesis](https://geoinformatics.upol.cz/dprace/bakalarske/mikeska25) was a GIS toolbox for evaluating park accessibility; the master's thesis compares the quality of LLM-generated maps against traditional GIS workflows.",
   "Computer vision sees a pixel. GIS sees a place. I'm interested in what needs both.",
 ];
@@ -292,7 +291,7 @@ export const experience: Experience[] = [
     period: "April 2026 – Present",
     location: "Frýdek-Místek",
     highlights: [
-      "I co-own and lead a late-night drinks and snacks delivery service in Frýdek-Místek; I built the whole platform from scratch (React, Supabase, Vercel)",
+      "I co-own and lead a late-night drinks and snacks delivery service in Frýdek-Místek; I built the whole platform from scratch",
       "Delivery zones built on spatial analysis — price and availability follow real driving distance, not straight-line distance",
       "Beyond development I run the operation: purchasing, courier logistics and growth strategy",
     ],
@@ -386,6 +385,7 @@ export const projects: Project[] = [
     features: [
       "Ultralytics YOLO + PyTorch: several detection models run at once and their outputs are combined by a custom NMS merge; inference on CUDA with an automatic CPU fallback",
       "Pipeline from frame → georeferencing into the Czech national grid (rasterio, pyproj) → occupancy time series → PostgreSQL over an SSH tunnel",
+      "The camera sees people, the database only numbers: what is stored is how many cars are parked and where, never who arrived. The dashboard sits on a private network rather than the open web, and cannot write back",
       "The dashboard API is a separate FastAPI service kept apart from inference, keeping GPU dependencies off the API server; runs unattended, including backfilling the intervals missed during an outage",
     ],
     tags: [
@@ -601,8 +601,6 @@ export const servicesMeta: ServicesMeta = {
   rate: "800–1200 CZK/h",
   rateNote:
     "A range, by the kind of work — analysis and consulting at the lower end, model training and production deployment at the upper. Well-bounded jobs can be quoted at a fixed price instead.",
-  availability:
-    "Room for one smaller engagement at a time — evenings and weekends alongside R&D work and study.",
 };
 
 export const services: Service[] = [
