@@ -6,7 +6,7 @@ Jmenuji se Petr Mikeska a jsem geoinformatik zaměřený na computer vision, pro
 
 V R&D týmu CEDA Maps vyvíjím GeoAI pipeline pro automatickou detekci a klasifikaci dopravního značení z mobilního mapování: anotace dat, trénink modelu, klastrování a deduplikace detekcí z desítek průjezdů.
 
-Jsem spoluzakladatel a technický lead VečerkaPlus (https://vecerkaplus.cz/) — produkčně nasazené platformy (React, Supabase, Vercel) s doručovacími zónami postavenými na prostorové analýze.
+Jsem spoluzakladatel a technický lead VečerkaPlus (https://vecerkaplus.cz/) — produkčně nasazené platformy s doručovacími zónami postavenými na prostorové analýze.
 
 Studuji Geoinformatiku a kartografii (https://www.geoinformatics.upol.cz/) na Univerzitě Palackého v Olomouci. Bakalářská práce (https://geoinformatics.upol.cz/dprace/bakalarske/mikeska25) byla GIS toolbox pro hodnocení dostupnosti parků; diplomová porovnává kvalitu map generovaných LLM s tradičním GIS workflow.
 
@@ -37,7 +37,7 @@ Computer vision vidí pixel, GIS vidí místo. Zajímá mě to, co potřebuje ob
 ### Spoluzakladatel & technický lead — VečerkaPlus
 duben 2026 – současnost · Frýdek-Místek
 
-- Spoluvlastním a vedu noční rozvoz nápojů a pochutin ve Frýdku-Místku a okolí; celou platformu jsem postavil od nuly (React, Supabase, Vercel)
+- Spoluvlastním a vedu noční rozvoz nápojů a pochutin ve Frýdku-Místku a okolí; celou platformu jsem postavil od nuly
 - Systém doručovacích zón postavený na prostorové analýze — cena a dostupnost podle reálné dojezdové vzdálenosti, ne vzdušnou čarou
 - Kromě vývoje řídím provoz: nákup, logistiku kurýrů a růstovou strategii
 - Odkaz: vecerkaplus.cz — https://vecerkaplus.cz/
@@ -99,6 +99,7 @@ Systém, který z kamer areálu odvozuje obsazenost parkoviště a běží bez o
 
 - Ultralytics YOLO + PyTorch: několik detekčních modelů běží současně a jejich výstupy slučuje vlastní NMS merge; inference na CUDA s automatickým fallbackem na CPU
 - Pipeline snímek → georeference do S-JTSK (rasterio, pyproj) → časové řady obsazenosti → PostgreSQL přes SSH tunel
+- Kamera vidí lidi, databáze už jen čísla: ukládá se počet a poloha stání, ne kdo přijel. Dashboard stojí v privátní síti, ne na veřejném webu, a data z něj nejdou přepsat
 - Dashboardové API je samostatná FastAPI služba oddělená od inference, takže server s API netahá GPU závislosti; provoz bez obsluhy včetně dopočtu intervalů chybějících po výpadku
 - Technologie: Python, YOLO, PyTorch, FastAPI, PostgreSQL, rasterio
 
@@ -213,8 +214,6 @@ Orientační sazba: 800–1200 Kč/h
 
 Rozpětí podle typu práce — analýza a konzultace u spodní hranice, trénink modelů a produkční nasazení u horní. Ohraničené zakázky umím nacenit i fixně.
 
-Dostupnost: Kapacita na jednu menší zakázku souběžně — večery a víkendy vedle R&D práce a studia.
-
 Fakturace: IČO 23195126
 
 ## Vzdělání
@@ -258,4 +257,4 @@ Střední škola informačních technologií (https://www.ssinfotech.cz/) · Fr�
 
 ---
 
-Aktualizováno: 2026-08-23
+Aktualizováno: 2026-08-24

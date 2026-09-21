@@ -112,7 +112,6 @@ for (const s of services) {
 push("### Podmínky spolupráce", "");
 push(`Orientační sazba: ${servicesMeta.rate}`, "");
 push(servicesMeta.rateNote, "");
-push(`Dostupnost: ${servicesMeta.availability}`, "");
 push(`Fakturace: IČO ${footer.ico}`, "");
 
 push("## Vzdělání", "");

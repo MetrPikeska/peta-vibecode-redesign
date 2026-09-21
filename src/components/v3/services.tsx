@@ -45,15 +45,15 @@ export function Services() {
       </div>
 
       {/* Sekce dřív končila poslední kartou. Návštěvník, který se v některé
-          otázce poznal, se z ní nedozvěděl ani sazbu, ani jestli je vůbec
-          kapacita — takže neměl jiný další krok než mail naslepo. Tři fakty
-          a jedno tlačítko; jediný barevný prvek v sekci je ten další krok. */}
+          otázce poznal, se z ní nedozvěděl sazbu, takže neměl jiný další krok
+          než mail naslepo. Dva fakty a jedno tlačítko; jediný barevný prvek
+          v sekci je ten další krok. */}
       <Card className="mt-4">
         <CardHeader>
           <CardTitle className="text-base">{ui.v3.engagement.heading}</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <dl className="grid gap-4 sm:grid-cols-3 sm:gap-8">
+          <dl className="grid gap-4 sm:grid-cols-2 sm:gap-8">
             <div>
               <dt className="text-xs text-muted-foreground">
                 {ui.v3.engagement.rate}
@@ -61,14 +61,6 @@ export function Services() {
               <dd className="mt-1 font-medium">{servicesMeta.rate}</dd>
               <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">
                 {servicesMeta.rateNote}
-              </dd>
-            </div>
-            <div>
-              <dt className="text-xs text-muted-foreground">
-                {ui.v3.engagement.availability}
-              </dt>
-              <dd className="mt-1 text-sm leading-relaxed text-foreground/80">
-                {servicesMeta.availability}
               </dd>
             </div>
             <div>

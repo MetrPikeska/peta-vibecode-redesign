@@ -79,7 +79,6 @@ export interface Service {
 export interface ServicesMeta {
   rate: string;
   rateNote: string;
-  availability: string;
 }
 
 export const hero = {
@@ -101,6 +100,11 @@ export const hero = {
   ],
   coordinates: "49.5167°N, 18.3333°E",
   photo: "/passport.webp",
+  // Druhý portrét pro sekci O mně. Hero má portrét u jména, ale sekce s prózou
+  // byla čistě textová — a je to jediné místo na stránce, kde se mluví v první
+  // osobě. Vyříznuto ze snímku předchozí verze webu, takže je jen 371 px široký;
+  // pokud se najde originál, nahradit soubor, cesta zůstane.
+  portrait: "/portrait.webp",
   linkedin: "https://www.linkedin.com/in/mikeskapetr",
   github: "https://github.com/metrpikeska",
   cvUrl: "https://petrmikeska.cz/assets/resume/Petr_Mikeska_CV.pdf",
@@ -109,7 +113,7 @@ export const hero = {
 export const about = [
   "Jmenuji se **Petr Mikeska** a jsem geoinformatik zaměřený na **computer vision**, prostorové databáze a webový vývoj. Pracuji na průniku detekce objektů z obrazu a prostorové analýzy jejich výstupů — od surového videa, ortofota nebo lidarového mračna až po vrstvu, se kterou jde dál pracovat v GIS.",
   "V R&D týmu **CEDA Maps** vyvíjím **GeoAI pipeline pro automatickou detekci a klasifikaci dopravního značení** z mobilního mapování: anotace dat, trénink modelu, klastrování a deduplikace detekcí z desítek průjezdů.",
-  "Jsem spoluzakladatel a technický lead **[VečerkaPlus](https://vecerkaplus.cz/)** — produkčně nasazené platformy (React, Supabase, Vercel) s doručovacími zónami postavenými na prostorové analýze.",
+  "Jsem spoluzakladatel a technický lead **[VečerkaPlus](https://vecerkaplus.cz/)** — produkčně nasazené platformy s doručovacími zónami postavenými na prostorové analýze.",
   "Studuji **[Geoinformatiku a kartografii](https://www.geoinformatics.upol.cz/)** na Univerzitě Palackého v Olomouci. [Bakalářská práce](https://geoinformatics.upol.cz/dprace/bakalarske/mikeska25) byla GIS toolbox pro hodnocení dostupnosti parků; diplomová porovnává kvalitu map generovaných LLM s tradičním GIS workflow.",
   "Computer vision vidí pixel, GIS vidí místo. Zajímá mě to, co potřebuje obojí.",
 ];
@@ -173,7 +177,7 @@ export const experience: Experience[] = [
     period: "duben 2026 – současnost",
     location: "Frýdek-Místek",
     highlights: [
-      "Spoluvlastním a vedu noční rozvoz nápojů a pochutin ve Frýdku-Místku a okolí; celou platformu jsem postavil od nuly (React, Supabase, Vercel)",
+      "Spoluvlastním a vedu noční rozvoz nápojů a pochutin ve Frýdku-Místku a okolí; celou platformu jsem postavil od nuly",
       "Systém doručovacích zón postavený na prostorové analýze — cena a dostupnost podle reálné dojezdové vzdálenosti, ne vzdušnou čarou",
       "Kromě vývoje řídím provoz: nákup, logistiku kurýrů a růstovou strategii",
     ],
@@ -266,6 +270,7 @@ export const projects: Project[] = [
     features: [
       "Ultralytics YOLO + PyTorch: několik detekčních modelů běží současně a jejich výstupy slučuje vlastní NMS merge; inference na CUDA s automatickým fallbackem na CPU",
       "Pipeline snímek → georeference do S-JTSK (rasterio, pyproj) → časové řady obsazenosti → PostgreSQL přes SSH tunel",
+      "Kamera vidí lidi, databáze už jen čísla: ukládá se počet a poloha stání, ne kdo přijel. Dashboard stojí v privátní síti, ne na veřejném webu, a data z něj nejdou přepsat",
       "Dashboardové API je samostatná FastAPI služba oddělená od inference, takže server s API netahá GPU závislosti; provoz bez obsluhy včetně dopočtu intervalů chybějících po výpadku",
     ],
     tags: [
@@ -538,8 +543,6 @@ export const servicesMeta: ServicesMeta = {
   rate: "800–1200 Kč/h",
   rateNote:
     "Rozpětí podle typu práce — analýza a konzultace u spodní hranice, trénink modelů a produkční nasazení u horní. Ohraničené zakázky umím nacenit i fixně.",
-  availability:
-    "Kapacita na jednu menší zakázku souběžně — večery a víkendy vedle R&D práce a studia.",
 };
 
 export const ui = {
@@ -619,7 +622,6 @@ export const ui = {
     engagement: {
       heading: "Spolupráce",
       rate: "Orientační sazba",
-      availability: "Dostupnost",
       billing: "Fakturace",
       cta: "Napsat poptávku",
     },
