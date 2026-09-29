@@ -42,3 +42,6 @@ cv/targeted/
 # a repozitář je veřejný — proto zůstávají mimo git, ne jen mimo web.
 PRODUCT.md
 CLAUDE_PORTFOLIO_CONTEXT.md
+
+# orchestration scratch
+.orchestra/

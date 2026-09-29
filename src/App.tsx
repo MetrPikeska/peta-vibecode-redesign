@@ -1,10 +1,10 @@
-import V3 from "@/pages/v3-shadcn";
+import V4 from "@/pages/v4-survey";
 import { LanguageProvider } from "@/contexts/language-context";
 
 export default function App() {
   return (
     <LanguageProvider>
-      <V3 />
+      <V4 />
     </LanguageProvider>
   );
 }
