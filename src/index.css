@@ -17,6 +17,9 @@
    `.v3` for the same reason. */
 @import "./styles/v3.css";
 
+/* The survey system (v4), scoped under `.survey`; see DESIGN.survey.md. */
+@import "./styles/survey.css";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

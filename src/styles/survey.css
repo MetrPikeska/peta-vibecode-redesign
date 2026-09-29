@@ -1,0 +1,347 @@
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
+
+/* ──────────────────────────────────────────────────────────────────────────
+   v4 "survey": the survey-sheet surface
+   ──────────────────────────────────────────────────────────────────────────
+   The contract is DESIGN.survey.md: cool limestone paper, ink, one decisive
+   survey blue, Geist for display and body, Geist Mono for every measured
+   value. The page reads as one mapping drive, so the recurring marks are a
+   thin route line, waypoint dots, corner brackets and a faint survey grid.
+
+   Colours and faces are declared with `@theme` (not `@theme inline`) because
+   they are literal values, not variables that change per subtree: v4 has
+   exactly one palette and no dark variant. The `.dark` class the theme script
+   in index.html may put on `<html>` is inert here by construction, since
+   nothing below is keyed to it.
+
+   Everything else is scoped under `.survey` for the same reason v2 and v3
+   scope theirs: `:root` in index.css belongs to v1.
+   ────────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  --font-survey: 'Geist Variable', system-ui, sans-serif;
+  --font-survey-mono: 'Geist Mono Variable', ui-monospace, monospace;
+
+  --color-paper: #F2F3F0;
+  --color-sheet: #E6E8E3;
+  --color-hairline: #C9CDC6;
+  --color-ink: #15181D;
+  --color-ink-muted: #5A616B;
+  --color-survey: #3247C4;
+  --color-on-survey: #F2F3F0;
+}
+
+/* The body is painted too, so overscroll and the area under the sticky nav's
+   blur show paper rather than v1's parchment from `:root`. */
+.survey,
+body:has(.survey) {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-survey);
+}
+
+.survey ::selection {
+  background: var(--color-survey);
+  color: var(--color-on-survey);
+}
+
+/* ── focus ──
+   index.css recolours every outline to v1's ring at half strength. One
+   deliberate indicator in survey blue replaces it; on the blue contact band
+   the same indicator flips to paper so it stays visible. */
+body:has(.survey) :focus-visible {
+  outline: 2px solid var(--color-survey);
+  outline-offset: 3px;
+}
+
+.survey .survey-on-survey :focus-visible {
+  outline-color: var(--color-on-survey);
+}
+
+/* ── skip link ── */
+.survey .skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+
+.survey .skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--color-survey);
+  color: var(--color-on-survey);
+}
+
+/* The textures and garments sit in the components layer, so a utility on
+   the same element (a size, a colour) still wins over them. */
+@layer components {
+  /* ── survey grid ──
+     The paper of a survey sheet: a 32 px line grid (services) and a 32 px dot
+     field (about). Both are drawn in the hairline colour at low strength, so
+     they read as texture and never as a pattern competing with the text. */
+  .survey-grid {
+    background-image:
+      linear-gradient(to right, color-mix(in srgb, var(--color-hairline) 40%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--color-hairline) 40%, transparent) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .survey-dots {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      color-mix(in srgb, var(--color-hairline) 90%, transparent) 1px,
+      transparent 1.5px
+    );
+    background-size: 32px 32px;
+  }
+
+  /* ── crop frame ──
+     A plate mounted on the sheet: hairline mat, four corner ticks just outside
+     it (one pseudo-element, eight gradients), and in the portfolio a second
+     survey-blue outline offset down and right, like a registration layer. */
+  .survey-ticks {
+    position: relative;
+  }
+
+  .survey-ticks::after {
+    --tick: var(--color-ink-muted);
+    content: "";
+    position: absolute;
+    inset: -7px;
+    pointer-events: none;
+    background:
+      linear-gradient(var(--tick), var(--tick)) top left / 10px 1px no-repeat,
+      linear-gradient(var(--tick), var(--tick)) top left / 1px 10px no-repeat,
+      linear-gradient(var(--tick), var(--tick)) top right / 10px 1px no-repeat,
+      linear-gradient(var(--tick), var(--tick)) top right / 1px 10px no-repeat,
+      linear-gradient(var(--tick), var(--tick)) bottom left / 10px 1px no-repeat,
+      linear-gradient(var(--tick), var(--tick)) bottom left / 1px 10px no-repeat,
+      linear-gradient(var(--tick), var(--tick)) bottom right / 10px 1px no-repeat,
+      linear-gradient(var(--tick), var(--tick)) bottom right / 1px 10px no-repeat;
+  }
+
+  .survey-crop {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .survey-crop::before {
+    content: "";
+    position: absolute;
+    inset: 12px -12px -12px 12px;
+    z-index: -1;
+    border: 1px solid var(--color-survey);
+    pointer-events: none;
+  }
+
+  /* ── CTA garment: route link ──
+     The label sits on a dotted survey path; on hover the arrow travels along it. */
+  .survey-route {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    /* The path runs 8 px past the resting arrow, so the arrow travels along
+       the dotted line to its end instead of off it. */
+    padding-right: 8px;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px dotted var(--color-survey);
+    color: var(--color-survey);
+  }
+
+  .survey-route__arrow {
+    display: inline-block;
+    transition: transform 200ms ease-out;
+  }
+
+  .survey-route:hover .survey-route__arrow,
+  .survey-route:focus-visible .survey-route__arrow {
+    transform: translateX(8px);
+  }
+
+  /* ── CTA garment: detection bracket ──
+     Four 10 px corner brackets around the label. The anchor carries the top
+     pair on ::before/::after, an inner span carries the bottom pair; on hover
+     all four step 3 px inward, a bounding box locking on. */
+  .survey-detect {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-ink);
+  }
+
+  .survey-detect::before,
+  .survey-detect::after,
+  .survey-detect__base::before,
+  .survey-detect__base::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-color: var(--color-survey);
+    border-style: solid;
+    border-width: 0;
+    pointer-events: none;
+    transition: transform 200ms ease-out;
+  }
+
+  .survey-detect::before {
+    top: 0;
+    left: 0;
+    border-top-width: 1.5px;
+    border-left-width: 1.5px;
+  }
+
+  .survey-detect::after {
+    top: 0;
+    right: 0;
+    border-top-width: 1.5px;
+    border-right-width: 1.5px;
+  }
+
+  .survey-detect__base {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .survey-detect__base::before {
+    bottom: 0;
+    left: 0;
+    border-bottom-width: 1.5px;
+    border-left-width: 1.5px;
+  }
+
+  .survey-detect__base::after {
+    bottom: 0;
+    right: 0;
+    border-bottom-width: 1.5px;
+    border-right-width: 1.5px;
+  }
+
+  .survey-detect:hover::before,
+  .survey-detect:focus-visible::before {
+    transform: translate(3px, 3px);
+  }
+
+  .survey-detect:hover::after,
+  .survey-detect:focus-visible::after {
+    transform: translate(-3px, 3px);
+  }
+
+  .survey-detect:hover .survey-detect__base::before,
+  .survey-detect:focus-visible .survey-detect__base::before {
+    transform: translate(3px, -3px);
+  }
+
+  .survey-detect:hover .survey-detect__base::after,
+  .survey-detect:focus-visible .survey-detect__base::after {
+    transform: translate(-3px, -3px);
+  }
+
+  /* ── CTA garment: enquiry block ──
+     The one rationed garment. A survey fill scales in from the left edge; the
+     label flips to paper halfway through, when the fill has reached it, so it
+     is never paper on paper. */
+  .survey-enquiry {
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid var(--color-survey);
+    color: var(--color-survey);
+  }
+
+  .survey-enquiry::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--color-survey);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 200ms ease-out;
+  }
+
+  .survey-enquiry__label {
+    transition: color 0s linear 100ms;
+  }
+
+  .survey-enquiry:hover::before,
+  .survey-enquiry:focus-visible::before {
+    transform: scaleX(1);
+  }
+
+  .survey-enquiry:hover .survey-enquiry__label,
+  .survey-enquiry:focus-visible .survey-enquiry__label {
+    color: var(--color-on-survey);
+  }
+
+  /* ── channel readout ──
+     A waypoint ring whose centre fills on hover. */
+  .survey-waypoint {
+    position: relative;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    flex-shrink: 0;
+    border: 1.5px solid currentColor;
+    border-radius: 9999px;
+  }
+
+  .survey-waypoint::after {
+    content: "";
+    position: absolute;
+    inset: 1.5px;
+    border-radius: 9999px;
+    background: currentColor;
+    transform: scale(0.5);
+    transition: transform 200ms ease-out;
+  }
+
+  .survey-channel:hover .survey-waypoint::after,
+  .survey-channel:focus-visible .survey-waypoint::after,
+  .survey-waypoint--fixed::after {
+    transform: scale(1);
+  }
+
+  /* ── project link ──
+     The first link of a card is underlined by a short route dash that
+     lengthens when the card is hovered. */
+  .survey-dash {
+    display: inline-block;
+    width: 1rem;
+    height: 1px;
+    background: currentColor;
+    transform-origin: left center;
+    transition: transform 200ms ease-out;
+  }
+
+  .survey-card:hover .survey-dash,
+  .survey-dash-link:hover .survey-dash,
+  .survey-dash-link:focus-visible .survey-dash {
+    transform: scaleX(1.75);
+  }
+}
+
+/* Every hover garment above collapses to a plain state change. The two
+   Tailwind-driven motions (nav waypoint, accordion plus) carry
+   `motion-reduce:transition-none` at their call sites. */
+@media (prefers-reduced-motion: reduce) {
+  .survey-route__arrow,
+  .survey-detect::before,
+  .survey-detect::after,
+  .survey-detect__base::before,
+  .survey-detect__base::after,
+  .survey-enquiry::before,
+  .survey-enquiry__label,
+  .survey-waypoint::after,
+  .survey-dash {
+    transition: none;
+  }
+}

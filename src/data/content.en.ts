@@ -21,11 +21,11 @@ export { contact, footer } from "./content";
  */
 export const hero = {
   ...csHero,
-  tagline: "I train models that see. I put the results on a map.",
+  tagline: "A model finds a sign in a street-level image. I turn it into an asset on the map.",
   subtagline:
-    "Geoinformatics & cartography @ UPOL · GIS analyst · Computer vision · Web development",
+    "Geospatial engineer & computer vision · MSc Geoinformatics @ UPOL · Erasmus+ AUTH, Thessaloniki",
   intro:
-    "I connect GIS, spatial databases and web technologies into map solutions that get used. My current focus is computer vision — detecting objects in video, orthophotos, lidar and mobile mapping, with the spatial processing that follows.",
+    "I build tools for mobile mapping: from 360° imagery, GNSS and LiDAR I assemble a map-ready inventory of traffic signs and road defects. I connect two worlds: YOLO detections, monocular depth estimation and structure-from-motion on one side, georeferencing and LiDAR validation on the other. What I enjoy most is taking geospatial work all the way to something that runs, from data analysis in Python to web apps and self-hosted infrastructure.",
 };
 
 export const ui = {
@@ -43,7 +43,7 @@ export const ui = {
   hero: {
     more: "More",
     contact: "Contact",
-    role: "GIS Analyst",
+    role: "Geospatial Engineer · Computer Vision",
   },
   sections: {
     about: "About",
@@ -58,7 +58,7 @@ export const ui = {
   },
   contact: {
     tagline:
-      "If you're interested in working together, feel free to get in touch.",
+      "Working together on GIS, GeoAI or a web map application, or a job offer from anywhere in Europe: get in touch.",
   },
   a11y: {
     skipToContent: "Skip to content",
@@ -103,8 +103,8 @@ export const ui = {
       toLight: "Switch to light mode",
     },
     lead: {
-      about: "Geoinformatics, computer vision and the web — and why I put them together.",
-      experience: "From a GeoAI pipeline in R&D to a platform of my own in production, plus the university research.",
+      about: "Computer vision and geoinformatics in mobile mapping, taken all the way to production.",
+      experience: "From detecting traffic signs and road defects in mobile mapping data to a platform of my own in production, plus the university research.",
       portfolio: "Things that run — with links to the code and the deployment.",
       services: "An enquiry starts with an email or a call — contact details are at the end of the page.",
     },
@@ -201,6 +201,38 @@ export const ui = {
     allCategories: "All",
     selectorHint: "Bar width encodes the number of items in the category",
   },
+  /** The survey layout (v4); see the Czech file. */
+  v4: {
+    nav: {
+      about: "About",
+      experience: "Work",
+      portfolio: "Portfolio",
+      services: "Services",
+      contact: "Contact",
+    },
+    viewWork: "View portfolio",
+    downloadCv: "Download CV",
+    heroArtAlt:
+      "View from a mapping vehicle with a roof-mounted LiDAR down a village road: traffic signs in detection frames and point-cloud returns on the asphalt",
+    about: {
+      waypoints: [
+        { place: "Čeladná", coords: "49.5167 N 18.3333 E" },
+        { place: "Olomouc", coords: "49.5938 N 17.2509 E" },
+        { place: "Thessaloniki", coords: "40.6401 N 22.9444 E" },
+      ],
+    },
+    research: "Research",
+    publications: "Publications",
+    openCertificate: "Open certificate",
+    lead: {
+      portfolio:
+        "Projects with links to the code and the deployment. The pictures are illustrations, not project output.",
+    },
+    menu: {
+      open: "Menu",
+      close: "Close",
+    },
+  },
 };
 
 export const publications: Publication[] = [
@@ -224,20 +256,31 @@ export const publications: Publication[] = [
 ];
 
 export const about: string[] = [
-  "My name is **Petr Mikeska** and I'm a geoinformatics specialist focused on **computer vision**, spatial databases and web development. I work at the intersection of object detection from imagery and spatial analysis of its output — from raw video, orthophotos or lidar point clouds to a layer you can keep working with in GIS.",
-  "On the R&D team at **CEDA Maps** I develop a **GeoAI pipeline for automatic detection and classification of traffic signs** from mobile mapping: data annotation, model training, and clustering and deduplication of detections across dozens of drive-throughs.",
-  "I'm a co-founder and technical lead of **[VečerkaPlus](https://vecerkaplus.cz/)** — a production platform with delivery zones built on spatial analysis.",
-  "I study **[Geoinformatics and Cartography](https://www.geoinformatics.upol.cz/)** at Palacký University Olomouc. My [bachelor's thesis](https://geoinformatics.upol.cz/dprace/bakalarske/mikeska25) was a GIS toolbox for evaluating park accessibility; the master's thesis compares the quality of LLM-generated maps against traditional GIS workflows.",
+  "My name is **Petr Mikeska** and I build **computer vision** and geospatial tools for mobile mapping. I work at the intersection of object detection from imagery and spatial analysis of its output, from a raw 360° image or a lidar point cloud to a layer you can keep working with in GIS. I'm open to computer vision and geospatial engineering roles anywhere in Europe.",
+  "On the R&D team at **CEDA Maps** I develop a **GeoAI pipeline that turns mobile mapping data into a map-ready inventory of traffic signs and road defects**. I wrote the geolocation step that positions an object from 2D sign detections and the GNSS trajectory, and I validate the results against lidar point clouds as an independent reference. Now I'm working on clustering that merges repeated detections of the same defect from several passes into a single road event.",
+  "I'm a co-founder and technical lead of **[VečerkaPlus](https://vecerkaplus.cz/)**, a late-night drinks and snacks delivery service in Frýdek-Místek. I wrote the platform from scratch, delivery zones from spatial analysis included, and besides development I run the operation: purchasing, couriers and growth.",
+  "I study **[Geoinformatics and Cartography](https://www.geoinformatics.upol.cz/)** at Palacký University Olomouc and I'm spending the 2026/27 winter semester on Erasmus+ at **[Aristotle University of Thessaloniki](https://www.auth.gr/en/)**. My [bachelor's thesis](https://geoinformatics.upol.cz/dprace/bakalarske/mikeska25) was a GIS toolbox for evaluating park accessibility; the master's thesis compares the quality of LLM-generated maps against traditional GIS workflows.",
   "Computer vision sees a pixel. GIS sees a place. I'm interested in what needs both.",
 ];
 
 export const education: Education[] = [
   {
+    institution: "Aristotle University of Thessaloniki (AUTH)",
+    institutionUrl: "https://www.auth.gr/en/",
+    location: "Thessaloniki, Greece",
+    degree: "Erasmus+ – Rural and Surveying Engineering / Geoinformatics",
+    type: "Erasmus+ exchange · September 2026 – February 2027",
+    highlights: [
+      "Winter semester 2026/27 as part of the MSc at UPOL",
+      "Rural and Surveying Engineering, geoinformatics track",
+    ],
+  },
+  {
     institution: "Palacký University Olomouc",
     institutionUrl: "https://www.upol.cz/",
     location: "Faculty of Science · Olomouc",
     degree: "MSc – Geoinformatics and Cartography (in progress)",
-    type: "Follow-up Master's · full-time · 2 years",
+    type: "Follow-up Master's · full-time · September 2025 – June 2028",
     highlights: [
       "Web GIS and map servers",
       "Remote sensing and image processing",
@@ -249,7 +292,7 @@ export const education: Education[] = [
     institutionUrl: "https://www.geoinformatics.upol.cz/",
     location: "Department of Geoinformatics · Olomouc",
     degree: "BSc – Geoinformatics and Cartography",
-    type: "Bachelor's · full-time · 3 years",
+    type: "Bachelor's · full-time · September 2022 – August 2025",
     highlights: [
       "GIS, RS, GPS, geostatistics",
       "Spatial analysis and land-use planning",
@@ -262,7 +305,7 @@ export const education: Education[] = [
     location: "Frýdek-Místek",
     degree:
       "Maturita – Programming and Application Development – Internet of Things",
-    type: "Secondary vocational school · 4 years",
+    type: "Secondary vocational school · 2018 – 2022",
     highlights: [
       "Programming and application development",
       "Web technologies, networks, databases and the Internet of Things",
@@ -273,38 +316,43 @@ export const education: Education[] = [
 export const experience: Experience[] = [
   {
     company: "CEDA Maps",
-    role: "GIS & Computer Vision Analyst (freelance)",
+    role: "Computer Vision & Geospatial Engineer (freelance)",
     period: "June 2026 – Present",
     location: "Brno, remote",
     highlights: [
-      "GeoAI pipeline for automatic detection and classification of traffic signs from mobile mapping — from data annotation through YOLOv8 training to production deployment",
+      "GeoAI pipeline that turns mobile mapping data (360° imagery, GNSS, LiDAR) into a map-ready inventory of traffic signs and road defects; from data annotation through YOLOv8 training to production deployment",
+      "Geolocation pipeline that turns 2D sign detections and the GNSS trajectory into positioned map assets; I validate the output against lidar point clouds as an independent reference",
       "Locating signs without precise GNSS: multi-view triangulation across dozens of drive-throughs, least-squares refinement and fusion into a single entity; monocular depth estimation (Depth Anything V2, MoGe-2) as an independent source, validated with a null test",
+      "Clustering that merges repeated road defect detections from multiple fleet passes into a single road event; groundwork for the cloud processing pipeline",
       "Panoramic camera rig calibration via COLMAP SfM — extrinsics and intrinsics for lifting detections into real-world space",
       "Dataset engineering: per-track split against data leakage, deduplication of sequential frames and class-imbalance control over tens of thousands of crops",
       "Detecting sign panels directly in the LiDAR point cloud (RIEGL, laspy, PDAL) and cross-checking them against the image detections",
+      "I work remotely and independently, from data exploration to decisions with the R&D lead",
       "Stack: Python, PyTorch, Ultralytics YOLOv8/OBB, SAHI, OpenCV, Open3D, PDAL, COLMAP, PostGIS, GeoPandas",
     ],
   },
   {
     company: "VečerkaPlus",
-    role: "Co-founder & technical lead",
+    role: "Co-founder & Tech Lead",
     period: "April 2026 – Present",
     location: "Frýdek-Místek",
     highlights: [
       "I co-own and lead a late-night drinks and snacks delivery service in Frýdek-Místek; I built the whole platform from scratch",
-      "Delivery zones built on spatial analysis — price and availability follow real driving distance, not straight-line distance",
-      "Beyond development I run the operation: purchasing, courier logistics and growth strategy",
+      "Online shop, operator admin and courier app; delivery zones from spatial analysis and delivery pricing by real driving distance, not straight-line distance",
+      "Sales and margin analytics that guide purchasing and pricing",
+      "Beyond development I run the operation: I handle orders, manage couriers, and look after purchasing and growth",
     ],
     links: [{ label: "vecerkaplus.cz", url: "https://vecerkaplus.cz/" }],
   },
   {
     company: "Palacký University Olomouc",
-    role: "Web Developer & Administrator",
-    period: "May 2023 – Present",
-    location: "Czech Republic",
+    role: "Web Administrator",
+    period: "March 2023 – Present",
+    location: "Olomouc",
     highlights: [
       "Managing sites with 199,800 visitors and 452,000 page views in total — olomouckymajales.cz and meetup.upol.cz",
-      "Changes delivered within 24 hours of request, uninterrupted service during key events, no production downtime",
+      "I keep event sites with sudden traffic peaks (Olomoucký Majáles, UP Meetup) running under the heaviest load; fixes go out fast and without downtime",
+      "Content and site settings in WordPress updated on short notice before and during events, changes within 24 hours of request",
       "Tools: WordPress, YOOtheme Builder",
     ],
     links: [
@@ -313,13 +361,15 @@ export const experience: Experience[] = [
     ],
   },
   {
-    company: "Skymaps s.r.o.",
-    role: "GIS & Remote Sensing Analyst",
-    period: "February 2025 – September 2025",
-    location: "Czech Republic",
+    company: "SkyMaps Geomatics",
+    role: "GIS Analyst",
+    period: "February 2025 – July 2025",
+    location: "Brno",
     highlights: [
-      "Processing multispectral satellite imagery into thematic soil-potential maps",
-      "Analysing and interpreting remote sensing data: Sentinel (SNAP), GDAL, EO Browser",
+      "Remote sensing and precision agriculture for farming clients: processing satellite and drone imagery into soil productivity potential maps",
+      "Automated orthophoto processing with GDAL: clipping, reprojection, mosaicking",
+      "NDVI statistics from drone imagery for companies running fertilizer field trials",
+      "Analysing and interpreting remote sensing data: ArcGIS, Sentinel (SNAP), GDAL, EO Browser",
       "Python automation from batch processing of imagery to the output maps",
     ],
   },

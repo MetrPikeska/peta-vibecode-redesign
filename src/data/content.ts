@@ -83,12 +83,12 @@ export interface ServicesMeta {
 
 export const hero = {
   name: "Petr Mikeska",
-  tagline: "Trénuji modely, které vidí. Výsledky dávám na mapu.",
+  tagline: "Model najde značku na snímku z ulice. Já z ní udělám objekt na mapě.",
   subtagline:
-    "Geoinformatika & kartografie @ UPOL · GIS analytik · Computer vision · Web development",
+    "Geospatial engineer & computer vision · Mgr. geoinformatika @ UPOL · Erasmus+ AUTH, Soluň",
   intro:
-    "Propojuji GIS, prostorové databáze a webové technologie do funkčních mapových řešení. Aktuálně se zaměřuji na computer vision — detekci objektů z videa, ortofot, lidaru a mobilního mapování s návazným prostorovým zpracováním.",
-  specialties: ["Computer Vision", "GeoAI", "Web GIS", "Spatial Databases"],
+    "Stavím nástroje pro mobilní mapování: z 360° snímků, GNSS a LiDARu skládám inventář dopravních značek a poruch vozovky, který jde rovnou do mapy. Spojuji dva světy: na jedné straně YOLO detekce, monokulární odhad hloubky a structure-from-motion, na druhé georeferencování a validaci proti LiDARu. Nejvíc mě baví dotáhnout geoprostorovou práci do něčeho, co běží, od analýzy dat v Pythonu po webové aplikace a vlastní infrastrukturu.",
+  specialties: ["Computer Vision", "GeoAI", "Mobile Mapping", "LiDAR", "Web GIS"],
   hashtags: [
     "#computervision",
     "#geoinformatika",
@@ -111,20 +111,31 @@ export const hero = {
 };
 
 export const about = [
-  "Jmenuji se **Petr Mikeska** a jsem geoinformatik zaměřený na **computer vision**, prostorové databáze a webový vývoj. Pracuji na průniku detekce objektů z obrazu a prostorové analýzy jejich výstupů — od surového videa, ortofota nebo lidarového mračna až po vrstvu, se kterou jde dál pracovat v GIS.",
-  "V R&D týmu **CEDA Maps** vyvíjím **GeoAI pipeline pro automatickou detekci a klasifikaci dopravního značení** z mobilního mapování: anotace dat, trénink modelu, klastrování a deduplikace detekcí z desítek průjezdů.",
-  "Jsem spoluzakladatel a technický lead **[VečerkaPlus](https://vecerkaplus.cz/)** — produkčně nasazené platformy s doručovacími zónami postavenými na prostorové analýze.",
-  "Studuji **[Geoinformatiku a kartografii](https://www.geoinformatics.upol.cz/)** na Univerzitě Palackého v Olomouci. [Bakalářská práce](https://geoinformatics.upol.cz/dprace/bakalarske/mikeska25) byla GIS toolbox pro hodnocení dostupnosti parků; diplomová porovnává kvalitu map generovaných LLM s tradičním GIS workflow.",
+  "Jmenuji se **Petr Mikeska** a stavím nástroje pro **computer vision** a geoinformatiku v mobilním mapování. Pracuji na průniku detekce objektů z obrazu a prostorové analýzy jejich výstupů, od surového 360° snímku nebo lidarového mračna až po vrstvu, se kterou jde dál pracovat v GIS. Jsem otevřený nabídkám na pozice v computer vision a geospatial engineeringu kdekoli v Evropě.",
+  "V R&D týmu **CEDA Maps** vyvíjím **GeoAI pipeline, která z dat mobilního mapování dělá mapový inventář dopravních značek a poruch vozovky**. Napsal jsem geolokaci, která z 2D detekcí značek a GNSS trajektorie určí polohu objektu, a výsledky ověřuji proti lidarovým mračnům jako nezávislé referenci. Teď pracuji na klastrování, které opakované detekce téže poruchy z více průjezdů sloučí do jedné události na silnici.",
+  "Jsem spoluzakladatel a technický lead **[VečerkaPlus](https://vecerkaplus.cz/)**, nočního rozvozu nápojů a pochutin ve Frýdku-Místku. Platformu jsem napsal od nuly, včetně doručovacích zón z prostorové analýzy, a vedle vývoje řídím i provoz: nákup, kurýry a růst.",
+  "Studuji **[Geoinformatiku a kartografii](https://www.geoinformatics.upol.cz/)** na Univerzitě Palackého v Olomouci a zimní semestr 2026/27 trávím na Erasmu+ na **[Aristotelově univerzitě v Soluni](https://www.auth.gr/en/)**. [Bakalářská práce](https://geoinformatics.upol.cz/dprace/bakalarske/mikeska25) byla GIS toolbox pro hodnocení dostupnosti parků; diplomová porovnává kvalitu map generovaných LLM s tradičním GIS workflow.",
   "Computer vision vidí pixel, GIS vidí místo. Zajímá mě to, co potřebuje obojí.",
 ];
 
 export const education: Education[] = [
   {
+    institution: "Aristotelova univerzita v Soluni (AUTH)",
+    institutionUrl: "https://www.auth.gr/en/",
+    location: "Soluň, Řecko",
+    degree: "Erasmus+ – Rural and Surveying Engineering / Geoinformatika",
+    type: "Výměnný pobyt Erasmus+ · září 2026 – únor 2027",
+    highlights: [
+      "Zimní semestr 2026/27 v rámci Mgr. studia na UPOL",
+      "Obor Rural and Surveying Engineering, zaměření geoinformatika",
+    ],
+  },
+  {
     institution: "Univerzita Palackého v Olomouci",
     institutionUrl: "https://www.upol.cz/",
     location: "Přírodovědecká fakulta · Olomouc",
     degree: "Mgr. – Geoinformatika a kartografie (probíhá)",
-    type: "Navazující magisterské · prezenční · 2 roky",
+    type: "Navazující magisterské · prezenční · září 2025 – červen 2028",
     highlights: [
       "Webový GIS a mapové servery",
       "Dálkový průzkum Země a zpracování obrazu",
@@ -136,7 +147,7 @@ export const education: Education[] = [
     institutionUrl: "https://www.geoinformatics.upol.cz/",
     location: "Katedra geoinformatiky · Přírodovědecká fakulta · Olomouc",
     degree: "Bc. – Geoinformatika a kartografie",
-    type: "Bakalářské · prezenční · 3 roky",
+    type: "Bakalářské · prezenční · září 2022 – srpen 2025",
     highlights: [
       "GIS, DPZ, GPS, geostatistika",
       "Prostorové analýzy a územní plánování",
@@ -148,7 +159,7 @@ export const education: Education[] = [
     institutionUrl: "https://www.ssinfotech.cz/",
     location: "Frýdek-Místek",
     degree: "Maturita – Programování a vývoj aplikací – Internet věcí",
-    type: "Střední odborná škola · 4 roky",
+    type: "Střední odborná škola · 2018 – 2022",
     highlights: [
       "Programování a vývoj aplikací",
       "Webové technologie, sítě, databáze a Internet věcí",
@@ -159,15 +170,18 @@ export const education: Education[] = [
 export const experience: Experience[] = [
   {
     company: "CEDA Maps",
-    role: "GIS & Computer Vision Analytik (OSVČ)",
+    role: "Computer Vision & Geospatial Engineer (OSVČ)",
     period: "červen 2026 – současnost",
     location: "Brno, remote",
     highlights: [
-      "GeoAI pipeline pro automatickou detekci a klasifikaci dopravního značení z mobilního mapování — od anotace dat přes trénink YOLOv8 po produkční nasazení",
+      "GeoAI pipeline, která z dat mobilního mapování (360° snímky, GNSS, LiDAR) dělá mapový inventář dopravních značek a poruch vozovky; od anotace dat přes trénink YOLOv8 po produkční nasazení",
+      "Geolokační pipeline, která z 2D detekcí značek a GNSS trajektorie dělá polohované mapové objekty; výstup ověřuji proti lidarovým mračnům jako nezávislé referenci",
       "Lokalizace značek bez přesného GNSS: multi-view triangulace z desítek průjezdů, least-squares refinement a fúze do jedné entity; monokulární odhad hloubky (Depth Anything V2, MoGe-2) jako nezávislý zdroj, validovaný nulovým testem",
+      "Klastrování, které opakované detekce poruch vozovky z více průjezdů flotily slučuje do jedné události na silnici; základ pro zpracování v cloudu",
       "Kalibrace panoramatického kamerového rigu přes COLMAP SfM — extrinsics a intrinsics pro převod detekcí do reálného prostoru",
       "Dataset engineering: per-track split proti data leakage, deduplikace sekvenčních snímků a řízení class imbalance nad desítkami tisíc cropů",
       "Detekce panelů přímo v LiDAR mračnu (RIEGL, laspy, PDAL) a křížové ověření proti obrazovým detekcím",
+      "Pracuji na dálku a samostatně, od průzkumu dat po rozhodnutí s vedoucím R&D",
       "Stack: Python, PyTorch, Ultralytics YOLOv8/OBB, SAHI, OpenCV, Open3D, PDAL, COLMAP, PostGIS, GeoPandas",
     ],
   },
@@ -178,19 +192,21 @@ export const experience: Experience[] = [
     location: "Frýdek-Místek",
     highlights: [
       "Spoluvlastním a vedu noční rozvoz nápojů a pochutin ve Frýdku-Místku a okolí; celou platformu jsem postavil od nuly",
-      "Systém doručovacích zón postavený na prostorové analýze — cena a dostupnost podle reálné dojezdové vzdálenosti, ne vzdušnou čarou",
-      "Kromě vývoje řídím provoz: nákup, logistiku kurýrů a růstovou strategii",
+      "E-shop, administrace pro operátora a kurýrská aplikace; doručovací zóny z prostorové analýzy a cena dopravy podle reálné dojezdové vzdálenosti, ne vzdušnou čarou",
+      "Analytika prodejů a marží, podle které řídím nákup a ceny",
+      "Kromě vývoje řídím provoz: vyřizuji objednávky, vedu kurýry, starám se o nákup a růst",
     ],
     links: [{ label: "vecerkaplus.cz", url: "https://vecerkaplus.cz/" }],
   },
   {
     company: "Univerzita Palackého v Olomouci",
-    role: "Web Developer & Administrator",
-    period: "květen 2023 – současnost",
-    location: "Česká republika",
+    role: "Web Administrator",
+    period: "březen 2023 – současnost",
+    location: "Olomouc",
     highlights: [
       "Spravuji weby s celkem 199 800 návštěvníky a 452 000 zobrazeními — olomouckymajales.cz a meetup.upol.cz",
-      "Úpravy do 24 hodin od zadání, nepřetržitý provoz během klíčových akcí, změny bez výpadků na produkci",
+      "Weby akcí s náhlými špičkami návštěvnosti (Olomoucký Majáles, UP Meetup) držím v chodu i při největším náporu; opravy nasazuji rychle a bez výpadků",
+      "Obsah a nastavení webů ve WordPressu měním narychlo před akcí i během ní, úpravy do 24 hodin od zadání",
       "Nástroje: WordPress, YOOtheme Builder",
     ],
     links: [
@@ -199,13 +215,15 @@ export const experience: Experience[] = [
     ],
   },
   {
-    company: "Skymaps s.r.o.",
-    role: "GIS & Remote Sensing Analyst",
-    period: "únor 2025 – září 2025",
-    location: "Česká republika",
+    company: "SkyMaps Geomatics",
+    role: "GIS Analyst",
+    period: "únor 2025 – červenec 2025",
+    location: "Brno",
     highlights: [
-      "Zpracování multispektrálních satelitních snímků pro tematické mapy půdního potenciálu",
-      "Analýza a interpretace DPZ dat: Sentinel (SNAP), GDAL, EO Browser",
+      "DPZ a precizní zemědělství pro zemědělské klienty: zpracování satelitních a dronových snímků do map potenciálu produktivity půdy",
+      "Automatizace zpracování ortofot v GDAL: ořez, přeprojekce, mozaikování",
+      "Statistiky NDVI z dronových snímků pro firmy, které vedou polní pokusy s hnojivy",
+      "Analýza a interpretace DPZ dat: ArcGIS, Sentinel (SNAP), GDAL, EO Browser",
       "Python automatizace od batch processingu snímků po výstupní mapy",
     ],
   },
@@ -560,7 +578,7 @@ export const ui = {
   hero: {
     more: "Více",
     contact: "Kontakt",
-    role: "GIS Analytik · Computer Vision",
+    role: "Geospatial Engineer · Computer Vision",
   },
   sections: {
     about: "O mně",
@@ -575,7 +593,7 @@ export const ui = {
   },
   contact: {
     tagline:
-      "Spolupráce na GIS, GeoAI nebo webové mapové aplikaci — napište mi.",
+      "Spolupráce na GIS, GeoAI nebo webové mapové aplikaci, i pracovní nabídka odkudkoli z Evropy: napište mi.",
   },
   a11y: {
     skipToContent: "Přeskočit na obsah",
@@ -636,8 +654,8 @@ export const ui = {
      * a scope or the next step instead.
      */
     lead: {
-      about: "Geoinformatika, computer vision a web — a proč to spojuji.",
-      experience: "Od GeoAI pipeline v R&D po vlastní produkčně nasazenou platformu, včetně univerzitního výzkumu.",
+      about: "Computer vision a geoinformatika v mobilním mapování, dotažené až do provozu.",
+      experience: "Od detekce dopravních značek a poruch vozovky z mobilního mapování po vlastní produkčně nasazenou platformu, včetně univerzitního výzkumu.",
       portfolio: "Věci, které běží — s odkazy na kód i nasazení.",
       services: "Poptávka začíná e-mailem nebo telefonem — kontakt je na konci stránky.",
     },
@@ -739,6 +757,43 @@ export const ui = {
     publications: "Publikace",
     allCategories: "Vše",
     selectorHint: "Šířka pruhu kóduje počet položek v kategorii",
+  },
+  /**
+   * Strings the survey layout (v4) needs. Section labels double as headings,
+   * as in v3. Wording v4 shares with v3 (engagement, channels, the
+   * tool count) is read from `ui.v3` rather than repeated here.
+   */
+  v4: {
+    nav: {
+      about: "O mně",
+      experience: "Práce",
+      portfolio: "Portfolio",
+      services: "Služby",
+      contact: "Kontakt",
+    },
+    viewWork: "Prohlédnout portfolio",
+    downloadCv: "Stáhnout CV",
+    heroArtAlt:
+      "Pohled z mapovacího vozu s lidarem na střeše na vesnickou silnici: dopravní značky v detekčních rámečcích a body mračna na vozovce",
+    about: {
+      /** The trajectory on the about rail: home, university, Erasmus+. */
+      waypoints: [
+        { place: "Čeladná", coords: "49.5167 N 18.3333 E" },
+        { place: "Olomouc", coords: "49.5938 N 17.2509 E" },
+        { place: "Soluň", coords: "40.6401 N 22.9444 E" },
+      ],
+    },
+    research: "Výzkum",
+    publications: "Publikace",
+    openCertificate: "Otevřít certifikát",
+    lead: {
+      portfolio:
+        "Projekty s odkazy na kód i nasazení. Obrázky u karet jsou ilustrace, ne výstupy projektů.",
+    },
+    menu: {
+      open: "Menu",
+      close: "Zavřít",
+    },
   },
 };
 

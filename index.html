@@ -14,8 +14,8 @@
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Petr Mikeska – geoinformatik na průniku computer vision a GIS. Detekce objektů z mobilního mapování, ortofot a LiDAR mračen, prostorové databáze a mapové aplikace. OSVČ, Čeladná." />
-    <meta name="keywords" content="GIS, Web GIS, Remote Sensing, PostGIS, Spatial Databases, GeoAI, computer vision, geospatial analysis, Python, JavaScript" />
+    <meta name="description" content="Petr Mikeska, geospatial engineer a computer vision. Detekce z mobilního mapování (360° snímky, GNSS, LiDAR) převádí na mapový inventář dopravních značek a poruch vozovky. Mgr. geoinformatika UPOL, OSVČ, Čeladná." />
+    <meta name="keywords" content="computer vision, geospatial engineering, GeoAI, mobile mapping, LiDAR, YOLO, GIS, Web GIS, PostGIS, Python" />
     <meta name="author" content="Petr Mikeska" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
     <link rel="canonical" href="https://petrmikeska.cz/" />
@@ -24,27 +24,28 @@
          zůstává jako čistý strojový přepis týchž faktů bez markupu.
          Generuje ho `npm run seo`. -->
     <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
-    <title>Petr Mikeska – Geoinformatik &amp; GIS analytik | Computer vision · GeoAI · Web GIS</title>
+    <title>Petr Mikeska | Geospatial Engineer &amp; Computer Vision · GeoAI · mobilní mapování</title>
     <!-- Open Graph -->
     <meta property="og:type" content="profile" />
-    <meta property="og:title" content="Petr Mikeska – Geoinformatik &amp; GIS analytik" />
-    <meta property="og:description" content="Geoinformatik na průniku computer vision a GIS. Detekce z mobilního mapování, ortofot a LiDAR mračen, prostorové databáze a mapové aplikace." />
+    <meta property="og:title" content="Petr Mikeska | Geospatial Engineer &amp; Computer Vision" />
+    <meta property="og:description" content="Geospatial engineer a computer vision. Z 360° snímků, GNSS a LiDARu staví mapový inventář dopravních značek a poruch vozovky. Mgr. geoinformatika UPOL, Erasmus+ AUTH Soluň." />
     <meta property="og:url" content="https://petrmikeska.cz/" />
     <meta property="og:site_name" content="Petr Mikeska - GIS Portfolio" />
-    <!-- Bylo /assets/img/passport.webp, kde soubor nikdy nebyl — náhled
-         odkazu byl proto na každé sociální síti prázdný. -->
-    <meta property="og:image" content="https://petrmikeska.cz/passport.webp" />
-    <meta property="og:image:alt" content="Petr Mikeska" />
-    <meta property="og:image:width" content="512" />
-    <meta property="og:image:height" content="512" />
+    <!-- survey/og.jpg je karta 1200x630 složená pro v4 (Higgsfield, gpt_image_2_5):
+         jméno, souřadnice a snímek z ulice s detekcemi. Pas z JSON-LD Person.image
+         tu zůstat nemá, náhled odkazu má ukazovat práci, ne obličej. -->
+    <meta property="og:image" content="https://petrmikeska.cz/survey/og.jpg" />
+    <meta property="og:image:alt" content="Petr Mikeska, geospatial engineer &amp; computer vision: jméno, souřadnice a snímek z ulice s detekcemi značek" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="cs_CZ" />
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Petr Mikeska – Geoinformatik &amp; GIS analytik" />
-    <meta name="twitter:description" content="Geoinformatik na průniku computer vision a GIS — detekce z obrazu a LiDARu, prostorové databáze, mapové aplikace." />
-    <meta name="twitter:image" content="https://petrmikeska.cz/passport.webp" />
-    <meta name="twitter:image:alt" content="Petr Mikeska" />
-    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="twitter:title" content="Petr Mikeska | Geospatial Engineer &amp; Computer Vision" />
+    <meta name="twitter:description" content="Geospatial engineer a computer vision: detekce z mobilního mapování převedené na objekty v mapě a ověřené proti LiDARu." />
+    <meta name="twitter:image" content="https://petrmikeska.cz/survey/og.jpg" />
+    <meta name="twitter:image:alt" content="Petr Mikeska, geospatial engineer &amp; computer vision: jméno, souřadnice a snímek z ulice s detekcemi značek" />
+    <meta name="theme-color" content="#F2F3F0" />
     <!-- Theme, before first paint. The v3 surface reads the same key at runtime
          (src/lib/theme-store.ts); resolving it here as well is what keeps a
          visitor whose system is dark from being shown a white page first. -->
@@ -86,7 +87,7 @@
           "@type": "ProfilePage",
           "@id": "https://petrmikeska.cz/#profile",
           "url": "https://petrmikeska.cz/",
-          "name": "Petr Mikeska — geoinformatik, computer vision a GIS",
+          "name": "Petr Mikeska: geospatial engineer a computer vision",
           "isPartOf": { "@id": "https://petrmikeska.cz/#website" },
           "about": { "@id": "https://petrmikeska.cz/#petr" },
           "inLanguage": "cs-CZ",
@@ -96,8 +97,8 @@
           "@type": "Person",
           "@id": "https://petrmikeska.cz/#petr",
           "name": "Petr Mikeska",
-          "jobTitle": "Geoinformatik — GIS analytik a computer vision",
-          "description": "Geoinformatik na průniku computer vision, GIS, 3D/LiDAR a webového vývoje. Vyvíjí GeoAI pipeline pro detekci dopravního značení z mobilního mapování.",
+          "jobTitle": "Geospatial Engineer & Computer Vision",
+          "description": "Geospatial engineer a computer vision. V CEDA Maps vyvíjí GeoAI pipeline, která z dat mobilního mapování (360° snímky, GNSS, LiDAR) dělá mapový inventář dopravních značek a poruch vozovky.",
           "url": "https://petrmikeska.cz",
           "image": "https://petrmikeska.cz/passport.webp",
           "email": "piter.mikeska@gmail.com",
