@@ -3,6 +3,7 @@
   "rewrites": [
     { "source": "/bp/:path*", "destination": "/bp/index.html" },
     { "source": "/novy-web", "destination": "/index.html" },
+    { "source": "/novy-web/", "destination": "/index.html" },
     { "source": "/novy-web/:path*", "destination": "/index.html" }
   ]
 }
