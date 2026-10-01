@@ -1,9 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
-    { "source": "/bp/:path*", "destination": "/bp/index.html" },
-    { "source": "/novy-web", "destination": "/index.html" },
-    { "source": "/novy-web/", "destination": "/index.html" },
-    { "source": "/novy-web/:path*", "destination": "/index.html" }
-  ]
+  "redirects": [
+    { "source": "/novy-web", "destination": "/", "permanent": true },
+    { "source": "/novy-web/", "destination": "/", "permanent": true },
+    { "source": "/novy-web/:path*", "destination": "/", "permanent": true }
+  ],
+  "rewrites": [{ "source": "/bp/:path*", "destination": "/bp/index.html" }]
 }
