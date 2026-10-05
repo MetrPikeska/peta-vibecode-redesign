@@ -15,7 +15,6 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Petr Mikeska, geospatial engineer a computer vision. Detekce z mobilního mapování (360° snímky, GNSS, LiDAR) převádí na mapový inventář dopravních značek a poruch vozovky. Mgr. geoinformatika UPOL, OSVČ, Čeladná." />
-    <meta name="keywords" content="computer vision, geospatial engineering, GeoAI, mobile mapping, LiDAR, YOLO, GIS, Web GIS, PostGIS, Python" />
     <meta name="author" content="Petr Mikeska" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
     <link rel="canonical" href="https://petrmikeska.cz/" />
@@ -30,7 +29,7 @@
     <meta property="og:title" content="Petr Mikeska | Geospatial Engineer &amp; Computer Vision" />
     <meta property="og:description" content="Geospatial engineer a computer vision. Z 360° snímků, GNSS a LiDARu staví mapový inventář dopravních značek a poruch vozovky. Mgr. geoinformatika UPOL, Erasmus+ AUTH Soluň." />
     <meta property="og:url" content="https://petrmikeska.cz/" />
-    <meta property="og:site_name" content="Petr Mikeska - GIS Portfolio" />
+    <meta property="og:site_name" content="Petr Mikeska | Geospatial Engineer &amp; Computer Vision" />
     <!-- survey/og.jpg je karta 1200x630 složená pro v4 (Higgsfield, gpt_image_2_5):
          jméno, souřadnice a snímek z ulice s detekcemi. Pas z JSON-LD Person.image
          tu zůstat nemá, náhled odkazu má ukazovat práci, ne obličej. -->
@@ -63,10 +62,9 @@
          weight axes intact. Not preloaded — v2 is not the mounted system, and
          `@font-face` in styles/instrument.css still fetches both subsets when
          it is. Restore the preloads if v2 goes live again. -->
-    <!-- v1 "topographic" system — kept so src/pages/v1-original.tsx still renders. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- v1 "topographic" and v3 read Space Grotesk through --font-sans in
+         index.css; neither is the mounted system, so the face is not fetched.
+         Restore its Google Fonts preconnect + stylesheet if one goes live. -->
     <!-- JSON-LD. Každá hodnota tu musí odpovídat src/data/content.ts:
          rozpor v entitních údajích škodí podle PRODUCT.md víc než údaj
          chybějící, a tenhle blok byl rozporný ve čtyřech polích naráz

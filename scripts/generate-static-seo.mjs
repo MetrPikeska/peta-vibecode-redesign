@@ -91,7 +91,9 @@ for (const p of projects) {
   push(`### ${p.title}`, "", p.description, "");
   push(...p.features.map((f) => `- ${f}`));
   push(`- Technologie: ${p.tags.join(", ")}`);
-  const urls = [
+  // llms.txt stays out: it is linked from <head> for models, and listed here it
+// would be indexed by search engines as a page of its own.
+const urls = [
     p.link && `${p.linkLabel ?? "Odkaz"}: ${p.link}`,
     p.webLink && `${p.webLinkLabel ?? "Web"}: ${p.webLink}`,
     ...(p.links ?? []).map((l) => `${l.label}: ${l.url}`),
@@ -198,10 +200,11 @@ Sitemap: ${SITE}/sitemap.xml
 `,
 );
 
+// llms.txt stays out: it is linked from <head> for models, and listed here it
+// would be indexed by search engines as a page of its own.
 const urls = [
   { loc: `${SITE}/`, priority: "1.0", freq: "weekly" },
   { loc: `${SITE}/bp/`, priority: "0.6", freq: "yearly" },
-  { loc: `${SITE}/llms.txt`, priority: "0.5", freq: "weekly" },
 ];
 
 out(

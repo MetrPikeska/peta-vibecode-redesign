@@ -12,6 +12,8 @@ npm run lint      # ESLint
 npm run preview   # preview production build locally at http://localhost:4173
 ```
 
+`/bp/` is a prebuilt bundle with no source here; its rendered DOM is baked into `public/bp/index.html` by `node scripts/snapshot-bp.mjs` (needs local Chrome, not part of `build`). Rerun it whenever `/bp/` changes.
+
 `npm run seo` must stay the first step of `build`: it writes into `public/`, which the client build copies into `dist/`. Moved after it, the three files never reach `dist`.
 
 No test suite is configured.
