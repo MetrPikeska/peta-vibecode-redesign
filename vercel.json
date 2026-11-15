@@ -5,5 +5,9 @@
     { "source": "/novy-web/", "destination": "/", "permanent": true },
     { "source": "/novy-web/:path*", "destination": "/", "permanent": true }
   ],
-  "rewrites": [{ "source": "/bp/:path*", "destination": "/bp/index.html" }]
+  "rewrites": [
+    { "source": "/bp/:path*", "destination": "/bp/index.html" },
+    { "source": "/nasa", "destination": "/nasa/index.html" },
+    { "source": "/nasa/", "destination": "/nasa/index.html" }
+  ]
 }
