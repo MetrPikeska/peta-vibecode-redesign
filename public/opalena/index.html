@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skiareál Opálená ve 3D · Petr Mikeska</title>
+<meta name="description" content="3D model skiareálu Opálená v Pstruží z dat ČÚZK a OpenStreetMap: terén DMR 5G, 26 167 stromů z modelu povrchu, 3 vleky, letní a zimní verze.">
+<link rel="canonical" href="https://petrmikeska.cz/opalena">
+<meta property="og:title" content="Skiareál Opálená ve 3D">
+<meta property="og:description" content="Model 1,6 × 1,3 km z otevřených dat ČÚZK a OpenStreetMap, postavený skriptem v Blenderu.">
+<meta property="og:image" content="https://petrmikeska.cz/opalena/leto-prehled.jpg">
+<meta property="og:url" content="https://petrmikeska.cz/opalena">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<script type="module" src="/opalena/model-viewer.min.js"></script>
+<style>
+  :root { --paper: #F2F3F0; --sheet: #E6E8E3; --line: #C9CDC6; --ink: #15181D; --muted: #5A616B; --accent: #3247C4; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); }
+  body { font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  a { color: var(--accent); }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+  header { padding: 28px 0 18px; display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: end; justify-content: space-between; }
+  .eyebrow { font: 12px/1.2 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+  h1 { font-size: clamp(26px, 4.4vw, 40px); line-height: 1.1; margin: 0; letter-spacing: -.01em; }
+  h2 { font-size: 20px; margin: 44px 0 12px; }
+  .sub { color: var(--muted); margin: 6px 0 0; max-width: 62ch; }
+  .seg { display: inline-flex; border: 1px solid var(--ink); border-radius: 6px; overflow: hidden; }
+  .seg button { font: inherit; font-size: 14px; padding: 8px 18px; border: 0; background: transparent; color: var(--ink); cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .stage { position: relative; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: #cfdcec; }
+  .stage.zima { background: #d7e0ec; }
+  model-viewer { display: block; width: 100%; height: min(72vh, 720px); min-height: 380px; --poster-color: transparent; --progress-bar-color: var(--accent); }
+  .hint { position: absolute; left: 12px; bottom: 10px; font-size: 12px; color: var(--ink); background: rgba(242,243,240,.85); padding: 4px 8px; border-radius: 4px; pointer-events: none; }
+  .north { position: absolute; right: 12px; bottom: 10px; font: 12px ui-monospace, monospace; background: rgba(242,243,240,.85); padding: 4px 8px; border-radius: 4px; }
+  dl.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; margin: 16px 0 0; }
+  dl.facts div { background: var(--paper); padding: 12px 14px; }
+  dt { font: 11px/1.2 ui-monospace, monospace; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  dd { margin: 4px 0 0; font-size: 20px; font-variant-numeric: tabular-nums; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 14px; }
+  figure { margin: 0; }
+  figure img, video { display: block; width: 100%; height: auto; border-radius: 4px; outline: 1px solid var(--line); background: var(--sheet); }
+  figure img { aspect-ratio: 16 / 9; object-fit: cover; }
+  figcaption { font-size: 13px; color: var(--muted); padding-top: 5px; }
+  p, li { max-width: 72ch; }
+  ul { padding-left: 20px; }
+  footer { margin: 48px 0 40px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <p class="eyebrow">Pstruží · Beskydy · 49.553° N, 18.315° E</p>
+    <h1>Skiareál Opálená ve 3D</h1>
+    <p class="sub">Model území 1,6 × 1,3 km z otevřených dat ČÚZK a OpenStreetMap. Výšky jsou 1 : 1, bez převýšení.</p>
+  </div>
+  <div class="seg" role="group" aria-label="Sezóna">
+    <button type="button" data-season="zima" aria-pressed="true">Zima</button>
+    <button type="button" data-season="leto" aria-pressed="false">Léto</button>
+  </div>
+</header>
+
+<div class="stage zima" id="stage">
+  <model-viewer id="mv" src="/opalena/opalena-zima.glb" alt="3D model skiareálu Opálená"
+    camera-controls touch-action="pan-y" interaction-prompt="none"
+    camera-orbit="100deg 60deg 2100m" camera-target="-60m 170m -150m" field-of-view="30deg"
+    min-camera-orbit="auto 5deg 250m" max-camera-orbit="auto 88deg 3200m"
+    environment-image="neutral" exposure="1.05" shadow-intensity="0" tone-mapping="neutral"></model-viewer>
+  <span class="hint">Tažením otáčíte, kolečkem nebo dvěma prsty přibližujete</span>
+</div>
+
+<dl class="facts">
+  <div><dt>Plocha modelu</dt><dd>213 ha</dd></div>
+  <div><dt>Nadmořská výška</dt><dd>432–892 m</dd></div>
+  <div><dt>Stromy</dt><dd>26 167</dd></div>
+  <div><dt>Budovy</dt><dd>225</dd></div>
+  <div><dt>Vlek TLV-12</dt><dd>392 m / 91 m</dd></div>
+  <div><dt>Vlek EPV-H</dt><dd>192 m / 32 m</dd></div>
+</dl>
+
+<h2 id="gallery-title">Rendery</h2>
+<div class="grid" id="gallery">
+  <figure><img data-view="prehled" src="/opalena/zima-prehled.jpg" alt="Přehled areálu od východu" width="1920" height="1080"><figcaption>Přehled od východu</figcaption></figure>
+  <figure><img data-view="dolni_stanice" src="/opalena/zima-dolni_stanice.jpg" alt="Pohled od dolní stanice na svah" width="1920" height="1080"><figcaption>Od dolní stanice</figcaption></figure>
+  <figure><img data-view="horni_stanice" src="/opalena/zima-horni_stanice.jpg" alt="Pohled od horní stanice dolů" width="1920" height="1080"><figcaption>Od horní stanice</figcaption></figure>
+  <figure><img data-view="shora" src="/opalena/zima-shora.jpg" alt="Kolmý pohled shora" width="1920" height="1080"><figcaption>Kolmo shora, sever nahoře</figcaption></figure>
+</div>
+
+<section id="fly" hidden>
+<h2>Průlet</h2>
+<video id="flyvideo" controls preload="metadata" playsinline width="1280" height="720" src="/opalena/prulet.mp4"></video>
+</section>
+
+<h2>Z čeho model je</h2>
+<ul>
+  <li>Terén: digitální model reliéfu DMR 5G, mřížka 2 m.</li>
+  <li>Stromy a výšky budov: model povrchu z obrazové korelace (0,5 m) minus terén. Každý strom stojí tam, kde má model povrchu lokální vrchol, a má jeho výšku.</li>
+  <li>Letní textura: Ortofoto ČR, 12,5 cm na pixel.</li>
+  <li>Vleky, sjezdovky, půdorysy budov a nádrž: OpenStreetMap.</li>
+</ul>
+<p>Odhadnuté jsou sloupy vleků (rozestup 47 a 50 m podle stínů v ortofotu), tvary střech, druh stromu a šířka upravené sjezdovky. Scénu staví skript v Blenderu 5.3, rendery jsou z Cycles.</p>
+
+<footer>
+  Data: © ČÚZK (DMR 5G, DMP, Ortofoto ČR, CC BY 4.0) · © přispěvatelé <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
+  <a href="/">petrmikeska.cz</a>
+</footer>
+</div>
+
+<script>
+  const mv = document.getElementById("mv");
+  const stage = document.getElementById("stage");
+  const buttons = document.querySelectorAll(".seg button");
+  function setSeason(season) {
+    buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.season === season)));
+    stage.classList.toggle("zima", season === "zima");
+    mv.src = `/opalena/opalena-${season}.glb`;
+    document.querySelectorAll("#gallery img").forEach((img) => {
+      img.parentElement.hidden = false;
+      img.src = `/opalena/${season}-${img.dataset.view}.jpg`;
+    });
+    document.getElementById("gallery-title").hidden = false;
+  }
+  buttons.forEach((b) => b.addEventListener("click", () => setSeason(b.dataset.season)));
+  // renders and the fly-through are published as they finish: hide whatever is not there yet
+  document.querySelectorAll("#gallery img").forEach((img) => {
+    const hide = () => {
+      img.parentElement.hidden = true;
+      const left = [...document.querySelectorAll("#gallery figure")].some((f) => !f.hidden);
+      document.getElementById("gallery-title").hidden = !left;
+    };
+    img.addEventListener("error", hide);
+    if (img.complete && img.naturalWidth === 0) hide();
+  });
+  const fly = document.getElementById("flyvideo");
+  fly.addEventListener("loadedmetadata", () => { document.getElementById("fly").hidden = false; });
+</script>
+</body>
+</html>

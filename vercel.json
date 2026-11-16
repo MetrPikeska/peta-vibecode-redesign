@@ -8,6 +8,8 @@
   "rewrites": [
     { "source": "/bp/:path*", "destination": "/bp/index.html" },
     { "source": "/nasa", "destination": "/nasa/index.html" },
-    { "source": "/nasa/", "destination": "/nasa/index.html" }
+    { "source": "/nasa/", "destination": "/nasa/index.html" },
+    { "source": "/opalena", "destination": "/opalena/index.html" },
+    { "source": "/opalena/", "destination": "/opalena/index.html" }
   ]
 }
