@@ -47,6 +47,19 @@
   ul { padding-left: 20px; }
   footer { margin: 48px 0 40px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
   footer a { color: inherit; }
+  #gallery img { cursor: zoom-in; }
+  #gallery img:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  #lightbox { position: fixed; inset: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgba(12,14,17,.94); color: #F2F3F0; }
+  #lightbox::backdrop { background: rgba(12,14,17,.94); }
+  #lightbox[open] { display: grid; grid-template-rows: 1fr auto; }
+  #lightbox .frame { min-height: 0; display: flex; align-items: center; justify-content: center; padding: 12px 12px 0; cursor: zoom-out; }
+  #lightbox img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 2px; }
+  #lightbox .bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px 14px; font-size: 14px; }
+  #lightbox .bar span { color: rgba(242,243,240,.75); }
+  #lightbox button { font: inherit; font-size: 14px; color: inherit; background: none; border: 1px solid rgba(242,243,240,.35); border-radius: 6px; padding: 7px 14px; cursor: pointer; }
+  #lightbox button:hover { border-color: #F2F3F0; }
+  #lightbox button:focus-visible { outline: 2px solid #F2F3F0; outline-offset: 2px; }
+  #lightbox .nav { display: flex; gap: 8px; }
 </style>
 </head>
 <body>
@@ -111,6 +124,18 @@
 </footer>
 </div>
 
+<dialog id="lightbox" aria-label="Zvětšený render">
+  <div class="frame"><img alt=""></div>
+  <div class="bar">
+    <span id="lb-caption"></span>
+    <div class="nav">
+      <button type="button" id="lb-prev" aria-label="Předchozí">←</button>
+      <button type="button" id="lb-next" aria-label="Další">→</button>
+      <button type="button" id="lb-close">Zavřít</button>
+    </div>
+  </div>
+</dialog>
+
 <script>
   const mv = document.getElementById("mv");
   const stage = document.getElementById("stage");
@@ -135,6 +160,43 @@
     };
     img.addEventListener("error", hide);
     if (img.complete && img.naturalWidth === 0) hide();
+  });
+  // lightbox: click or Enter opens a render, arrows or swipe move between the visible ones
+  const lb = document.getElementById("lightbox");
+  const lbImg = lb.querySelector("img");
+  let lbIndex = 0;
+  const shown = () => [...document.querySelectorAll("#gallery figure")].filter((f) => !f.hidden).map((f) => f.querySelector("img"));
+  function lbShow(i) {
+    const list = shown();
+    if (!list.length) return;
+    lbIndex = (i + list.length) % list.length;
+    const img = list[lbIndex];
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    document.getElementById("lb-caption").textContent = `${img.alt} · ${lbIndex + 1} / ${list.length}`;
+  }
+  document.querySelectorAll("#gallery img").forEach((img) => {
+    img.tabIndex = 0;
+    img.setAttribute("role", "button");
+    const open = () => { lbShow(shown().indexOf(img)); lb.showModal(); };
+    img.addEventListener("click", open);
+    img.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+  });
+  document.getElementById("lb-prev").addEventListener("click", () => lbShow(lbIndex - 1));
+  document.getElementById("lb-next").addEventListener("click", () => lbShow(lbIndex + 1));
+  document.getElementById("lb-close").addEventListener("click", () => lb.close());
+  lb.querySelector(".frame").addEventListener("click", () => lb.close());
+  lb.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") lbShow(lbIndex - 1);
+    if (e.key === "ArrowRight") lbShow(lbIndex + 1);
+  });
+  let touchX = null;
+  lb.addEventListener("touchstart", (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener("touchend", (e) => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    touchX = null;
+    if (Math.abs(dx) > 50) lbShow(lbIndex + (dx < 0 ? 1 : -1));
   });
   const fly = document.getElementById("flyvideo");
   fly.addEventListener("loadedmetadata", () => { document.getElementById("fly").hidden = false; });
