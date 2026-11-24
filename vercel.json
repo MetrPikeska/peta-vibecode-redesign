@@ -3,9 +3,12 @@
   "redirects": [
     { "source": "/novy-web", "destination": "/", "permanent": true },
     { "source": "/novy-web/", "destination": "/", "permanent": true },
-    { "source": "/novy-web/:path*", "destination": "/", "permanent": true }
+    { "source": "/novy-web/:path*", "destination": "/", "permanent": true },
+    { "source": "/kartogram", "destination": "/kartogram/", "permanent": true }
   ],
   "rewrites": [
+    { "source": "/kartogram/", "destination": "https://acart-8-kartogram.vercel.app/kartogram/" },
+    { "source": "/kartogram/:path+", "destination": "https://acart-8-kartogram.vercel.app/kartogram/:path+" },
     { "source": "/bp/:path*", "destination": "/bp/index.html" },
     { "source": "/nasa", "destination": "/nasa/index.html" },
     { "source": "/nasa/", "destination": "/nasa/index.html" },
